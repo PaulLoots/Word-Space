@@ -45,6 +45,25 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction func onNewGameDown(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.startButtonBackground.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
+            self.startButtonBackground.shadowRadius = 0
+            self.startButtonBackground.shadowOpacity = 0
+        })
+    }
+    
+    @IBAction func onNewGameUp(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.startButtonBackground.transform = CGAffineTransform.identity
+            self.startButtonBackground.shadowRadius = 10
+            self.startButtonBackground.shadowOpacity = 1
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.performSegue(withIdentifier: "showLobby", sender: nil)
+        }
+    }
+    
     //Change Avatar Image to Before
     @IBAction func onAvatarSwipeRight(_ sender: UISwipeGestureRecognizer) {
         changeAvatar(isLeft: false)

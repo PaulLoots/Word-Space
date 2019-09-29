@@ -22,30 +22,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="68" height="42"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJp-EZ-98w" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJp-EZ-98w" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="68" height="42"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-SY-Wdv">
-                                <rect key="frame" x="14" y="10" width="41" height="22"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-SY-Wdv">
+                                <rect key="frame" x="12" y="11" width="44" height="20"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
-                                <color key="textColor" name="Text-Primary"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="White"/>
+                        <constraints>
+                            <constraint firstItem="kCU-SY-Wdv" firstAttribute="leading" secondItem="rJp-EZ-98w" secondAttribute="leading" constant="12" id="Vng-kg-n6D"/>
+                            <constraint firstAttribute="trailing" secondItem="kCU-SY-Wdv" secondAttribute="trailing" constant="12" id="id7-Cm-aIN"/>
+                            <constraint firstItem="kCU-SY-Wdv" firstAttribute="centerY" secondItem="rJp-EZ-98w" secondAttribute="centerY" id="lal-Zs-qp1"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="rJp-EZ-98w" secondAttribute="bottom" id="Ec4-dc-H8a"/>
+                <constraint firstItem="rJp-EZ-98w" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JI7-Zp-TxD"/>
+                <constraint firstItem="rJp-EZ-98w" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kn4-Rl-sNb"/>
+                <constraint firstAttribute="trailing" secondItem="rJp-EZ-98w" secondAttribute="trailing" id="kqi-bB-epf"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="68" height="50"/>
             <connections>
@@ -56,7 +62,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="Text-Primary">
+        <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

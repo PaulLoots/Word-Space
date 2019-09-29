@@ -105,6 +105,14 @@
                                                 <color key="textColor" name="White"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9E-iV-eOX" userLabel="New Game Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <connections>
+                                                    <action selector="onNewGameDown:" destination="BYZ-38-t0r" eventType="touchDown" id="vwT-9z-aVP"/>
+                                                    <action selector="onNewGameUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VKD-ta-DRH"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Purple-Accent"/>
                                         <userDefinedRuntimeAttributes>
@@ -179,7 +187,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgj-VJ-fdc" userLabel="Swipe Action">
-                                <rect key="frame" x="119" y="10" width="138" height="21"/>
+                                <rect key="frame" x="118.5" y="10" width="138" height="21"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="swipe to change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0P-Xq-1do">
                                         <rect key="frame" x="25" y="1" width="87" height="16"/>
@@ -189,12 +197,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" fixedFrame="YES" image="chevron.compact.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TmZ-2a-3hj">
-                                        <rect key="frame" x="112" y="1" width="9" height="19"/>
+                                        <rect key="frame" x="113" y="1" width="9" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="bold"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" fixedFrame="YES" image="chevron.compact.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="c0d-Ie-FFf">
-                                        <rect key="frame" x="13" y="1" width="10" height="19"/>
+                                        <rect key="frame" x="14" y="1" width="10" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="bold"/>
                                     </imageView>
@@ -220,6 +228,7 @@
                         <outlet property="avatarNameButton" destination="W2v-1a-rfA" id="xKs-4V-KkJ"/>
                         <outlet property="startButtonBackground" destination="867-LM-VaY" id="nW3-Fo-Mfu"/>
                         <outlet property="swipeLabel" destination="g0P-Xq-1do" id="r5H-sV-q7s"/>
+                        <segue destination="J3b-cF-Ng9" kind="presentation" identifier="showLobby" id="naU-Np-k8A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -267,12 +276,12 @@
             </objects>
             <point key="canvasLocation" x="138.40000000000001" y="107.49625187406298"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Lobby View Controller-->
         <scene sceneID="NE5-ub-FWO">
             <objects>
-                <viewController id="J3b-cF-Ng9" sceneMemberID="viewController">
+                <viewController id="J3b-cF-Ng9" customClass="GameLobbyViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fUA-h5-VT7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qx-aM-NYg">
@@ -285,22 +294,25 @@
                                 <state key="normal" image="xmark" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
                                 </state>
+                                <connections>
+                                    <action selector="onBackPressed:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="zqF-xN-81W"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start New Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYs-TK-4aE">
-                                <rect key="frame" x="25" y="72" width="161.5" height="30.5"/>
+                                <rect key="frame" x="25" y="72" width="178" height="28"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create A Pass Phrase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZv-Ra-xm6">
-                                <rect key="frame" x="25" y="97.5" width="289.5" height="40.5"/>
+                                <rect key="frame" x="25" y="90" width="312" height="37.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="32"/>
                                 <color key="textColor" name="Text-Primary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CT-BJ-B5u" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
-                                <rect key="frame" x="25" y="586" width="325" height="56"/>
-                                <color key="backgroundColor" name="Purple-Accent"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CT-BJ-B5u" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                <rect key="frame" x="25" y="566" width="325" height="56"/>
+                                <color key="backgroundColor" name="Card-Shadow"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="dUB-cd-eBl"/>
                                 </constraints>
@@ -312,23 +324,28 @@
                                         <real key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onSetPhraseTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="XlR-6l-Ptz"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5z-bS-OBB" userLabel="Pass Phrase Selected Area" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
-                                <rect key="frame" x="16" y="168" width="343" height="128"/>
+                                <rect key="frame" x="16" y="162" width="343" height="128"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OAe-Ze-Vkg">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="103"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0/4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X0M-nj-5DP">
+                                        <rect key="frame" x="299" y="97" width="30" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OAe-Ze-Vkg">
+                                        <rect key="frame" x="9" y="9" width="325" height="94"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pYu-E7-xPE">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
+                                        <collectionViewLayout key="collectionViewLayout" id="tfO-cD-ifV" customClass="LeftAlignedCollectionViewFlowLayout" customModule="NiceOff" customModuleProvider="target"/>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VmG-Qc-Ud8" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="VmG-Qc-Ud8" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xTu-6G-R4g">
@@ -337,14 +354,11 @@
                                                 </collectionViewCellContentView>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="J3b-cF-Ng9" id="RD8-Ia-bOU"/>
+                                            <outlet property="delegate" destination="J3b-cF-Ng9" id="9B0-GO-rfh"/>
+                                        </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0/4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X0M-nj-5DP">
-                                        <rect key="frame" x="271" y="97" width="58" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="Overlay-Background"/>
                                 <userDefinedRuntimeAttributes>
@@ -353,6 +367,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Yos-dE-Ta0">
+                                <rect key="frame" x="25" y="331" width="325" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewLayout key="collectionViewLayout" id="u39-w9-ZYa" customClass="CollectionViewCenteredFlowLayout" customModule="NiceOff" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="a7H-D9-5rs" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Hdd-OW-hNT">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="J3b-cF-Ng9" id="9Oe-Pz-AJt"/>
+                                    <outlet property="delegate" destination="J3b-cF-Ng9" id="Hum-Ns-fnA"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" name="Purple-Background"/>
                         <color key="tintColor" name="Purple-Accent"/>
@@ -365,10 +399,16 @@
                             <constraint firstItem="QZv-Ra-xm6" firstAttribute="leading" secondItem="Ahi-4e-rz4" secondAttribute="leading" constant="25" id="MXS-ML-sYf"/>
                             <constraint firstItem="Ahi-4e-rz4" firstAttribute="bottom" secondItem="2CT-BJ-B5u" secondAttribute="bottom" constant="25" id="WaL-Zc-rdF"/>
                             <constraint firstItem="1qx-aM-NYg" firstAttribute="top" secondItem="Ahi-4e-rz4" secondAttribute="top" constant="20" id="njd-dw-a15"/>
-                            <constraint firstItem="QZv-Ra-xm6" firstAttribute="top" secondItem="aYs-TK-4aE" secondAttribute="bottom" constant="-5" id="rBy-FX-CyG"/>
+                            <constraint firstItem="QZv-Ra-xm6" firstAttribute="top" secondItem="aYs-TK-4aE" secondAttribute="bottom" constant="-10" id="rBy-FX-CyG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ahi-4e-rz4"/>
                     </view>
+                    <connections>
+                        <outlet property="passPhraseCollectionView" destination="OAe-Ze-Vkg" id="BWZ-Fg-oeG"/>
+                        <outlet property="passPhraseLimitLabel" destination="X0M-nj-5DP" id="VgA-xo-vnH"/>
+                        <outlet property="passPhraseOptionsCollectionView" destination="Yos-dE-Ta0" id="lHE-uP-gRx"/>
+                        <outlet property="setPhraseButton" destination="2CT-BJ-B5u" id="VbM-Pn-Dsi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qtw-EI-oNT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,6 +12,9 @@
 		7F2E36292340091F0072A8C7 /* WordPillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E36272340091F0072A8C7 /* WordPillCollectionViewCell.xib */; };
 		7F2E362B2340A8AE0072A8C7 /* Avatars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E362A2340A8AE0072A8C7 /* Avatars.swift */; };
 		7F2E362D2340ACEF0072A8C7 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E362C2340ACEF0072A8C7 /* Ref.swift */; };
+		7F2E362F2340C9890072A8C7 /* GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E362E2340C9890072A8C7 /* GameLobbyViewController.swift */; };
+		7F2E36322340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36312340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift */; };
+		7F2E36342340FC250072A8C7 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36332340FC250072A8C7 /* Words.swift */; };
 		7FB97115233F8FEA00317A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97114233F8FEA00317A20 /* AppDelegate.swift */; };
 		7FB97117233F8FEA00317A20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97116233F8FEA00317A20 /* SceneDelegate.swift */; };
 		7FB97119233F8FEA00317A20 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97118233F8FEA00317A20 /* HomeViewController.swift */; };
@@ -30,6 +33,9 @@
 		7F2E36272340091F0072A8C7 /* WordPillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordPillCollectionViewCell.xib; sourceTree = "<group>"; };
 		7F2E362A2340A8AE0072A8C7 /* Avatars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatars.swift; sourceTree = "<group>"; };
 		7F2E362C2340ACEF0072A8C7 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
+		7F2E362E2340C9890072A8C7 /* GameLobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLobbyViewController.swift; sourceTree = "<group>"; };
+		7F2E36312340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extention.swift"; sourceTree = "<group>"; };
+		7F2E36332340FC250072A8C7 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		7FB97111233F8FEA00317A20 /* NiceOff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiceOff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB97114233F8FEA00317A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB97116233F8FEA00317A20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +70,14 @@
 			path = Pills;
 			sourceTree = "<group>";
 		};
+		7F2E36302340DEAA0072A8C7 /* Exptentions */ = {
+			isa = PBXGroup;
+			children = (
+				7F2E36312340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift */,
+			);
+			path = Exptentions;
+			sourceTree = "<group>";
+		};
 		7FB97108233F8FEA00317A20 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +97,7 @@
 		7FB97113233F8FEA00317A20 /* NiceOff */ = {
 			isa = PBXGroup;
 			children = (
+				7F2E36302340DEAA0072A8C7 /* Exptentions */,
 				7FB9712E233F908000317A20 /* Storyboards */,
 				7FB9712D233F907700317A20 /* Models */,
 				7FB9712C233F906A00317A20 /* Views */,
@@ -126,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				7FB97118233F8FEA00317A20 /* HomeViewController.swift */,
+				7F2E362E2340C9890072A8C7 /* GameLobbyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -143,6 +159,7 @@
 			children = (
 				7F2E362A2340A8AE0072A8C7 /* Avatars.swift */,
 				7F2E362C2340ACEF0072A8C7 /* Ref.swift */,
+				7F2E36332340FC250072A8C7 /* Words.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,7 +284,10 @@
 				7F2E362D2340ACEF0072A8C7 /* Ref.swift in Sources */,
 				7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */,
 				7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */,
+				7F2E362F2340C9890072A8C7 /* GameLobbyViewController.swift in Sources */,
+				7F2E36322340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift in Sources */,
 				7FB97119233F8FEA00317A20 /* HomeViewController.swift in Sources */,
+				7F2E36342340FC250072A8C7 /* Words.swift in Sources */,
 				7F2E362B2340A8AE0072A8C7 /* Avatars.swift in Sources */,
 				7FB97115233F8FEA00317A20 /* AppDelegate.swift in Sources */,
 				7FB97117233F8FEA00317A20 /* SceneDelegate.swift in Sources */,
