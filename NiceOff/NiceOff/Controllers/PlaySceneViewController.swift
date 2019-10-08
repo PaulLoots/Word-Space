@@ -36,6 +36,7 @@ class PlaySceneViewController: UIViewController {
     }
     
     func initialiseGame() {
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.animateBeginRound()
         }
@@ -43,6 +44,50 @@ class PlaySceneViewController: UIViewController {
     
     @IBAction func onEnterTapped(_ sender: Any) {
         performSegue(withIdentifier: "submitAnswerSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "submitAnswerSegue" {
+                if let ScoreBoardViewController = segue.destination as? ScoreBoardViewController {
+                    ScoreBoardViewController.enteredSentence = mergeSelectionIntoSentence()
+                }
+            }
+    }
+    
+    func mergeSelectionIntoSentence() -> String {
+        var sentenceString = ""
+        for wordOption in wordOptionsAdded {
+            sentenceString = "\(sentenceString) \(wordOption)"
+        }
+        return sentenceString
+    }
+    
+    // MARK: - Word Generating Algorithm
+    
+    func generateWords() {
+        var wordsList: Array<String> = []
+        
+        //Determiners
+        wordsList.append(determinersCommon.randomElement() ?? "the")
+        let determinerChance = Int.random(in: 0 ... 10)
+        //if determinerChance
+    }
+    
+    func checkWordsListLength(wordsList:Array<String>) -> Bool {
+        var characterCount = 0
+        let wordCount = wordsList.count
+        
+        for word in wordsList {
+            characterCount = word.count
+        }
+        
+        let totalCount = characterCount + (wordCount * 5)
+        
+        if totalCount > 100 {
+            return false
+        } else {
+            return true
+        }
     }
     
     //Animations
