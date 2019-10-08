@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31EFA81D7F1B8504A3788C98 /* Pods_NiceOff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43DF25D2C9D8755785A2655 /* Pods_NiceOff.framework */; };
+		7F0F48ED234CD2DD009E541A /* ScoreBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F48EC234CD2DD009E541A /* ScoreBoardViewController.swift */; };
 		7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36232340042F0072A8C7 /* UIButton+Designable.swift */; };
 		7F2E36282340091F0072A8C7 /* WordPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36262340091F0072A8C7 /* WordPillCollectionViewCell.swift */; };
 		7F2E36292340091F0072A8C7 /* WordPillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E36272340091F0072A8C7 /* WordPillCollectionViewCell.xib */; };
@@ -25,9 +27,12 @@
 		7FB97134233F914800317A20 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FB97131233F914700317A20 /* SourceSansPro-SemiBold.ttf */; };
 		7FB97135233F914800317A20 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FB97132233F914800317A20 /* SourceSansPro-Bold.ttf */; };
 		7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9713A233FA5C500317A20 /* UIView+Designable.swift */; };
+		7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		074A7D0E5A04F04165D0F96C /* Pods-NiceOff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceOff.release.xcconfig"; path = "Target Support Files/Pods-NiceOff/Pods-NiceOff.release.xcconfig"; sourceTree = "<group>"; };
+		7F0F48EC234CD2DD009E541A /* ScoreBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewController.swift; sourceTree = "<group>"; };
 		7F2E36232340042F0072A8C7 /* UIButton+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Designable.swift"; sourceTree = "<group>"; };
 		7F2E36262340091F0072A8C7 /* WordPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPillCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F2E36272340091F0072A8C7 /* WordPillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordPillCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -48,6 +53,9 @@
 		7FB97131233F914700317A20 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		7FB97132233F914800317A20 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		7FB9713A233FA5C500317A20 /* UIView+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Designable.swift"; sourceTree = "<group>"; };
+		7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySceneViewController.swift; sourceTree = "<group>"; };
+		E43DF25D2C9D8755785A2655 /* Pods_NiceOff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NiceOff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDA65013ABB921A59968E060 /* Pods-NiceOff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceOff.debug.xcconfig"; path = "Target Support Files/Pods-NiceOff/Pods-NiceOff.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +63,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31EFA81D7F1B8504A3788C98 /* Pods_NiceOff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FE361513F6B07F658CF434F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E43DF25D2C9D8755785A2655 /* Pods_NiceOff.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7F2E3625234008A30072A8C7 /* Pills */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +100,8 @@
 			children = (
 				7FB97113233F8FEA00317A20 /* NiceOff */,
 				7FB97112233F8FEA00317A20 /* Products */,
+				DC7B230B3F114AC34B818541 /* Pods */,
+				2FE361513F6B07F658CF434F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +161,8 @@
 			children = (
 				7FB97118233F8FEA00317A20 /* HomeViewController.swift */,
 				7F2E362E2340C9890072A8C7 /* GameLobbyViewController.swift */,
+				7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */,
+				7F0F48EC234CD2DD009E541A /* ScoreBoardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +204,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		DC7B230B3F114AC34B818541 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDA65013ABB921A59968E060 /* Pods-NiceOff.debug.xcconfig */,
+				074A7D0E5A04F04165D0F96C /* Pods-NiceOff.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,10 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FB97125233F8FEB00317A20 /* Build configuration list for PBXNativeTarget "NiceOff" */;
 			buildPhases = (
+				965162F4B84D0F57A6EB0194 /* [CP] Check Pods Manifest.lock */,
 				7FB9710D233F8FEA00317A20 /* Sources */,
 				7FB9710E233F8FEA00317A20 /* Frameworks */,
 				7FB9710F233F8FEA00317A20 /* Resources */,
 				7FB97139233F94BA00317A20 /* Auto Increment Build Number */,
+				26181F477AB672E10149749F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,6 +288,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		26181F477AB672E10149749F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NiceOff/Pods-NiceOff-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NiceOff/Pods-NiceOff-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NiceOff/Pods-NiceOff-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7FB97139233F94BA00317A20 /* Auto Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,6 +323,28 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
+		965162F4B84D0F57A6EB0194 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NiceOff-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -282,7 +354,9 @@
 			files = (
 				7F2E36282340091F0072A8C7 /* WordPillCollectionViewCell.swift in Sources */,
 				7F2E362D2340ACEF0072A8C7 /* Ref.swift in Sources */,
+				7F0F48ED234CD2DD009E541A /* ScoreBoardViewController.swift in Sources */,
 				7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */,
+				7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */,
 				7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */,
 				7F2E362F2340C9890072A8C7 /* GameLobbyViewController.swift in Sources */,
 				7F2E36322340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift in Sources */,
@@ -432,6 +506,7 @@
 		};
 		7FB97126233F8FEB00317A20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDA65013ABB921A59968E060 /* Pods-NiceOff.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +527,7 @@
 		};
 		7FB97127233F8FEB00317A20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 074A7D0E5A04F04165D0F96C /* Pods-NiceOff.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

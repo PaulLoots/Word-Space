@@ -9,11 +9,12 @@
 import Foundation
 
 //Basic Words
-let nouns = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy legs","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",]
 
-let verbs = ["soften","identify","industrialise"]
+let nouns = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy legs","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure"]
 
-let adjectives = ["dead","hairless","sadistic","metal","wild","domesticated","abnormal","medicated","cocky","massive","disrespectful","impressive","hilarious","sexy","hot","bearded","violent","slimy","insanely creepy" ,"talking","naked","angry","shaky","deep","sick","zippy","fluffy","frozen","unholy","filthy","fighting","harsh","frisky","greedy","crawly","insane","hideous","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",]
+let verbs = ["surround","stab","return","medicate","blindside","flap","trip","harass","trap","explode","sketch","scatter","challenge","fight","bury","splatter","smack","balance","poke","critique","fear","initiate","run over","cook","imprison","underestimate","shred","drink","dispute","echo","mimic","underrate","taunt"]
+
+let adjectives = ["dead","hairless","sadistic","metal","wild","domesticated","abnormal","medicated","cocky","massive","disrespectful","impressive","hilarious","sexy","hot","bearded","violent","slimy","insanely creepy" ,"talking","naked","angry","shaky","deep","sick","zippy","fluffy","frozen","unholy","filthy","fighting","harsh","frisky","greedy","crawly","insane","hideous","abusive","hateful","idiotic","twisted","useless","yapping","magical","arrogant","flirting","high-end","insecure","slippery","stubborn","sinister","cowardly","haunting","startled","demanding","offensive","nighttime","disgusting","disturbing","rebellious","hyperactive","infuriating","territorial","mischievous","misunderstood","mentally impaired"]
 
 let adverbs = ["carefully","easily","sadly"]
 
@@ -31,7 +32,6 @@ let determinersCommon = ["the","a"]
 
 let determiners = ["your","less","its","no","this","that","many","both","any","my"]
 
-
 //Emotive Words
 
 let anger = ["ordeal","repulsive","scandal","shameful","shocking","terrible","tragic","appalled","harmful","enraged","offensive","aggressive","frustrated","critical","violent","furious","rebellious","impatient","sarcastic","poisonous","jealous","revengeful","powerless","mean"]
@@ -45,3 +45,7 @@ let confusion = ["doubtful","hesitant","stressed","tense","unsure","manipulative
 let inspired = ["motivated","eager","enthusiastic","bold","brave","daring","hopeful","upbeat","balanced","fine","okay","fulfilled","authentic","sure","reliable","privileged"]
 
 let relaxed = ["calm","comfortable","quiet","relaxed","certain","bright","balanced","genuine","radiant","smiling","efficient","fluid","light","still","natural","laughing","natural","graceful"]
+
+//Pass Phrase Words
+
+let passPhrase = ["dragon","toaster","toilet seat","therapy","psychic","trust fund","sandwich","lettuce","kitty","friendly grandma","toenail"]

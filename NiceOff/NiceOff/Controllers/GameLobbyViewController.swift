@@ -9,15 +9,23 @@
 import UIKit
 
 class GameLobbyViewController: UIViewController {
-
-    @IBOutlet var passPhraseCollectionView: UICollectionView!
-    @IBOutlet var passPhraseOptionsCollectionView: UICollectionView!
+    
+    //Shared
+    @IBOutlet var subTitleLabel: UILabel!
+    @IBOutlet var TitleLabel: UILabel!
     
     //Pass Phrase
+    @IBOutlet var passPhraseCollectionView: UICollectionView!
+    @IBOutlet var passPhraseOptionsCollectionView: UICollectionView!
     var passPhraseItems : Array<String> = []
-    var passPhraseOptions : Array<String> = ["indespensable","looky", "i","lol","hi","Longer word", "i", "more spech", "word", "haha"]
+    var passPhraseOptions : Array<String> = passPhrase.shuffled()
     @IBOutlet var passPhraseLimitLabel: UILabel!
     @IBOutlet var setPhraseButton: DesignableButton!
+    @IBOutlet var passPhraseArea: DesignableView!
+    
+    //Start Game
+    @IBOutlet var startGameButton: DesignableButton!
+    @IBOutlet var startGameInfoView: UIView!
     
     //Colour
     var accentColour = "Purple-Accent"
@@ -69,12 +77,47 @@ class GameLobbyViewController: UIViewController {
     
     @IBAction func onSetPhraseTapped(_ sender: Any) {
         if checkPassPhraseCount() {
-
+            animateToStartGame()
         } else {
-           shakeLimitLabel()
+            shakeLimitLabel()
         }
     }
+    
+    func animateToStartGame() {
+        self.startGameInfoView.transform = .init(translationX: 0, y: 100)
+        self.startGameInfoView.alpha = 0
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+             self.passPhraseOptionsCollectionView.transform = .init(translationX: 0, y: -100)
+             self.passPhraseArea.transform = .init(translationX: 0, y: -100)
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.setPhraseButton.isHidden = true
+            self.startGameButton.isHidden = false
+            self.startGameInfoView.isHidden = false
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+             self.passPhraseOptionsCollectionView.alpha = 0
+             self.passPhraseArea.alpha = 0
+             self.subTitleLabel.text = "My Game"
+             self.TitleLabel.text = "Pass Phrase"
+             self.startGameInfoView.alpha = 1
+            })
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.startGameInfoView.transform = .identity
+            })
+        }
+         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+             self.passPhraseOptionsCollectionView.isHidden = true
+             self.passPhraseArea.isHidden = true
+         }
+    }
+    
+    @IBAction func onStartGameTapped(_ sender: Any) {
+        performSegue(withIdentifier: "startGameSegue", sender: nil)
+    }
+    
 }
+
+// MARK: - Collection View Delegates
 
 extension GameLobbyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
