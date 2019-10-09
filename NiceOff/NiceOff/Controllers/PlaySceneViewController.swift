@@ -62,14 +62,27 @@ class PlaySceneViewController: UIViewController {
         return sentenceString
     }
     
+    // MARK: - Sentence Generating Algorithm
+    
+    func generateQuestionSentence() {
+        let sentence = QuestionSentence(sentenceStructure: easySentenceStructures.randomElement(), difficulty: "easy", subjects: [], verbs: [], objects: [], adjectives: [], adverbs: [])
+        let subjectRanges = sentence.sentenceStructure.ranges(of: "*subject*")
+        let verbRanges = sentence.sentenceStructure.ranges(of: "*verb*")
+        let objectRanges = sentence.sentenceStructure.ranges(of: "*object*")
+        let adjectiveRanges = sentence.sentenceStructure.ranges(of: "*adjective*")
+        let adverbRanges = sentence.sentenceStructure.ranges(of: "*adverb*")
+    }
+    
     // MARK: - Word Generating Algorithm
     
     func generateWords() {
-        var wordsList: Array<String> = []
+        
+        
+        //var wordsList: Array<String> = []
         
         //Determiners
-        wordsList.append(determinersCommon.randomElement() ?? "the")
-        let determinerChance = Int.random(in: 0 ... 10)
+        //wordsList.append(determinersCommon.randomElement() ?? "the")
+        //let determinerChance = Int.random(in: 0 ... 10)
         //if determinerChance
     }
     

@@ -51,3 +51,27 @@ let relaxed = ["calm","comfortable","quiet","relaxed","certain","bright","balanc
 //Pass Phrase Words
 
 let passPhrase = ["dragon","toaster","toilet seat","therapy","psychic","trust fund","sandwich","lettuce","kitty","friendly grandma","toenail"]
+
+//Entered Senternce
+class QuestionSentence {
+    var sentenceStructure: String
+    var difficulty: String
+    var subjects: [String]?
+    var verbs : [String]?
+    var objects: [String]?
+    var adjectives : [String]?
+    var adverbs : [String]?
+    
+    init(sentenceStructure: String, difficulty: String,  subjects: [String]?, verbs: [String]?, objects: [String]?, adjectives: [String]?, adverbs: [String]?) {
+        self.sentenceStructure = sentenceStructure
+        self.difficulty = difficulty
+        self.subjects = subjects
+        self.verbs = verbs
+        self.objects = objects
+        self.adjectives = adjectives
+        self.adverbs = adverbs
+    }
+}
+
+let easySentenceStructures = ["The *subject* *verb* a *object*."]
+
