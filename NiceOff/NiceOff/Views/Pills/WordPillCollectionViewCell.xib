@@ -25,14 +25,14 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJp-EZ-98w" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="68" height="42"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-SY-Wdv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCU-SY-Wdv">
                                 <rect key="frame" x="12" y="11" width="44" height="20"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" name="Text-Primary"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="White"/>
+                        <color key="backgroundColor" name="Card-Neutral"/>
                         <constraints>
                             <constraint firstItem="kCU-SY-Wdv" firstAttribute="leading" secondItem="rJp-EZ-98w" secondAttribute="leading" constant="12" id="Vng-kg-n6D"/>
                             <constraint firstAttribute="trailing" secondItem="kCU-SY-Wdv" secondAttribute="trailing" constant="12" id="id7-Cm-aIN"/>
@@ -62,7 +62,10 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="White">
+        <namedColor name="Card-Neutral">
+            <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text-Primary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

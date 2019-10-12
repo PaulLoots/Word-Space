@@ -6,6 +6,8 @@ target 'NiceOff' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'UICircularProgressRing'
+  pod 'EFCountingLabel'
   # Pods for NiceOff
 
 end

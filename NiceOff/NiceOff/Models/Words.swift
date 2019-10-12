@@ -10,11 +10,9 @@ import Foundation
 
 //Basic Words
 
-let nouns = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy legs","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure"]
+let nouns = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy leg","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure","pizza"]
 
-let verbsCommon = ["is"]
-
-let verbs = ["surround","stab","return","medicate","blindside","flap","trip","harass","trap","explode","sketch","scatter","challenge","fight","bury","splatter","smack","balance","poke","critique","fear","initiate","run over","cook","imprison","underestimate","shred","drink","dispute","echo","mimic","underrate","taunt"]
+let verbs = ["is","surrounds","stabs","returns","medicates","blindsides","flaps","trips","harasses","traps","explodes","sketches","scatters","challenges","fights","buries","splatters","smacks","balances","pokes","critiques","fears","initiates","runs over","cooks","imprisons","underestimates","shreds","drinks","disputes","echos","mimics","underrates","taunts"]
 
 let adjectives = ["dead","hairless","sadistic","metal","wild","domesticated","abnormal","medicated","cocky","massive","disrespectful","impressive","hilarious","sexy","hot","bearded","violent","slimy","insanely creepy" ,"talking","naked","angry","shaky","deep","sick","zippy","fluffy","frozen","unholy","filthy","fighting","harsh","frisky","greedy","crawly","insane","hideous","abusive","hateful","idiotic","twisted","useless","yapping","magical","arrogant","flirting","high-end","insecure","slippery","stubborn","sinister","cowardly","haunting","startled","demanding","offensive","nighttime","disgusting","disturbing","rebellious","hyperactive","infuriating","territorial","mischievous","misunderstood","mentally impaired"]
 
@@ -74,4 +72,19 @@ class QuestionSentence {
 }
 
 let easySentenceStructures = ["The *subject* *verb* a *object*."]
+
+//Entered Senternce
+class QuestionSentenceItem {
+    var value: String
+    var type: String
+    var isSelected: Bool
+    var wordsList: [String]
+    
+    init(value: String, type: String,  isSelected: Bool, wordsList: [String]) {
+        self.value = value
+        self.type = type
+        self.isSelected = isSelected
+        self.wordsList = wordsList
+    }
+}
 
