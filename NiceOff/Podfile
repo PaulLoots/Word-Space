@@ -8,6 +8,7 @@ target 'NiceOff' do
   pod 'SwiftyJSON'
   pod 'UICircularProgressRing'
   pod 'EFCountingLabel'
+  pod 'NVActivityIndicatorView'
   # Pods for NiceOff
 
 end

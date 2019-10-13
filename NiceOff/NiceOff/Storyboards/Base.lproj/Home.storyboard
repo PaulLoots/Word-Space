@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GzH-y7-YJZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pfK-nu-ma5">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -779,9 +779,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-Lt-F8j" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                <rect key="frame" x="69" y="303" width="236" height="236"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-Lt-F8j" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                                <rect key="frame" x="69" y="326" width="236" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbP-3m-Zkn" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                        <rect key="frame" x="8" y="85" width="220" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POINTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXZ-uD-pMq">
+                                        <rect key="frame" x="92" y="131" width="53" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="value">
@@ -808,14 +824,102 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
                                         <real key="value" value="270"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoJ-Gs-yY3">
+                                <rect key="frame" x="26" y="26" width="72.5" height="30.5"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwX-pW-AoH">
+                                <rect key="frame" x="54" y="51.5" width="115.5" height="40.5"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="32"/>
+                                <color key="textColor" name="Text-Primary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Joy" translatesAutoresizingMaskIntoConstraints="NO" id="qfC-jM-7zh">
+                                <rect key="frame" x="26" y="60.5" width="26" height="26"/>
+                                <color key="tintColor" name="Text-Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="0Jm-4d-3db"/>
+                                    <constraint firstAttribute="height" constant="26" id="YkV-JP-vkz"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-1T-g6O" userLabel="SentenceView">
+                                <rect key="frame" x="26" y="161" width="323" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="purple-monster-1" translatesAutoresizingMaskIntoConstraints="NO" id="yhU-aT-A0b">
+                                        <rect key="frame" x="0.0" y="10" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btT-qj-Eci" userLabel="WordBubble">
+                                        <rect key="frame" x="58" y="0.0" width="265" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ad0-W3-Hsv" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="0.0" width="248" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sentence String" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-no-I5W">
+                                                        <rect key="frame" x="8" y="0.0" width="232" height="70"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="Card-Neutral"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speechTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="aSl-Go-GEQ">
+                                                <rect key="frame" x="0.0" y="21" width="28" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" name="Card-Neutral"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-bS-xnx" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="113" y="370" width="148" height="149"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" name="Text-Primary"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballClipRotatePulse"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="Purple-Background"/>
+                        <constraints>
+                            <constraint firstItem="WoJ-Gs-yY3" firstAttribute="top" secondItem="S7y-cz-zCP" secondAttribute="top" constant="26" id="1kr-d1-bQb"/>
+                            <constraint firstItem="qfC-jM-7zh" firstAttribute="leading" secondItem="S7y-cz-zCP" secondAttribute="leading" constant="26" id="BrE-ly-EUt"/>
+                            <constraint firstItem="vwX-pW-AoH" firstAttribute="top" secondItem="WoJ-Gs-yY3" secondAttribute="bottom" constant="-5" id="F8s-Ke-Wpt"/>
+                            <constraint firstItem="vwX-pW-AoH" firstAttribute="leading" secondItem="qfC-jM-7zh" secondAttribute="trailing" constant="2" id="Fyy-id-feM"/>
+                            <constraint firstItem="WoJ-Gs-yY3" firstAttribute="leading" secondItem="S7y-cz-zCP" secondAttribute="leading" constant="26" id="eQa-mu-h9E"/>
+                            <constraint firstItem="qfC-jM-7zh" firstAttribute="top" secondItem="WoJ-Gs-yY3" secondAttribute="bottom" constant="4" id="oTY-SI-RYg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="S7y-cz-zCP"/>
                     </view>
                     <connections>
+                        <outlet property="scoreLabel" destination="kbP-3m-Zkn" id="Nkv-J4-ynD"/>
+                        <outlet property="scoreLoadingView" destination="KeD-bS-xnx" id="pio-0N-N0H"/>
                         <outlet property="scoreRing" destination="UTH-Lt-F8j" id="OJD-m8-iPm"/>
+                        <outlet property="sentenceLabel" destination="Oi4-no-I5W" id="Sjp-eS-L5V"/>
+                        <outlet property="wordBubble" destination="btT-qj-Eci" id="Fnh-u6-RO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVO-3t-08j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -831,6 +935,7 @@
         <image name="planet-1" width="416" height="416"/>
         <image name="purple-monster-1" width="115" height="117"/>
         <image name="rocket" width="120" height="118"/>
+        <image name="speechTriangle" width="20" height="23"/>
         <image name="stopwatch" catalog="system" width="60" height="64"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
         <namedColor name="Avatar-Background-Home">

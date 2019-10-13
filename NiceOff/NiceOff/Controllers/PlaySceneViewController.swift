@@ -63,6 +63,7 @@ class PlaySceneViewController: UIViewController {
         if segue.identifier == "submitAnswerSegue" {
                 if let ScoreBoardViewController = segue.destination as? ScoreBoardViewController {
                     ScoreBoardViewController.enteredSentence = mergeSelectionIntoSentence()
+                    ScoreBoardViewController.answerTime = countDownSeconds
                 }
             }
     }
@@ -337,8 +338,7 @@ class PlaySceneViewController: UIViewController {
             }
             selectedSentenceCollectionView.reloadData()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                // TODO: - Uncomment To Perform Segue Automatically
-                //performSegue(withIdentifier: "submitAnswerSegue", sender: nil)
+                self.performSegue(withIdentifier: "submitAnswerSegue", sender: nil)
             }
         }
     }
