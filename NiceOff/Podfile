@@ -9,6 +9,8 @@ target 'NiceOff' do
   pod 'UICircularProgressRing'
   pod 'EFCountingLabel'
   pod 'NVActivityIndicatorView'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
   # Pods for NiceOff
 
 end

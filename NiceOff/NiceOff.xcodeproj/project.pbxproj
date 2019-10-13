@@ -18,6 +18,9 @@
 		7F2E36322340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36312340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift */; };
 		7F2E36342340FC250072A8C7 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36332340FC250072A8C7 /* Words.swift */; };
 		7F48D282234DF1E500BC77BC /* StringExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F48D281234DF1E500BC77BC /* StringExtention.swift */; };
+		7F5B16202353224C00BED319 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B161F2353224C00BED319 /* UserApi.swift */; };
+		7F5B16222353227C00BED319 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B16212353227C00BED319 /* Api.swift */; };
+		7F5B1624235329A900BED319 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F5B1623235329A900BED319 /* GoogleService-Info.plist */; };
 		7F959F2E2351E8EE00AECACD /* BareWordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F959F2C2351E8EE00AECACD /* BareWordCollectionViewCell.swift */; };
 		7F959F2F2351E8EE00AECACD /* BareWordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F959F2D2351E8EE00AECACD /* BareWordCollectionViewCell.xib */; };
 		7FB97115233F8FEA00317A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97114233F8FEA00317A20 /* AppDelegate.swift */; };
@@ -45,6 +48,9 @@
 		7F2E36312340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extention.swift"; sourceTree = "<group>"; };
 		7F2E36332340FC250072A8C7 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		7F48D281234DF1E500BC77BC /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
+		7F5B161F2353224C00BED319 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		7F5B16212353227C00BED319 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		7F5B1623235329A900BED319 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F959F2C2351E8EE00AECACD /* BareWordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BareWordCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F959F2D2351E8EE00AECACD /* BareWordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BareWordCollectionViewCell.xib; sourceTree = "<group>"; };
 		7FB97111233F8FEA00317A20 /* NiceOff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiceOff.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,9 +110,19 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		7F5B161E2353223900BED319 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				7F5B16212353227C00BED319 /* Api.swift */,
+				7F5B161F2353224C00BED319 /* UserApi.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		7FB97108233F8FEA00317A20 = {
 			isa = PBXGroup;
 			children = (
+				7F5B1623235329A900BED319 /* GoogleService-Info.plist */,
 				7FB97113233F8FEA00317A20 /* NiceOff */,
 				7FB97112233F8FEA00317A20 /* Products */,
 				DC7B230B3F114AC34B818541 /* Pods */,
@@ -125,6 +141,7 @@
 		7FB97113233F8FEA00317A20 /* NiceOff */ = {
 			isa = PBXGroup;
 			children = (
+				7F5B161E2353223900BED319 /* Api */,
 				7F2E36302340DEAA0072A8C7 /* Extentions */,
 				7FB9712E233F908000317A20 /* Storyboards */,
 				7FB9712D233F907700317A20 /* Models */,
@@ -285,6 +302,7 @@
 			files = (
 				7F2E36292340091F0072A8C7 /* WordPillCollectionViewCell.xib in Resources */,
 				7FB97121233F8FEB00317A20 /* LaunchScreen.storyboard in Resources */,
+				7F5B1624235329A900BED319 /* GoogleService-Info.plist in Resources */,
 				7FB9711E233F8FEB00317A20 /* Assets.xcassets in Resources */,
 				7FB97134233F914800317A20 /* SourceSansPro-SemiBold.ttf in Resources */,
 				7F959F2F2351E8EE00AECACD /* BareWordCollectionViewCell.xib in Resources */,
@@ -362,9 +380,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F2E36282340091F0072A8C7 /* WordPillCollectionViewCell.swift in Sources */,
+				7F5B16202353224C00BED319 /* UserApi.swift in Sources */,
 				7F2E362D2340ACEF0072A8C7 /* Ref.swift in Sources */,
 				7F0F48ED234CD2DD009E541A /* ScoreBoardViewController.swift in Sources */,
 				7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */,
+				7F5B16222353227C00BED319 /* Api.swift in Sources */,
 				7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */,
 				7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */,
 				7F2E362F2340C9890072A8C7 /* GameLobbyViewController.swift in Sources */,

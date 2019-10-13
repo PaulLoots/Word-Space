@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -15,13 +17,53 @@ class HomeViewController: UIViewController {
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var avatarBackgroundImage: UIImageView!
     @IBOutlet var swipeLabel: UILabel!
+    @IBOutlet weak var tapLabel: UILabel!
+    
+    //Loading View
+    @IBOutlet var loadingView: UIView!
+    @IBOutlet weak var loadingIndicator: NVActivityIndicatorView!
     
     //Actions
     @IBOutlet var startButtonBackground: DesignableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Auth.auth().currentUser == nil {
+            showLoadingOverlay()
+            Api.User.signInAnonymously(onSuccess: {self.loginSuccess()}, onError: {error in self.loginError(error: error)})
+        } else {
+            setInitialAvatar()
+        }
+        //Api.User.logOut()
+    }
+    
+    // MARK: Login Functions
+    func loginSuccess() {
+        hideLoadingOverlay()
         setInitialAvatar()
+    }
+    
+    func loginError(error: String) {
+        print(error)
+    }
+    
+    //Loading View
+    func showLoadingOverlay() {
+        self.view.addSubview(loadingView)
+        loadingView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        loadingIndicator.startAnimating()
+    }
+    
+    func hideLoadingOverlay() {
+        loadingIndicator.stopAnimating()
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.loadingView.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+            self.loadingView.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.loadingView.removeFromSuperview()
+        }
     }
 
     //Change Avatar Name
@@ -137,6 +179,7 @@ class HomeViewController: UIViewController {
             self.view.tintColor = accentColour
             self.startButtonBackground.backgroundColor = accentColour
             self.swipeLabel.textColor = accentColour
+            self.tapLabel.textColor = accentColour
             self.view.backgroundColor = UIColor.init(named: newAvatar.colour + "-Background")
             
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
@@ -170,6 +213,7 @@ class HomeViewController: UIViewController {
         self.view.tintColor = accentColour
         startButtonBackground.backgroundColor = accentColour
         swipeLabel.textColor = accentColour
+        self.tapLabel.textColor = accentColour
         self.view.backgroundColor = UIColor.init(named: currentAvatar.colour + "-Background")
 
         //Text
