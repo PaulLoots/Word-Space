@@ -22,12 +22,20 @@ class Avatar {
 
 let avatars = [Avatar(icon: "purple-monster-1", background: "planet-1", colour: "Purple"),
                Avatar(icon: "green-monster-1", background: "planet-2", colour: "Green"),
-               Avatar(icon: "lightblue-monster-1", background: "planet-1", colour: "LightBlue"),
-               Avatar(icon: "blue-monster-1", background: "planet-1", colour: "Blue"),
-               Avatar(icon: "red-monster-1", background: "planet-1", colour: "Red"),
+               Avatar(icon: "lightblue-monster-1", background: "planet-3", colour: "LightBlue"),
+               Avatar(icon: "blue-monster-1", background: "planet-4", colour: "Blue"),
+               Avatar(icon: "red-monster-1", background: "planet-5", colour: "Red"),
                Avatar(icon: "orange-monster-1", background: "planet-1", colour: "Orange"),
-               Avatar(icon: "yellow-monster-1", background: "planet-1", colour: "Yellow"),
-               Avatar(icon: "pink-monster-1", background: "planet-1", colour: "Pink")]
+               Avatar(icon: "yellow-monster-1", background: "planet-2", colour: "Yellow"),
+               Avatar(icon: "pink-monster-1", background: "planet-3", colour: "Pink"),
+               Avatar(icon: "purple-monster-2", background: "planet-1", colour: "Purple"),
+               Avatar(icon: "green-monster-2", background: "planet-2", colour: "Green"),
+               Avatar(icon: "lightblue-monster-2", background: "planet-3", colour: "LightBlue"),
+               Avatar(icon: "blue-monster-2", background: "planet-4", colour: "Blue"),
+               Avatar(icon: "red-monster-2", background: "planet-5", colour: "Red"),
+               Avatar(icon: "orange-monster-2", background: "planet-1", colour: "Orange"),
+               Avatar(icon: "yellow-monster-2", background: "planet-4", colour: "Yellow"),
+               Avatar(icon: "pink-monster-2", background: "planet-5", colour: "Pink")]
 
 //Avatar Name
 let avatarNameFirst = ["Bubbly","Fluffy"]

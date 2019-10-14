@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		31EFA81D7F1B8504A3788C98 /* Pods_NiceOff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43DF25D2C9D8755785A2655 /* Pods_NiceOff.framework */; };
 		7F0F48ED234CD2DD009E541A /* ScoreBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F48EC234CD2DD009E541A /* ScoreBoardViewController.swift */; };
+		7F21195423546FC80004C7D0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21195323546FC80004C7D0 /* Game.swift */; };
+		7F211956235472250004C7D0 /* GameApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F211955235472250004C7D0 /* GameApi.swift */; };
 		7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36232340042F0072A8C7 /* UIButton+Designable.swift */; };
 		7F2E36282340091F0072A8C7 /* WordPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E36262340091F0072A8C7 /* WordPillCollectionViewCell.swift */; };
 		7F2E36292340091F0072A8C7 /* WordPillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F2E36272340091F0072A8C7 /* WordPillCollectionViewCell.xib */; };
@@ -23,6 +25,7 @@
 		7F5B1624235329A900BED319 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F5B1623235329A900BED319 /* GoogleService-Info.plist */; };
 		7F959F2E2351E8EE00AECACD /* BareWordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F959F2C2351E8EE00AECACD /* BareWordCollectionViewCell.swift */; };
 		7F959F2F2351E8EE00AECACD /* BareWordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F959F2D2351E8EE00AECACD /* BareWordCollectionViewCell.xib */; };
+		7FA3A5F22354CAE20029FECD /* PlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3A5F12354CAE20029FECD /* PlayersTableViewCell.swift */; };
 		7FB97115233F8FEA00317A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97114233F8FEA00317A20 /* AppDelegate.swift */; };
 		7FB97117233F8FEA00317A20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97116233F8FEA00317A20 /* SceneDelegate.swift */; };
 		7FB97119233F8FEA00317A20 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB97118233F8FEA00317A20 /* HomeViewController.swift */; };
@@ -39,6 +42,8 @@
 /* Begin PBXFileReference section */
 		074A7D0E5A04F04165D0F96C /* Pods-NiceOff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceOff.release.xcconfig"; path = "Target Support Files/Pods-NiceOff/Pods-NiceOff.release.xcconfig"; sourceTree = "<group>"; };
 		7F0F48EC234CD2DD009E541A /* ScoreBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewController.swift; sourceTree = "<group>"; };
+		7F21195323546FC80004C7D0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		7F211955235472250004C7D0 /* GameApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameApi.swift; sourceTree = "<group>"; };
 		7F2E36232340042F0072A8C7 /* UIButton+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Designable.swift"; sourceTree = "<group>"; };
 		7F2E36262340091F0072A8C7 /* WordPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPillCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F2E36272340091F0072A8C7 /* WordPillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordPillCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -53,6 +58,7 @@
 		7F5B1623235329A900BED319 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F959F2C2351E8EE00AECACD /* BareWordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BareWordCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F959F2D2351E8EE00AECACD /* BareWordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BareWordCollectionViewCell.xib; sourceTree = "<group>"; };
+		7FA3A5F12354CAE20029FECD /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
 		7FB97111233F8FEA00317A20 /* NiceOff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiceOff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB97114233F8FEA00317A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB97116233F8FEA00317A20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,8 +121,17 @@
 			children = (
 				7F5B16212353227C00BED319 /* Api.swift */,
 				7F5B161F2353224C00BED319 /* UserApi.swift */,
+				7F211955235472250004C7D0 /* GameApi.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		7FA3A5F02354CABA0029FECD /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				7FA3A5F12354CAE20029FECD /* PlayersTableViewCell.swift */,
+			);
+			path = TableViews;
 			sourceTree = "<group>";
 		};
 		7FB97108233F8FEA00317A20 = {
@@ -196,6 +211,7 @@
 		7FB9712C233F906A00317A20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7FA3A5F02354CABA0029FECD /* TableViews */,
 				7F2E3625234008A30072A8C7 /* Pills */,
 			);
 			path = Views;
@@ -207,6 +223,7 @@
 				7F2E362A2340A8AE0072A8C7 /* Avatars.swift */,
 				7F2E362C2340ACEF0072A8C7 /* Ref.swift */,
 				7F2E36332340FC250072A8C7 /* Words.swift */,
+				7F21195323546FC80004C7D0 /* Game.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -380,13 +397,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F2E36282340091F0072A8C7 /* WordPillCollectionViewCell.swift in Sources */,
+				7F21195423546FC80004C7D0 /* Game.swift in Sources */,
 				7F5B16202353224C00BED319 /* UserApi.swift in Sources */,
 				7F2E362D2340ACEF0072A8C7 /* Ref.swift in Sources */,
 				7F0F48ED234CD2DD009E541A /* ScoreBoardViewController.swift in Sources */,
 				7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */,
 				7F5B16222353227C00BED319 /* Api.swift in Sources */,
 				7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */,
+				7FA3A5F22354CAE20029FECD /* PlayersTableViewCell.swift in Sources */,
 				7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */,
+				7F211956235472250004C7D0 /* GameApi.swift in Sources */,
 				7F2E362F2340C9890072A8C7 /* GameLobbyViewController.swift in Sources */,
 				7F2E36322340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift in Sources */,
 				7FB97119233F8FEA00317A20 /* HomeViewController.swift in Sources */,

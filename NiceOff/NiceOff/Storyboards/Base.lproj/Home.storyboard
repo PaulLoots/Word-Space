@@ -181,6 +181,14 @@
                                                 <color key="textColor" name="Text-Primary"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Lw-ZP-sZI" userLabel="New Game Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <connections>
+                                                    <action selector="joinNewGameDown:" destination="BYZ-38-t0r" eventType="touchDown" id="fN5-pa-XQI"/>
+                                                    <action selector="joinNewGameUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nqJ-Yw-8XH"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Card-Neutral"/>
                                         <viewLayoutGuide key="safeArea" id="7IQ-eN-NTt"/>
@@ -245,6 +253,7 @@
                         <outlet property="avatarBackgroundImage" destination="wWl-by-hNL" id="n40-6k-Cxe"/>
                         <outlet property="avatarImage" destination="Cej-Di-1lG" id="3Sk-8Q-bPO"/>
                         <outlet property="avatarNameButton" destination="W2v-1a-rfA" id="xKs-4V-KkJ"/>
+                        <outlet property="joinButtonBackground" destination="v56-PP-PBx" id="MbI-x6-sS1"/>
                         <outlet property="loadingIndicator" destination="xUp-3a-hVH" id="an5-0I-x5M"/>
                         <outlet property="loadingView" destination="rSg-cF-GyN" id="NZ2-Bx-CeH"/>
                         <outlet property="startButtonBackground" destination="867-LM-VaY" id="nW3-Fo-Mfu"/>
@@ -509,9 +518,64 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nOO-0d-oVf">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nOO-0d-oVf">
                                         <rect key="frame" x="0.0" y="207" width="325" height="222.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayersTableViewCell" rowHeight="84" id="aaj-Fo-kp5" customClass="PlayersTableViewCell" customModule="NiceOff" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="325" height="84"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aaj-Fo-kp5" id="sxy-Ma-c6H">
+                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="84"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-NP-C4q" userLabel="PlayerCard" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="4" width="325" height="76"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="planet-1" translatesAutoresizingMaskIntoConstraints="NO" id="nx8-QU-cw0">
+                                                                    <rect key="frame" x="225" y="-37" width="150" height="149"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMp-0T-lMX">
+                                                                    <rect key="frame" x="82" y="25" width="235" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="purple-monster-1" translatesAutoresizingMaskIntoConstraints="NO" id="VGI-YN-uU9">
+                                                                    <rect key="frame" x="15" y="14" width="50" height="50"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="Card-Neutral"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="sAm-NP-C4q" secondAttribute="trailing" id="Mwb-Mu-BW3"/>
+                                                        <constraint firstItem="sAm-NP-C4q" firstAttribute="top" secondItem="sxy-Ma-c6H" secondAttribute="top" constant="4" id="a9o-d6-VQi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="sAm-NP-C4q" secondAttribute="bottom" constant="4" id="bfv-qB-Ntt"/>
+                                                        <constraint firstItem="sAm-NP-C4q" firstAttribute="leading" secondItem="sxy-Ma-c6H" secondAttribute="leading" id="qBF-7h-Ioa"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="avatarPlanetImage" destination="nx8-QU-cw0" id="0b8-m6-ceu"/>
+                                                    <outlet property="playerAvatarImage" destination="VGI-YN-uU9" id="OsK-t2-Y4L"/>
+                                                    <outlet property="playerNameLabel" destination="uMp-0T-lMX" id="WA6-ID-Hkf"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="J3b-cF-Ng9" id="OeO-oK-5hj"/>
+                                            <outlet property="delegate" destination="J3b-cF-Ng9" id="g4S-oI-2Fb"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -577,10 +641,16 @@
                     </view>
                     <connections>
                         <outlet property="TitleLabel" destination="QZv-Ra-xm6" id="tzE-Kq-CVN"/>
+                        <outlet property="creatingGameLoading" destination="DcW-fb-ZaY" id="q1y-gZ-Ryd"/>
+                        <outlet property="creatingGameLoadingView" destination="KHo-yP-NsM" id="Laf-Qr-e8A"/>
+                        <outlet property="creatingGameOverlayError" destination="pLu-R6-jAX" id="nl6-0U-GBh"/>
+                        <outlet property="creatingGameOverlayLabel" destination="3tK-5j-50K" id="xgk-Xl-l5Q"/>
                         <outlet property="passPhraseArea" destination="c5z-bS-OBB" id="ApQ-5a-myc"/>
                         <outlet property="passPhraseCollectionView" destination="OAe-Ze-Vkg" id="BWZ-Fg-oeG"/>
+                        <outlet property="passPhraseLabel" destination="j0N-Zz-R7c" id="3zE-sE-6JO"/>
                         <outlet property="passPhraseLimitLabel" destination="X0M-nj-5DP" id="VgA-xo-vnH"/>
                         <outlet property="passPhraseOptionsCollectionView" destination="Yos-dE-Ta0" id="lHE-uP-gRx"/>
+                        <outlet property="playersTableView" destination="nOO-0d-oVf" id="H7e-aq-Kb7"/>
                         <outlet property="setPhraseButton" destination="2CT-BJ-B5u" id="VbM-Pn-Dsi"/>
                         <outlet property="startGameButton" destination="X0G-Eo-Voz" id="mz6-dS-Vjd"/>
                         <outlet property="startGameInfoView" destination="t2k-RB-eyh" id="hi9-mo-NwD"/>
@@ -588,9 +658,51 @@
                         <segue destination="pfK-nu-ma5" kind="presentation" identifier="startGameSegue" modalPresentationStyle="fullScreen" id="Egc-yK-mrc"/>
                     </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="KHo-yP-NsM" userLabel="LoadingView">
+                    <rect key="frame" x="0.0" y="0.0" width="383" height="623"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRN-yg-bTz">
+                            <rect key="frame" x="0.0" y="0.0" width="383" height="623"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="NjI-xc-Xf3">
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="623"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DcW-fb-ZaY" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="117" y="195" width="148" height="149"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" name="Text-Primary"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleRippleMultiple"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Creating Game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tK-5j-50K">
+                                        <rect key="frame" x="44" y="420" width="294" height="106"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="22"/>
+                                        <color key="textColor" name="Text-Primary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="questionmark.diamond" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pLu-R6-jAX">
+                                        <rect key="frame" x="117" y="215" width="148" height="112"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="regular"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                            <blurEffect style="systemUltraThinMaterial"/>
+                        </visualEffectView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="wPg-77-LSd"/>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qtw-EI-oNT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="107"/>
+            <point key="canvasLocation" x="904.79999999999995" y="106.59670164917542"/>
         </scene>
         <!--Play Scene View Controller-->
         <scene sceneID="MAA-Yr-Kuu">
@@ -963,6 +1075,7 @@
         <image name="lander" width="115" height="135"/>
         <image name="planet-1" width="416" height="416"/>
         <image name="purple-monster-1" width="115" height="117"/>
+        <image name="questionmark.diamond" catalog="system" width="64" height="60"/>
         <image name="rocket" width="120" height="118"/>
         <image name="speechTriangle" width="20" height="23"/>
         <image name="stopwatch" catalog="system" width="60" height="64"/>
@@ -974,7 +1087,7 @@
             <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Card-Shadow">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Overlay-Background">
             <color red="1" green="1" blue="1" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>

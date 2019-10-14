@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class GameLobbyViewController: UIViewController {
     
     //Shared
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var TitleLabel: UILabel!
+    var gameAction = "new"
     
     //Pass Phrase
     @IBOutlet var passPhraseCollectionView: UICollectionView!
@@ -23,13 +25,25 @@ class GameLobbyViewController: UIViewController {
     @IBOutlet var setPhraseButton: DesignableButton!
     @IBOutlet var passPhraseArea: DesignableView!
     
+    //Loading Indicators
+    @IBOutlet weak var creatingGameLoading: NVActivityIndicatorView!
+    @IBOutlet var creatingGameLoadingView: UIView!
+    @IBOutlet var creatingGameOverlayLabel: UILabel!
+    @IBOutlet var creatingGameOverlayError: UIImageView!
+    
     //Start Game
     @IBOutlet var startGameButton: DesignableButton!
     @IBOutlet var startGameInfoView: UIView!
+    @IBOutlet weak var passPhraseLabel: UILabel!
+    @IBOutlet weak var playersTableView: UITableView!
+    var players : Array<Player> = []
     
     //Colour
     var accentColour = "Purple-Accent"
     var backgroundColour = "Purple-Background"
+    
+    //Models
+    let currentGame = Game(passPhrase: "", catagory: "joy", currentRound: 0, currentRoundCatagory: "", id: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +51,26 @@ class GameLobbyViewController: UIViewController {
         //Add Collection View
         passPhraseCollectionView.register(UINib(nibName: "WordPillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordPillCollectionViewCell")
         passPhraseOptionsCollectionView.register(UINib(nibName: "WordPillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordPillCollectionViewCell")
+        
+        if gameAction != "new" {
+            subTitleLabel.text = "Join someone elses game"
+            TitleLabel.text = "Enter Pass Phrase"
+            setPhraseButton.setTitle("Join Game", for: .normal)
+        }
     }
     
+    // MARK: - Back/Cancel
+    
     @IBAction func onBackPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
-
-        })
+        self.dismiss(animated: true)
     }
+    
+    override func viewDidDisappear(_ animated: Bool){
+        removeListners()
+        deleteGame()
+    }
+    
+    // MARK: - Pass Phrase
     
     //Pass Phrase Animation
     func shakeLimitLabel() {
@@ -77,11 +104,37 @@ class GameLobbyViewController: UIViewController {
     
     @IBAction func onSetPhraseTapped(_ sender: Any) {
         if checkPassPhraseCount() {
-            animateToStartGame()
+            if gameAction == "new" {
+                currentGame.passPhrase = mergePassPhrase()
+                createGame()
+            } else {
+                listenForGame()
+            }
         } else {
             shakeLimitLabel()
         }
     }
+    
+    func mergePassPhrase() -> String {
+        var sentenceString = ""
+        for word in passPhraseItems {
+            sentenceString = "\(sentenceString) \(word)"
+        }
+        return sentenceString
+    }
+    // MARK: - Game Setup
+    
+    func initGameInfo() {
+        passPhraseLabel.text = mergePassPhrase()
+    }
+    
+    // MARK: - Start Game
+    
+    @IBAction func onStartGameTapped(_ sender: Any) {
+        performSegue(withIdentifier: "startGameSegue", sender: nil)
+    }
+    
+    // MARK: - Animations
     
     func animateToStartGame() {
         self.startGameInfoView.transform = .init(translationX: 0, y: 100)
@@ -97,7 +150,11 @@ class GameLobbyViewController: UIViewController {
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
              self.passPhraseOptionsCollectionView.alpha = 0
              self.passPhraseArea.alpha = 0
-             self.subTitleLabel.text = "My Game"
+             if self.gameAction == "new" {
+                self.subTitleLabel.text = "My Game"
+             } else {
+                self.subTitleLabel.text = "Joined Game"
+             }
              self.TitleLabel.text = "Pass Phrase"
              self.startGameInfoView.alpha = 1
             })
@@ -111,10 +168,114 @@ class GameLobbyViewController: UIViewController {
          }
     }
     
-    @IBAction func onStartGameTapped(_ sender: Any) {
-        performSegue(withIdentifier: "startGameSegue", sender: nil)
+    // MARK: - Loading
+    
+    //Loading View
+    func showLoadingOverlay() {
+        self.view.addSubview(creatingGameLoadingView)
+        creatingGameLoadingView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.creatingGameLoadingView.tintColor = UIColor.init(named: self.accentColour)
+        self.creatingGameLoadingView.alpha = 0
+        self.creatingGameOverlayError.isHidden = true
+        self.creatingGameOverlayLabel.text = "Creating Game"
+        self.creatingGameLoadingView.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
+        creatingGameLoading.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.creatingGameLoadingView.transform = .identity
+                self.creatingGameLoadingView.alpha = 1
+            })
+        }
     }
     
+    func hideLoadingOverlay() {
+        creatingGameLoading.stopAnimating()
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.creatingGameLoadingView.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
+            self.creatingGameLoadingView.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.creatingGameLoadingView.transform = .identity
+            self.creatingGameLoadingView.removeFromSuperview()
+        }
+    }
+    // MARK: - API
+    
+    // Game
+    func setGameDocument() -> [String : Any] {
+        let documentData = [
+            GAME_PASS_PHRASE: currentGame.passPhrase,
+            GAME_CATAGORY: currentGame.catagory,
+            GAME_CURRENT_ROUND: currentGame.currentRound,
+            GAME_CURRENT_ROUND_CATAGORY: currentGame.currentRoundCatagory
+            ] as [String : Any]
+        return documentData
+    }
+    
+    func createGame() {
+        showLoadingOverlay()
+        
+        Api.Game.setGame(documentData: setGameDocument(), onSuccess: {
+            self.initGameInfo()
+            self.addMeAsPlayer(gameID: Api.User.currentUserId)
+        }, onError: {error in print(error)})
+    }
+    
+    func deleteGame() {
+        Api.Game.deleteGame(onSuccess: {}, onError: {error in print(error)})
+    }
+    
+    func listenForGame() {
+        showLoadingOverlay()
+        creatingGameOverlayLabel.text = "Joining Game"
+        Api.Game.getGame(passPhrase: mergePassPhrase(), onSuccess: { (data) in
+            self.hideLoadingOverlay()
+            self.currentGame.passPhrase = data.passPhrase
+            self.currentGame.catagory = data.catagory
+            self.currentGame.currentRound = data.currentRound
+            self.currentGame.currentRoundCatagory = data.currentRoundCatagory
+            self.initGameInfo()
+            self.addMeAsPlayer(gameID: data.id)
+        }, onNotFound: {
+            self.creatingGameLoading.stopAnimating()
+            self.creatingGameOverlayLabel.text = "Game Not Found"
+            self.creatingGameOverlayError.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.hideLoadingOverlay()
+            }
+        })
+    }
+    
+    // Player
+    func addMeAsPlayer(gameID: String) {
+        let documentData = [
+            PLAYER_NAME: UserDefaults.standard.string(forKey: AVATAR_NAME)!,
+            PLAYER_AVATAR: UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX)!,
+            PLAYER_SCORE: 0,
+            ] as [String : Any]
+        
+        Api.Game.addPlayer(documentData: documentData, gameID: gameID, onSuccess: {
+            self.hideLoadingOverlay()
+            self.animateToStartGame()
+            self.listenForPlayers(gameID: gameID)
+        }, onError: {error in print(error)})
+    }
+    
+    func listenForPlayers(gameID: String) {
+        Api.Game.getPlayers(gameID: gameID, onSuccess: { (data) in
+            self.players = []
+            self.players = data
+            self.playersTableView.reloadData()
+        }, onGameEnded: {
+            self.dismiss(animated: true)
+        })
+    }
+    
+    //Observalbles
+    func removeListners() {
+        Api.Game.removeGetPlayersObservers()
+        Api.Game.removeGetGameObservers()
+    }
 }
 
 // MARK: - Collection View Delegates
@@ -216,7 +377,6 @@ extension GameLobbyViewController: UICollectionViewDelegateFlowLayout {
             cell.setNeedsLayout()
             cell.layoutIfNeeded()
             let size: CGSize = cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-            print(size)
             return CGSize(width: size.width, height: 42)
         } else if collectionView == self.passPhraseOptionsCollectionView {
                     guard let cell: WordPillCollectionViewCell = Bundle.main.loadNibNamed("WordPillCollectionViewCell",
@@ -228,7 +388,6 @@ extension GameLobbyViewController: UICollectionViewDelegateFlowLayout {
             cell.setNeedsLayout()
             cell.layoutIfNeeded()
             let size: CGSize = cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-            print(size)
             return CGSize(width: size.width, height: 42)
         } else {
             return CGSize(width: 42, height: 42)
@@ -242,4 +401,31 @@ extension GameLobbyViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 9
     }
+}
+
+// MARK: - Table View Delegates
+
+extension GameLobbyViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return players.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersTableViewCell", for: indexPath) as! PlayersTableViewCell
+        
+        if players[indexPath.row].id == Api.User.currentUserId {
+            cell.playerNameLabel.text = "Me"
+        } else {
+            cell.playerNameLabel.text = players[indexPath.row].name
+        }
+
+        let currentAvatar = avatars[Int(players[indexPath.row].avatar) ?? 0]
+        cell.playerAvatarImage.image = UIImage.init(named: currentAvatar.icon)
+        cell.avatarPlanetImage.image = UIImage.init(named: currentAvatar.background)
+        cell.avatarPlanetImage.tintColor = UIColor.init(named: currentAvatar.colour + "-Background")
+
+        return cell
+    }
+    
 }

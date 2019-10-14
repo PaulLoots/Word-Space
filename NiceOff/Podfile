@@ -11,6 +11,8 @@ target 'NiceOff' do
   pod 'NVActivityIndicatorView'
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
   # Pods for NiceOff
 
 end

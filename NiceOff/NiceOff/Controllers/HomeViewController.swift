@@ -25,6 +25,9 @@ class HomeViewController: UIViewController {
     
     //Actions
     @IBOutlet var startButtonBackground: DesignableView!
+    @IBOutlet var joinButtonBackground: DesignableView!
+    
+    var gameAction = "new"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +105,36 @@ class HomeViewController: UIViewController {
             self.startButtonBackground.shadowOpacity = 1
         })
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.gameAction = "new"
             self.performSegue(withIdentifier: "showLobby", sender: nil)
+        }
+    }
+    
+    @IBAction func joinNewGameDown(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.joinButtonBackground.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
+            self.joinButtonBackground.shadowRadius = 0
+            self.joinButtonBackground.shadowOpacity = 0
+        })
+    }
+    
+    @IBAction func joinNewGameUp(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.joinButtonBackground.transform = CGAffineTransform.identity
+            self.joinButtonBackground.shadowRadius = 10
+            self.joinButtonBackground.shadowOpacity = 1
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.gameAction = "join"
+            self.performSegue(withIdentifier: "showLobby", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLobby" {
+            if let GameLobbyViewController = segue.destination as? GameLobbyViewController {
+                GameLobbyViewController.gameAction = gameAction
+            }
         }
     }
     
