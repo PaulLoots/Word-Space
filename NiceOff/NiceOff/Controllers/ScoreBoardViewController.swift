@@ -46,13 +46,13 @@ class ScoreBoardViewController: UIViewController {
         let currentEmotion = "joy"
         switch currentEmotion {
         case "anger":
-            score = angerValue - fearValue - joyValue - sadnessValue
+            score = angerValue - ((fearValue + joyValue + sadnessValue) * 0.6 )
         case "fear":
-            score = fearValue - angerValue - joyValue - sadnessValue
+            score = fearValue - ((angerValue + joyValue + sadnessValue) * 0.6 )
         case "joy":
-            score = joyValue - fearValue - angerValue - sadnessValue
+            score = joyValue - ((fearValue + angerValue + sadnessValue) * 0.6 )
         case "sadness":
-            score = sadnessValue - fearValue - joyValue - angerValue
+            score = sadnessValue - ((fearValue + joyValue + angerValue) * 0.6 )
         default:
             break
         }

@@ -22,7 +22,7 @@ class PlaySceneViewController: UIViewController {
     var currentSelectingIndexPath = 0
     @IBOutlet var enterButton: DesignableButton!
     @IBOutlet var timerLabel: UILabel!
-    var countDownSeconds = 10
+    var countDownSeconds = 20
     var timer = Timer()
     
     //Colour

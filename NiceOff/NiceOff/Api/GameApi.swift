@@ -52,14 +52,15 @@ class GameApi {
         }
     }
     
-    func getGame(passPhrase: String, onSuccess: @escaping(Game) -> Void, onNotFound: @escaping() -> Void) {
+    func getGame(passPhrase: String, onSuccess: @escaping(Game) -> Void, onNotFound: @escaping() -> Void, onError: @escaping() -> Void) {
         db.collection(gameCollection).whereField(GAME_PASS_PHRASE, isEqualTo: passPhrase)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
+                    onError()
                 } else {
                     if querySnapshot?.documents.count ?? 0 > 0 {
-                        let documentID = querySnapshot?.documents[0].documentID ?? ""
+                        let documentID = querySnapshot?.documents[0].documentID ?? "nil"
                         self.gameListner = self.db.collection(self.gameCollection).document(documentID)
                         .addSnapshotListener { querySnapshot, error in
                             guard let document = querySnapshot?.data() else {
@@ -110,6 +111,16 @@ class GameApi {
                 players.append(Player(name: player[PLAYER_NAME] as? String ?? "", avatar: player[PLAYER_AVATAR] as? String ?? "", score: player[PLAYER_SCORE] as? Int ?? 0, id: player.documentID))
             }
             onSuccess(players)
+        }
+    }
+    
+    func removePlayerFromGame(gameID: String, onSuccess: @escaping() -> Void) {
+        db.collection(gameCollection).document(gameID).collection(playerCollection).document(Api.User.currentUserId).delete() { error in
+            if let error = error {
+                print("Error Deleting Game \(error.localizedDescription)")
+            } else {
+                onSuccess()
+            }
         }
     }
     

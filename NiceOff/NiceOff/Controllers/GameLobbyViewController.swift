@@ -38,6 +38,10 @@ class GameLobbyViewController: UIViewController {
     @IBOutlet weak var playersTableView: UITableView!
     var players : Array<Player> = []
     
+    //Categories
+    @IBOutlet var categoryOverlay: UIView!
+    @IBOutlet var categoriesStackView: UIStackView!
+    
     //Colour
     var accentColour = "Purple-Accent"
     var backgroundColour = "Purple-Background"
@@ -63,13 +67,13 @@ class GameLobbyViewController: UIViewController {
     
     @IBAction func onBackPressed(_ sender: Any) {
         self.dismiss(animated: true)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool){
         removeListners()
         deleteGame()
+        if gameAction != "new" {
+            removePlayer(gameID: currentGame.id)
+        }
     }
-    
+
     // MARK: - Pass Phrase
     
     //Pass Phrase Animation
@@ -126,6 +130,28 @@ class GameLobbyViewController: UIViewController {
     
     func initGameInfo() {
         passPhraseLabel.text = mergePassPhrase()
+    }
+    
+    // MARK: - Category Selection
+    
+    @IBAction func onChngeCategoryTapped(_ sender: Any) {
+        showCategoryOverlay()
+    }
+    
+    func showCategoryOverlay() {
+        self.view.addSubview(categoryOverlay)
+        categoryOverlay.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.categoryOverlay.tintColor = UIColor.init(named: self.accentColour)
+        self.categoryOverlay.alpha = 0
+        self.categoryOverlay.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
+        self.categoriesStackView.transform = .init(scaleX: 0, y: 1.5)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.categoryOverlay.transform = .identity
+                self.categoriesStackView.transform = .identity
+                self.categoryOverlay.alpha = 1
+            })
+        }
     }
     
     // MARK: - Start Game
@@ -234,8 +260,9 @@ class GameLobbyViewController: UIViewController {
             self.currentGame.catagory = data.catagory
             self.currentGame.currentRound = data.currentRound
             self.currentGame.currentRoundCatagory = data.currentRoundCatagory
+            self.currentGame.id = data.id
             self.initGameInfo()
-            self.addMeAsPlayer(gameID: data.id)
+            self.addMeAsPlayer(gameID: self.currentGame.id)
         }, onNotFound: {
             self.creatingGameLoading.stopAnimating()
             self.creatingGameOverlayLabel.text = "Game Not Found"
@@ -243,6 +270,9 @@ class GameLobbyViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 self.hideLoadingOverlay()
             }
+        }, onError: {
+//            self.dismiss(animated: true)
+//            self.removeListners()
         })
     }
     
@@ -265,10 +295,19 @@ class GameLobbyViewController: UIViewController {
         Api.Game.getPlayers(gameID: gameID, onSuccess: { (data) in
             self.players = []
             self.players = data
+            if self.players.count < 1 {
+                self.dismiss(animated: true)
+                self.removeListners()
+                return
+            }
             self.playersTableView.reloadData()
         }, onGameEnded: {
             self.dismiss(animated: true)
         })
+    }
+    
+    func removePlayer(gameID: String) {
+        Api.Game.removePlayerFromGame(gameID: gameID, onSuccess: {})
     }
     
     //Observalbles
