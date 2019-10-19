@@ -48,7 +48,7 @@ let relaxed = ["calm","comfortable","quiet","relaxed","certain","bright","balanc
 
 //Pass Phrase Words
 
-let passPhrase = ["mollycoddle", "wabbit", "gonzo", "canoodle", "xertz", "ratoon", "bumfuzzle", "lollygag", "gardyloo", "snool", "crapulence", "vomitory"]
+let passPhrase = ["mollycoddle", "wabbit", "gonzo", "canoodle", "xertz", "ratoon", "bumfuzzle", "lollygag", "gardyloo", "crapulence", "vomitory"]
 
 //Entered Senternce
 class QuestionSentence {

@@ -12,6 +12,13 @@ class PlaySceneViewController: UIViewController {
 
     //New Round
     @IBOutlet var newRoundView: UIView!
+    @IBOutlet var rountCatagoryIcon: UIImageView!
+    @IBOutlet var roundCatagoryLabel: UILabel!
+    @IBOutlet var roundCountLabel: UILabel!
+    @IBOutlet var difficultyLabel: UILabel!
+    @IBOutlet var roundTimerLabel: UILabel!
+    @IBOutlet var roundInstructionLabel: UILabel!
+    
     
     //In Game
     @IBOutlet var gameView: UIView!
@@ -22,8 +29,17 @@ class PlaySceneViewController: UIViewController {
     var currentSelectingIndexPath = 0
     @IBOutlet var enterButton: DesignableButton!
     @IBOutlet var timerLabel: UILabel!
-    var countDownSeconds = 20
+    var countDownSeconds = 30
     var timer = Timer()
+    var difficulty = 0
+    @IBOutlet var gameCatagoryIcon: UIImageView!
+    @IBOutlet var gameRoundCountLabel: UILabel!
+    
+    //Received Data
+    var currentRound = 1
+    var catagory = "Joy"
+    var gameID = ""
+    var gameAction = "new"
     
     //Colour
     var accentColour = "Purple-Accent"
@@ -42,10 +58,33 @@ class PlaySceneViewController: UIViewController {
     
     func initialiseGame() {
         
-        generateQuestionSentence()
-        timerLabel.text = String(countDownSeconds)
+        switch currentRound {
+        case 1:
+            countDownSeconds = 30
+            roundInstructionLabel.text = "Make a happy sentence"
+            difficultyLabel.text = "EASY"
+            difficulty = 0
+            break
+        default:
+            break
+        }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        switch catagory {
+        case "Joy":
+            break
+        default:
+            break
+        }
+        
+        generateQuestionSentence()
+        roundCountLabel.text = "Round \(currentRound)"
+        timerLabel.text = String(countDownSeconds)
+        roundCatagoryLabel.text = catagory
+        rountCatagoryIcon.image = UIImage.init(named: catagory)
+        gameCatagoryIcon.image = UIImage.init(named: catagory)
+        roundTimerLabel.text = "\(countDownSeconds)s"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.startTimer()
             self.animateBeginRound()
         }
@@ -55,6 +94,7 @@ class PlaySceneViewController: UIViewController {
     
     @IBAction func onEnterTapped(_ sender: Any) {
         if checkIfSentenceIsValid() {
+            timer.invalidate()
             performSegue(withIdentifier: "submitAnswerSegue", sender: nil)
         }
     }
@@ -64,6 +104,11 @@ class PlaySceneViewController: UIViewController {
                 if let ScoreBoardViewController = segue.destination as? ScoreBoardViewController {
                     ScoreBoardViewController.enteredSentence = mergeSelectionIntoSentence()
                     ScoreBoardViewController.answerTime = countDownSeconds
+                    ScoreBoardViewController.currentRound = currentRound
+                    ScoreBoardViewController.catagory = catagory
+                    ScoreBoardViewController.gameID = gameID
+                    ScoreBoardViewController.gameAction = gameAction
+                    ScoreBoardViewController.countDownSeconds = countDownSeconds
                 }
             }
     }

@@ -22,3 +22,11 @@ let PLAYER_NAME = "name"
 let PLAYER_AVATAR = "avatar"
 let PLAYER_SCORE = "score"
 let PLAYER_ID = "id"
+
+//Sentence
+let SENTENCE_TEXT = "text"
+let SENTENCE_CATAGORY =  "catagory"
+let SENTENCE_ROUNDS =  "round"
+let SENTENCE_LIKES =  "likes"
+let SENTENCE_SCORE =  "score"
+let SENTENCE_PLAYERID =  "player_id"

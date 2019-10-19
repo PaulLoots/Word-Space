@@ -22,6 +22,14 @@ class ScoreBoardViewController: UIViewController {
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var scoreLabel: EFCountingLabel!
     @IBOutlet weak var wordBubble: UIView!
+    @IBOutlet var roundLabel: UILabel!
+    @IBOutlet var catagoryIcon: UIImageView!
+    @IBOutlet var currentStatsView: UIView!
+    var scoreCalculated = false
+    
+    //Timer
+    var timer = Timer()
+    @IBOutlet var nextRoundButton: DesignableButton!
     
     //Score
     @IBOutlet weak var scoreRing: UICircularProgressRing!
@@ -31,6 +39,20 @@ class ScoreBoardViewController: UIViewController {
      var accentColour = "Purple-Accent"
      var backgroundColour = "Purple-Background"
     
+    //Table
+    @IBOutlet var resultsTableView: UITableView!
+    var players : Array<ScoreItem> = []
+    var likedSentenceTags: [Int] = []
+    @IBOutlet var resultsView: UIView!
+    var isShowingLeaderboard = false
+    
+    //Received Data
+    var countDownSeconds = 30
+    var currentRound = 1
+    var catagory = "Joy"
+    var gameID = ""
+    var gameAction = "new"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,20 +60,29 @@ class ScoreBoardViewController: UIViewController {
         scoreLoadingView.startAnimating()
         animateIn()
         getToneValue(sentenceString:enteredSentence)
+        startTimer()
+        
+        if gameAction != "new" {
+            nextRoundButton.backgroundColor = .clear
+            nextRoundButton.setTitleColor(UIColor.init(named: accentColour), for: .normal)
+            nextRoundButton.isUserInteractionEnabled = false
+        }
     }
+    
+    //MARK: - Calculate Score
     
     func calculateScore(angerValue: Float, fearValue: Float, joyValue: Float, sadnessValue: Float) {
         var score: Float = 0
         // TODO: - Replace with DB value
-        let currentEmotion = "joy"
+        let currentEmotion = "Joy"
         switch currentEmotion {
-        case "anger":
+        case "Anger":
             score = angerValue - ((fearValue + joyValue + sadnessValue) * 0.6 )
-        case "fear":
+        case "Fear":
             score = fearValue - ((angerValue + joyValue + sadnessValue) * 0.6 )
-        case "joy":
+        case "Joy":
             score = joyValue - ((fearValue + angerValue + sadnessValue) * 0.6 )
-        case "sadness":
+        case "Sadness":
             score = sadnessValue - ((fearValue + joyValue + angerValue) * 0.6 )
         default:
             break
@@ -59,6 +90,62 @@ class ScoreBoardViewController: UIViewController {
         score = Float((Double(answerTime) * 0.01) + (Double(score) * 0.9))
         playerScore = Int(score * 10000)
         displayScore()
+        addSentence()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.displaySentenceBoard()
+        }
+    }
+    
+    //MARK: - Like Sentence
+    
+    @objc func likeSentence(_ sender: UIButton) {
+        print("likeTapped")
+        self.likedSentenceTags.append(sender.tag)
+        self.resultsTableView.reloadData()
+        Api.Game.likeSentence(sentenceID: players[sender.tag].playerID + String(currentRound), gameID: gameID, onSuccess: {
+
+        }, onError: {error in print(error)})
+    }
+    
+    // MARK: - Countdown Timer
+    
+    func startTimer() {
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        countDownSeconds -= 1
+        nextRoundButton.setTitle("Waiting \(countDownSeconds)s", for: .normal)
+        
+        if countDownSeconds < 1 {
+            timer.invalidate()
+            showScoreboard()
+        }
+    }
+    
+    //MARK: - Scoreboard
+    
+    func showScoreboard() {
+        isShowingLeaderboard = true
+        players = bubbleSortPlayers(players)
+        displayScoreboard()
+    }
+    
+    func bubbleSortPlayers(_ array: [ScoreItem]) -> [ScoreItem] {
+        if array.count > 1 {
+            var arr = array
+            for _ in 0...arr.count {
+                for value in 1...arr.count - 1 {
+                    if arr[value-1].totalScore < arr[value].totalScore {
+                        let largerValue = arr[value-1]
+                        arr[value-1] = arr[value]
+                        arr[value] = largerValue
+                    }
+                }
+            }
+            return arr
+        }
+        return array
     }
     
     // MARK: - Ai Request
@@ -104,13 +191,67 @@ class ScoreBoardViewController: UIViewController {
                             break
                         }
                     }
-                    self.calculateScore(angerValue: angerVaue, fearValue: fearVaue, joyValue: joyVaue, sadnessValue: sadnessVaue)
+  
+                    if !self.scoreCalculated {
+                        self.scoreCalculated = true
+                        self.calculateScore(angerValue: angerVaue, fearValue: fearVaue, joyValue: joyVaue, sadnessValue: sadnessVaue)
+                    }
                     
                 case.failure(let error):
                     print(error.localizedDescription)
                     //ProgressHUD.showError(error.localizedDescription)
                 }
         }
+    }
+    
+    // MARK: - API
+    
+    // Sentence
+    func setSentenceDocument() -> [String : Any] {
+        let documentData = [
+            SENTENCE_PLAYERID: Api.User.currentUserId,
+            SENTENCE_SCORE: playerScore,
+            SENTENCE_LIKES: 0,
+            SENTENCE_ROUNDS: currentRound,
+            SENTENCE_CATAGORY: catagory,
+            SENTENCE_TEXT: enteredSentence
+            ] as [String : Any]
+        return documentData
+    }
+    
+    func addSentence() {
+        Api.Game.addSentence(sentenceID: Api.User.currentUserId + String(currentRound), documentData: setSentenceDocument(), gameID: gameID, onSuccess: {
+            self.listenForScoreItems(gameID: self.gameID)
+        }, onError: {error in print(error)})
+    }
+    
+    func deleteGame() {
+        Api.Game.deleteGame(onSuccess: {}, onError: {error in print(error)})
+    }
+    
+    func listenForScoreItems(gameID: String) {
+        Api.Game.getScoreItems(gameID: gameID, currentRound: currentRound, onSuccess: { (data) in
+            self.players = []
+            self.players = data
+            if self.players.count < 1 {
+                print("Game Ended")
+                self.removeListners()
+                return
+            }
+            self.players = self.bubbleSortPlayers(self.players)
+            self.resultsTableView.reloadData()
+        }, onGameEnded: {
+            print("Game Ended")
+        })
+    }
+    
+    func removePlayer(gameID: String) {
+        Api.Game.removePlayerFromGame(gameID: gameID, onSuccess: {})
+    }
+    
+    //Observalbles
+    func removeListners() {
+        Api.Game.removeGetScoreItemsObservers()
     }
     
     // MARK: - Animations
@@ -157,7 +298,51 @@ class ScoreBoardViewController: UIViewController {
             })
         }
     }
+    
+    func displaySentenceBoard() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.currentStatsView.transform = .init(translationX: 0, y: -300)
+            self.currentStatsView.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
+                self.currentStatsView.isHidden = true
+            })
+        }
+        self.resultsView.transform = .init(translationX: 0, y: 300)
+        self.resultsView.alpha = 0
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.resultsView.isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.resultsView.transform = .identity
+                self.resultsView.alpha = 1
+            })
+        }
+    }
+    
+    func displayScoreboard() {
+        self.currentStatsView.isHidden = true
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.resultsView.transform = .init(translationX: 0, y: -300)
+            self.resultsView.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.resultsView.transform = .init(translationX: 0, y: 300)
+            self.resultsView.alpha = 0
+            self.resultsTableView.reloadData()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.resultsView.isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.resultsView.transform = .identity
+                self.resultsView.alpha = 1
+            })
+        }
+    }
 }
+
+// MARK: - Extentions
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {
@@ -172,4 +357,75 @@ extension Int{
     var formattedWithSeparator: String {
         return Formatter.withSeparator.string(for: self) ?? ""
     }
+}
+
+// MARK: - Table View Delegates
+
+extension ScoreBoardViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return players.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if isShowingLeaderboard {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreboardTableViewCell", for: indexPath) as! ScoreboardTableViewCell
+            
+            if players[indexPath.row].playerID == Api.User.currentUserId {
+                cell.name.text = "Me"
+            } else {
+                cell.name.text = players[indexPath.row].playerName
+            }
+            let currentAvatar = avatars[Int(players[indexPath.row].playerAvatar) ?? 0]
+            cell.avatar.image = UIImage.init(named: currentAvatar.icon)
+            cell.planetImage.image = UIImage.init(named: currentAvatar.background)
+            cell.planetImage.tintColor = UIColor.init(named: currentAvatar.colour + "-Background")
+            cell.place.text = String(indexPath.item + 1)
+            cell.place.textColor = UIColor.init(named: currentAvatar.colour + "-Accent")
+            cell.score.text = String(players[indexPath.row].totalScore)
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RoundScoreTableViewCell", for: indexPath) as! RoundScoreTableViewCell
+            
+            if players[indexPath.row].playerID == Api.User.currentUserId {
+                self.likedSentenceTags.append(indexPath.row)
+                cell.playerName.text = "Me"
+            } else {
+                cell.playerName.text = players[indexPath.row].playerName
+            }
+            let currentAvatar = avatars[Int(players[indexPath.row].playerAvatar) ?? 0]
+            cell.playerImage.image = UIImage.init(named: currentAvatar.icon)
+            cell.sentenceScore.text = String(players[indexPath.row].sentenceScore)
+            if likedSentenceTags.contains(indexPath.row) {
+                cell.likeButton.isEnabled = false
+                cell.likeIcon.alpha = 0.5
+            } else {
+                cell.likeButton.tag = indexPath.row
+                cell.likeButton.addTarget(self,  action: #selector(likeSentence), for: .touchUpInside)
+            }
+            if players[indexPath.row].likes > 0 {
+                cell.likeCount.text = String(players[indexPath.row].likes)
+                cell.likeIcon.transform = .identity
+            } else {
+                cell.likeCount.text = ""
+                cell.likeIcon.transform = .init(translationX: 0, y: 12)
+            }
+            if players[indexPath.row].sentence == "none" {
+                cell.sentenceLabel.text = ""
+                cell.typingIndicator.color = UIColor.init(named: currentAvatar.colour + "-Accent") ?? .black
+                cell.likeBackground.backgroundColor = UIColor.init(named: "Text-Primary")
+                cell.likeBackground.alpha = 0.1
+                cell.typingIndicator.startAnimating()
+            } else {
+                cell.likeBackground.alpha = 1
+                cell.likeBackground.backgroundColor = UIColor.init(named: currentAvatar.colour + "-Accent")
+                cell.sentenceLabel.text = players[indexPath.row].sentence
+                cell.typingIndicator.stopAnimating()
+            }
+            
+            return cell
+        }
+    }
+    
 }

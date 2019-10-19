@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import Firebase
 
 class GameLobbyViewController: UIViewController {
     
@@ -30,6 +31,7 @@ class GameLobbyViewController: UIViewController {
     @IBOutlet var creatingGameLoadingView: UIView!
     @IBOutlet var creatingGameOverlayLabel: UILabel!
     @IBOutlet var creatingGameOverlayError: UIImageView!
+    @IBOutlet var startGameLoading: NVActivityIndicatorView!
     
     //Start Game
     @IBOutlet var startGameButton: DesignableButton!
@@ -47,7 +49,10 @@ class GameLobbyViewController: UIViewController {
     var backgroundColour = "Purple-Background"
     
     //Models
-    let currentGame = Game(passPhrase: "", catagory: "joy", currentRound: 0, currentRoundCatagory: "", id: "")
+    let currentGame = Game(passPhrase: "", catagory: "Joy", currentRound: 0, currentRoundCatagory: "", id: Api.User.currentUserId)
+    
+    //Globals
+    private var addedMeAsPlayer = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +135,12 @@ class GameLobbyViewController: UIViewController {
     
     func initGameInfo() {
         passPhraseLabel.text = mergePassPhrase()
+        if gameAction != "new" {
+            startGameButton.backgroundColor = .clear
+            startGameButton.setTitle("Waiting to Start", for: .normal)
+            startGameButton.setTitleColor(UIColor.init(named: accentColour), for: .normal)
+            startGameButton.isUserInteractionEnabled = false
+        }
     }
     
     // MARK: - Category Selection
@@ -157,7 +168,48 @@ class GameLobbyViewController: UIViewController {
     // MARK: - Start Game
     
     @IBAction func onStartGameTapped(_ sender: Any) {
-        performSegue(withIdentifier: "startGameSegue", sender: nil)
+        startGameButton.setTitle("", for: .normal)
+        startGameButton.isUserInteractionEnabled = false
+        startGameLoading.startAnimating()
+        let documentData = [
+            GAME_CURRENT_ROUND: 1
+            ] as [String : Any]
+        Api.Game.setGame(documentData: documentData, onSuccess: {
+            //startGameButton.setTitle("Error Starting Game", for: .normal)
+            self.startGameLoading.stopAnimating()
+            self.beginCountdown()
+        }, onError: {error in
+            print(error)
+            self.startGameButton.setTitle("Error Starting Game", for: .normal)
+            self.startGameButton.isUserInteractionEnabled = true
+            self.startGameLoading.stopAnimating()
+        })
+        //performSegue(withIdentifier: "startGameSegue", sender: nil)
+    }
+    
+    func beginCountdown() {
+        self.startGameButton.setTitle("Starting in 3", for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.startGameButton.setTitle("Starting in 2", for: .normal)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.startGameButton.setTitle("Starting in 1", for: .normal)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.startGameButton.setTitle("Starting", for: .normal)
+            self.performSegue(withIdentifier: "startGameSegue", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "startGameSegue" {
+                if let PlaySceneViewController = segue.destination as? PlaySceneViewController {
+                    PlaySceneViewController.currentRound = 1
+                    PlaySceneViewController.catagory = currentGame.catagory
+                    PlaySceneViewController.gameID = currentGame.id
+                    PlaySceneViewController.gameAction = gameAction
+                }
+            }
     }
     
     // MARK: - Animations
@@ -262,7 +314,12 @@ class GameLobbyViewController: UIViewController {
             self.currentGame.currentRoundCatagory = data.currentRoundCatagory
             self.currentGame.id = data.id
             self.initGameInfo()
-            self.addMeAsPlayer(gameID: self.currentGame.id)
+            if !self.addedMeAsPlayer {
+                self.addMeAsPlayer(gameID: self.currentGame.id)
+            }
+            if self.currentGame.currentRound == 1 {
+                self.beginCountdown()
+            }
         }, onNotFound: {
             self.creatingGameLoading.stopAnimating()
             self.creatingGameOverlayLabel.text = "Game Not Found"
@@ -285,6 +342,7 @@ class GameLobbyViewController: UIViewController {
             ] as [String : Any]
         
         Api.Game.addPlayer(documentData: documentData, gameID: gameID, onSuccess: {
+            self.addedMeAsPlayer = true
             self.hideLoadingOverlay()
             self.animateToStartGame()
             self.listenForPlayers(gameID: gameID)

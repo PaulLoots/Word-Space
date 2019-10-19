@@ -619,6 +619,20 @@
                                     <action selector="onStartGameTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="N0g-aq-DKJ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL7-9U-HG0" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="168" y="595" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Tjn-TU-UDs"/>
+                                    <constraint firstAttribute="height" constant="40" id="oxl-hj-iOm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" name="White"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleRippleMultiple"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="Purple-Background"/>
                         <color key="tintColor" name="Purple-Accent"/>
@@ -635,6 +649,8 @@
                             <constraint firstItem="t2k-RB-eyh" firstAttribute="leading" secondItem="Ahi-4e-rz4" secondAttribute="leading" constant="25" id="RNV-5K-OVn"/>
                             <constraint firstItem="Ahi-4e-rz4" firstAttribute="bottom" secondItem="2CT-BJ-B5u" secondAttribute="bottom" constant="25" id="WaL-Zc-rdF"/>
                             <constraint firstItem="t2k-RB-eyh" firstAttribute="top" secondItem="QZv-Ra-xm6" secondAttribute="bottom" constant="5" id="bhF-1g-a31"/>
+                            <constraint firstItem="Ahi-4e-rz4" firstAttribute="bottom" secondItem="bL7-9U-HG0" secondAttribute="bottom" constant="32" id="eWg-31-aDU"/>
+                            <constraint firstItem="bL7-9U-HG0" firstAttribute="centerX" secondItem="fUA-h5-VT7" secondAttribute="centerX" id="ldH-MV-ohq"/>
                             <constraint firstItem="1qx-aM-NYg" firstAttribute="top" secondItem="Ahi-4e-rz4" secondAttribute="top" constant="20" id="njd-dw-a15"/>
                             <constraint firstItem="Ahi-4e-rz4" firstAttribute="trailing" secondItem="t2k-RB-eyh" secondAttribute="trailing" constant="25" id="pNC-YN-oUI"/>
                             <constraint firstItem="QZv-Ra-xm6" firstAttribute="top" secondItem="aYs-TK-4aE" secondAttribute="bottom" constant="-10" id="rBy-FX-CyG"/>
@@ -659,6 +675,7 @@
                         <outlet property="setPhraseButton" destination="2CT-BJ-B5u" id="VbM-Pn-Dsi"/>
                         <outlet property="startGameButton" destination="X0G-Eo-Voz" id="mz6-dS-Vjd"/>
                         <outlet property="startGameInfoView" destination="t2k-RB-eyh" id="hi9-mo-NwD"/>
+                        <outlet property="startGameLoading" destination="bL7-9U-HG0" id="7bK-Ie-gnT"/>
                         <outlet property="subTitleLabel" destination="aYs-TK-4aE" id="2pv-lu-foz"/>
                         <segue destination="pfK-nu-ma5" kind="presentation" identifier="startGameSegue" modalPresentationStyle="fullScreen" id="Egc-yK-mrc"/>
                     </connections>
@@ -1030,7 +1047,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omg-yr-4w8">
-                                        <rect key="frame" x="175" y="527" width="35" height="46"/>
+                                        <rect key="frame" x="175" y="527" width="120" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="36"/>
                                         <color key="textColor" name="Text-Primary"/>
@@ -1211,11 +1228,19 @@
                         <viewLayoutGuide key="safeArea" id="mDR-T4-fu0"/>
                     </view>
                     <connections>
+                        <outlet property="difficultyLabel" destination="Jj3-eF-VfO" id="0SV-cn-tac"/>
                         <outlet property="enterButton" destination="vsF-4e-Fz7" id="hQ3-Yu-P0V"/>
+                        <outlet property="gameCatagoryIcon" destination="E3q-bO-FeF" id="yiw-Rs-CCU"/>
+                        <outlet property="gameRoundCountLabel" destination="Bjr-No-FIt" id="wAe-iW-zq3"/>
                         <outlet property="gameView" destination="XHp-qt-ahO" id="Lym-LB-ug0"/>
                         <outlet property="newRoundView" destination="z15-KK-xv8" id="XLY-CM-gHj"/>
+                        <outlet property="roundCatagoryLabel" destination="0lz-F2-NSd" id="zXM-NX-Miz"/>
+                        <outlet property="roundCountLabel" destination="VMn-ji-jFa" id="HWn-SM-08n"/>
+                        <outlet property="roundInstructionLabel" destination="ibR-zX-cHl" id="rpq-Qe-LeZ"/>
+                        <outlet property="roundTimerLabel" destination="omg-yr-4w8" id="eJH-xV-SCT"/>
+                        <outlet property="rountCatagoryIcon" destination="2yi-H2-tDz" id="fEh-Jq-bzY"/>
                         <outlet property="selectedSentenceCollectionView" destination="9S3-mw-dbb" id="shA-fY-BTP"/>
-                        <outlet property="timerLabel" destination="wJM-wk-aaC" id="XzR-oD-JHy"/>
+                        <outlet property="timerLabel" destination="wJM-wk-aaC" id="acr-P0-Kdk"/>
                         <outlet property="wordOptionsCollectionView" destination="ABs-e4-clT" id="6BP-Wn-EfI"/>
                         <segue destination="GzH-y7-YJZ" kind="presentation" identifier="submitAnswerSegue" modalPresentationStyle="fullScreen" id="KeL-OH-dIN"/>
                     </connections>
@@ -1232,56 +1257,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-Lt-F8j" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                <rect key="frame" x="69" y="326" width="236" height="236"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbP-3m-Zkn" customClass="EFCountingLabel" customModule="EFCountingLabel">
-                                        <rect key="frame" x="8" y="85" width="220" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="40"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POINTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXZ-uD-pMq">
-                                        <rect key="frame" x="92" y="131" width="53" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldDrawMinValueKnob" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
-                                        <color key="value" name="Purple-Accent"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingSpacing">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                        <color key="value" name="Text-Primary"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isClockwise" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                                        <real key="value" value="270"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoJ-Gs-yY3">
                                 <rect key="frame" x="26" y="26" width="72.5" height="30.5"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
@@ -1302,72 +1277,355 @@
                                     <constraint firstAttribute="height" constant="26" id="YkV-JP-vkz"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-1T-g6O" userLabel="SentenceView">
-                                <rect key="frame" x="26" y="161" width="323" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIW-3r-lYF" userLabel="Current Stats View">
+                                <rect key="frame" x="0.0" y="100" width="375" height="547"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="purple-monster-1" translatesAutoresizingMaskIntoConstraints="NO" id="yhU-aT-A0b">
-                                        <rect key="frame" x="0.0" y="10" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btT-qj-Eci" userLabel="WordBubble">
-                                        <rect key="frame" x="58" y="0.0" width="265" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-1T-g6O" userLabel="SentenceView">
+                                        <rect key="frame" x="18" y="85" width="341" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ad0-W3-Hsv" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="0.0" width="248" height="70"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="purple-monster-1" translatesAutoresizingMaskIntoConstraints="NO" id="yhU-aT-A0b">
+                                                <rect key="frame" x="0.0" y="10" width="50" height="48"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btT-qj-Eci" userLabel="WordBubble">
+                                                <rect key="frame" x="57" y="1" width="284" height="69"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sentence String" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-no-I5W">
-                                                        <rect key="frame" x="8" y="0.0" width="232" height="70"/>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ad0-W3-Hsv" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="0.0" width="269" height="72"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="18"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sentence String" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-no-I5W">
+                                                                <rect key="frame" x="9" y="0.0" width="254" height="72"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="18"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="Card-Neutral"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speechTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="aSl-Go-GEQ">
+                                                        <rect key="frame" x="0.0" y="27" width="28" height="24"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" name="Card-Neutral"/>
+                                                    </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="Card-Neutral"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="15"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speechTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="aSl-Go-GEQ">
-                                                <rect key="frame" x="0.0" y="21" width="28" height="28"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Card-Neutral"/>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-Lt-F8j" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                                        <rect key="frame" x="69" y="247" width="236" height="236"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbP-3m-Zkn" customClass="EFCountingLabel" customModule="EFCountingLabel">
+                                                <rect key="frame" x="8" y="85" width="220" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="POINTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXZ-uD-pMq">
+                                                <rect key="frame" x="92" y="131" width="53" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="shouldDrawMinValueKnob" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                                <color key="value" name="Purple-Accent"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="innerRingSpacing">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                <color key="value" name="Text-Primary"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isClockwise" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                <real key="value" value="270"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-bS-xnx" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="114" y="291" width="148" height="149"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" name="Text-Primary"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballClipRotatePulse"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-bS-xnx" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                <rect key="frame" x="113" y="370" width="148" height="149"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3S-iD-nXB">
+                                <rect key="frame" x="0.0" y="101" width="375" height="566"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hZG-ma-gdX">
+                                        <rect key="frame" x="25" y="0.0" width="345" height="476"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoundScoreTableViewCell" rowHeight="120" id="zi8-hh-LsJ" userLabel="RoundScore" customClass="RoundScoreTableViewCell" customModule="NiceOff" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="345" height="120"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zi8-hh-LsJ" id="lPR-e5-kfA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTn-vC-BIB" userLabel="WordBubble">
+                                                            <rect key="frame" x="43" y="43" width="253" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gI8-Vw-wxH" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                                    <rect key="frame" x="15" y="0.0" width="238" height="70"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sentence String" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCP-zF-nhf">
+                                                                            <rect key="frame" x="9" y="0.0" width="223" height="70"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                            <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jk5-zI-GeX" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                                                            <rect key="frame" x="85" y="8" width="77" height="54"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                                    <color key="value" name="Purple-Accent"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulse"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="Card-Neutral"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="15"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speechTriangle" translatesAutoresizingMaskIntoConstraints="NO" id="Q8k-g7-apC">
+                                                                    <rect key="frame" x="0.0" y="23" width="28" height="24"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <color key="tintColor" name="Card-Neutral"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="purple-monster-1" translatesAutoresizingMaskIntoConstraints="NO" id="rRm-Kf-efH">
+                                                            <rect key="frame" x="0.0" y="54" width="47" height="47"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXv-o6-Tgw" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                            <rect key="frame" x="301" y="43" width="44" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hand.thumbsup.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sBf-UB-UJO">
+                                                                    <rect key="frame" x="11" y="11.5" width="22" height="22"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="tintColor" name="White"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPG-1O-M5A">
+                                                                    <rect key="frame" x="0.0" y="37" width="44" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="20"/>
+                                                                    <color key="textColor" name="White"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8r-PA-Lmd">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="70"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="Purple-Accent"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnV-mb-uGw">
+                                                            <rect key="frame" x="0.0" y="11" width="231" height="28"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="20"/>
+                                                            <color key="textColor" name="Text-Primary"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-10 000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HF-zQ-O2V">
+                                                            <rect key="frame" x="214" y="11" width="82" height="28"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="20"/>
+                                                            <color key="textColor" name="Text-Primary"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="likeBackground" destination="bXv-o6-Tgw" id="ahz-sK-vhv"/>
+                                                    <outlet property="likeButton" destination="Q8r-PA-Lmd" id="AEX-iw-A3z"/>
+                                                    <outlet property="likeCount" destination="gPG-1O-M5A" id="Rsv-5S-dec"/>
+                                                    <outlet property="likeIcon" destination="sBf-UB-UJO" id="PXh-gW-uSI"/>
+                                                    <outlet property="playerImage" destination="rRm-Kf-efH" id="b0y-c0-Nyb"/>
+                                                    <outlet property="playerName" destination="gnV-mb-uGw" id="jsm-AJ-STx"/>
+                                                    <outlet property="sentenceLabel" destination="zCP-zF-nhf" id="UQi-is-54f"/>
+                                                    <outlet property="sentenceScore" destination="2HF-zQ-O2V" id="U4Q-1i-1oJ"/>
+                                                    <outlet property="typingIndicator" destination="jk5-zI-GeX" id="1HO-7S-oYG"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreboardTableViewCell" rowHeight="84" id="3Cw-Wg-kbm" customClass="ScoreboardTableViewCell" customModule="NiceOff" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="148" width="345" height="84"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Cw-Wg-kbm" id="mZv-xV-eXY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="84"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPj-yA-Kec" userLabel="PlayerCard" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="4" width="325" height="76"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="planet-1" translatesAutoresizingMaskIntoConstraints="NO" id="yjh-cq-LCP">
+                                                                    <rect key="frame" x="225" y="-37" width="150" height="149"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMx-VC-6G9">
+                                                                    <rect key="frame" x="84" y="8" width="132" height="60"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-10 000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7W-EI-m7V">
+                                                                    <rect key="frame" x="224" y="25" width="82" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="purple-monster-1" translatesAutoresizingMaskIntoConstraints="NO" id="91f-Wf-Utp">
+                                                                    <rect key="frame" x="42" y="20" width="36" height="36"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiC-bn-xty">
+                                                                    <rect key="frame" x="11" y="25" width="38" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="24"/>
+                                                                    <color key="textColor" name="Purple-Accent"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="Card-Neutral"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="gPj-yA-Kec" firstAttribute="top" secondItem="mZv-xV-eXY" secondAttribute="top" constant="4" id="4jN-z2-8x0"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gPj-yA-Kec" secondAttribute="bottom" constant="4" id="EYU-Qq-gSp"/>
+                                                        <constraint firstItem="gPj-yA-Kec" firstAttribute="leading" secondItem="mZv-xV-eXY" secondAttribute="leading" id="bax-Fj-vwp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gPj-yA-Kec" secondAttribute="trailing" constant="20" id="vSs-WC-XSt"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="avatar" destination="91f-Wf-Utp" id="oJn-fs-Gdm"/>
+                                                    <outlet property="name" destination="fMx-VC-6G9" id="umX-Nj-seO"/>
+                                                    <outlet property="place" destination="NiC-bn-xty" id="gKw-cb-LYT"/>
+                                                    <outlet property="planetImage" destination="yjh-cq-LCP" id="qro-UJ-ijX"/>
+                                                    <outlet property="score" destination="F7W-EI-m7V" id="hBS-0R-uLB"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="GzH-y7-YJZ" id="gln-G8-d4M"/>
+                                            <outlet property="delegate" destination="GzH-y7-YJZ" id="BR1-J7-PMH"/>
+                                        </connections>
+                                    </tableView>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-gx-saV" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="485" width="325" height="56"/>
+                                        <color key="backgroundColor" name="Purple-Accent"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="mmv-mb-9Ut"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="17"/>
+                                        <color key="tintColor" name="White"/>
+                                        <state key="normal" title="Next Round"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" name="Text-Primary"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballClipRotatePulse"/>
-                                </userDefinedRuntimeAttributes>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="uX5-gx-saV" secondAttribute="bottom" constant="25" id="S0k-yR-ADg"/>
+                                    <constraint firstItem="hZG-ma-gdX" firstAttribute="leading" secondItem="d3S-iD-nXB" secondAttribute="leading" constant="25" id="YNY-xN-aL8"/>
+                                    <constraint firstAttribute="trailing" secondItem="hZG-ma-gdX" secondAttribute="trailing" constant="5" id="dMs-BG-UvD"/>
+                                    <constraint firstAttribute="trailing" secondItem="uX5-gx-saV" secondAttribute="trailing" constant="25" id="dUz-N9-4Jj"/>
+                                    <constraint firstItem="uX5-gx-saV" firstAttribute="leading" secondItem="d3S-iD-nXB" secondAttribute="leading" constant="25" id="vdY-Px-qPu"/>
+                                    <constraint firstItem="uX5-gx-saV" firstAttribute="top" secondItem="hZG-ma-gdX" secondAttribute="bottom" constant="9" id="yJK-1g-GeD"/>
+                                    <constraint firstItem="hZG-ma-gdX" firstAttribute="top" secondItem="d3S-iD-nXB" secondAttribute="top" id="yMC-0b-eIX"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="Purple-Background"/>
                         <constraints>
                             <constraint firstItem="WoJ-Gs-yY3" firstAttribute="top" secondItem="S7y-cz-zCP" secondAttribute="top" constant="26" id="1kr-d1-bQb"/>
                             <constraint firstItem="qfC-jM-7zh" firstAttribute="leading" secondItem="S7y-cz-zCP" secondAttribute="leading" constant="26" id="BrE-ly-EUt"/>
+                            <constraint firstItem="d3S-iD-nXB" firstAttribute="top" secondItem="vwX-pW-AoH" secondAttribute="bottom" constant="9" id="Ell-k5-ZaB"/>
                             <constraint firstItem="vwX-pW-AoH" firstAttribute="top" secondItem="WoJ-Gs-yY3" secondAttribute="bottom" constant="-5" id="F8s-Ke-Wpt"/>
                             <constraint firstItem="vwX-pW-AoH" firstAttribute="leading" secondItem="qfC-jM-7zh" secondAttribute="trailing" constant="2" id="Fyy-id-feM"/>
+                            <constraint firstItem="d3S-iD-nXB" firstAttribute="trailing" secondItem="S7y-cz-zCP" secondAttribute="trailing" id="Twf-CJ-T9h"/>
                             <constraint firstItem="WoJ-Gs-yY3" firstAttribute="leading" secondItem="S7y-cz-zCP" secondAttribute="leading" constant="26" id="eQa-mu-h9E"/>
+                            <constraint firstItem="S7y-cz-zCP" firstAttribute="bottom" secondItem="d3S-iD-nXB" secondAttribute="bottom" id="jbe-Eg-aoy"/>
+                            <constraint firstItem="d3S-iD-nXB" firstAttribute="leading" secondItem="S7y-cz-zCP" secondAttribute="leading" id="nPl-BK-OlG"/>
                             <constraint firstItem="qfC-jM-7zh" firstAttribute="top" secondItem="WoJ-Gs-yY3" secondAttribute="bottom" constant="4" id="oTY-SI-RYg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S7y-cz-zCP"/>
                     </view>
                     <connections>
+                        <outlet property="catagoryIcon" destination="qfC-jM-7zh" id="efV-sx-OvQ"/>
+                        <outlet property="currentStatsView" destination="SIW-3r-lYF" id="ZcA-jb-ZeY"/>
+                        <outlet property="nextRoundButton" destination="uX5-gx-saV" id="lOK-vh-ISz"/>
+                        <outlet property="resultsTableView" destination="hZG-ma-gdX" id="mgX-7E-IJA"/>
+                        <outlet property="resultsView" destination="d3S-iD-nXB" id="yo4-pU-4NI"/>
+                        <outlet property="roundLabel" destination="vwX-pW-AoH" id="sre-xH-rdC"/>
                         <outlet property="scoreLabel" destination="kbP-3m-Zkn" id="Nkv-J4-ynD"/>
                         <outlet property="scoreLoadingView" destination="KeD-bS-xnx" id="pio-0N-N0H"/>
                         <outlet property="scoreRing" destination="UTH-Lt-F8j" id="OJD-m8-iPm"/>
@@ -1390,6 +1648,7 @@
         <image name="chevron.compact.down" catalog="system" width="64" height="20"/>
         <image name="chevron.compact.left" catalog="system" width="30" height="64"/>
         <image name="chevron.compact.right" catalog="system" width="30" height="64"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="64" height="64"/>
         <image name="info.circle.fill" catalog="system" width="64" height="62"/>
         <image name="lander" width="115" height="135"/>
         <image name="planet-1" width="416" height="416"/>

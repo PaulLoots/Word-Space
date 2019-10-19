@@ -40,14 +40,38 @@ class Player {
 
 class Sentence {
     var text: String
-    var emotion: String
+    var catagory: String
     var round : Int
     var likes : Int
+    var score : Int
+    var playerID : String
     
-    init(text: String, emotion: String, round: Int, likes: Int) {
+    init(text: String, catagory: String, round: Int, likes: Int, score : Int, playerID: String) {
         self.text = text
-        self.emotion = emotion
+        self.catagory = catagory
         self.round = round
+        self.likes = likes
+        self.score = score
+        self.playerID = playerID
+    }
+}
+
+class ScoreItem {
+    var playerID: String
+    var playerName: String
+    var playerAvatar : String
+    var sentence : String
+    var sentenceScore : Int
+    var totalScore : Int
+    var likes : Int
+    
+    init(playerID: String, playerName: String, playerAvatar: String, sentence: String, sentenceScore : Int, totalScore: Int, likes: Int) {
+        self.playerID = playerID
+        self.playerName = playerName
+        self.playerAvatar = playerAvatar
+        self.sentence = sentence
+        self.sentenceScore = sentenceScore
+        self.totalScore = totalScore
         self.likes = likes
     }
 }

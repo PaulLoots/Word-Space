@@ -41,11 +41,20 @@ class GameApi {
                 for document in  querySnapshot?.documents ?? [] {
                     document.reference.delete()
                 }
-                Firestore.firestore().collection(self.gameCollection).document(Api.User.currentUserId).delete() { error in
-                    if let error = error {
-                        onError("Error Deleting Game \(error.localizedDescription)")
+                self.db.collection(self.gameCollection).document(Api.User.currentUserId).collection(self.sentenceCollection).getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
                     } else {
-                        onSuccess()
+                        for document in  querySnapshot?.documents ?? [] {
+                            document.reference.delete()
+                        }
+                        Firestore.firestore().collection(self.gameCollection).document(Api.User.currentUserId).delete() { error in
+                            if let error = error {
+                                onError("Error Deleting Game \(error.localizedDescription)")
+                            } else {
+                                onSuccess()
+                            }
+                        }
                     }
                 }
             }
@@ -83,6 +92,7 @@ class GameApi {
             gameListner.remove()
         }
     }
+    
     
     //MARK: - Players
     
@@ -131,4 +141,91 @@ class GameApi {
     }
     //MARK: - Sentences
     private let sentenceCollection = "sentences"
+    private var sentenceListner: ListenerRegistration? = nil
+    
+    func addSentence(sentenceID: String, documentData: [String : Any], gameID: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        db.collection(gameCollection).document(gameID).collection(sentenceCollection).document(sentenceID).setData(documentData, merge: true) { (error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+                onError(error?.localizedDescription ?? "ERROR")
+            } else {
+                onSuccess()
+            }
+        }
+    }
+    
+    func likeSentence(sentenceID: String, gameID: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        let documentData = [
+            SENTENCE_LIKES: FieldValue.increment(Int64(1))
+            ] as [String : Any]
+        db.collection(gameCollection).document(gameID).collection(sentenceCollection).document(sentenceID).setData(documentData, merge: true) { (error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+                onError(error?.localizedDescription ?? "ERROR")
+            } else {
+                onSuccess()
+            }
+        }
+    }
+    
+    func getSentences(gameID: String, onSuccess: @escaping([Sentence]) -> Void, onGameEnded: @escaping() -> Void) {
+        sentenceListner = db.collection(gameCollection).document(gameID).collection(sentenceCollection)
+        .addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                onGameEnded()
+                return
+            }
+            var sentences:[Sentence] = []
+            for sentence in documents {
+                sentences.append(Sentence(text: sentence[SENTENCE_TEXT] as? String ?? "", catagory: sentence[SENTENCE_CATAGORY] as? String ?? "", round: sentence[SENTENCE_ROUNDS] as? Int ?? 0, likes: sentence[SENTENCE_LIKES] as? Int ?? 0, score: sentence[SENTENCE_SCORE] as? Int ?? 0, playerID: sentence[SENTENCE_PLAYERID] as? String ?? ""))
+            }
+            onSuccess(sentences)
+        }
+    }
+    
+    func removeGetSentencesObservers(){
+        if let sentenceListner = sentenceListner {
+            sentenceListner.remove()
+        }
+    }
+    
+    //MARK: - Score Item
+    
+    func getScoreItems(gameID: String, currentRound: Int, onSuccess: @escaping([ScoreItem]) -> Void, onGameEnded: @escaping() -> Void) {
+         getPlayers(gameID: gameID, onSuccess: { (playerData) in
+            self.getSentences(gameID: gameID, onSuccess: { (sentenceData) in
+                var scoreItems:[ScoreItem] = []
+                for (index, player) in playerData.enumerated() {
+                        var playerTotalScore = 0
+                        for sentenceItem in sentenceData {
+                            if player.id == sentenceItem.playerID {
+                                playerTotalScore += sentenceItem.score
+                            }
+                        }
+                        scoreItems.append(ScoreItem(playerID: player.id, playerName: player.name, playerAvatar: player.avatar, sentence: "none", sentenceScore: 0, totalScore: playerTotalScore, likes: 0))
+                        for sentence in sentenceData {
+                            if sentence.round == currentRound {
+                                if player.id == sentence.playerID {
+                                    scoreItems[index] = ScoreItem(playerID: player.id, playerName: player.name, playerAvatar: player.avatar, sentence: sentence.text, sentenceScore: sentence.score, totalScore: playerTotalScore, likes: sentence.likes)
+                                }
+                            }
+                        }
+                    }
+                    onSuccess(scoreItems)
+                }, onGameEnded: {
+                    onGameEnded()
+                })
+        }, onGameEnded: {
+            onGameEnded()
+        })
+    }
+    
+    func removeGetScoreItemsObservers(){
+        if let sentenceListner = sentenceListner {
+            sentenceListner.remove()
+        }
+        if let playersListner = playersListner {
+            playersListner.remove()
+        }
+    }
 }
