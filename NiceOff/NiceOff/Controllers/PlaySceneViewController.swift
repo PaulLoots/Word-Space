@@ -19,7 +19,6 @@ class PlaySceneViewController: UIViewController {
     @IBOutlet var roundTimerLabel: UILabel!
     @IBOutlet var roundInstructionLabel: UILabel!
     
-    
     //In Game
     @IBOutlet var gameView: UIView!
     @IBOutlet var selectedSentenceCollectionView: UICollectionView!
@@ -34,12 +33,21 @@ class PlaySceneViewController: UIViewController {
     var difficulty = 0
     @IBOutlet var gameCatagoryIcon: UIImageView!
     @IBOutlet var gameRoundCountLabel: UILabel!
+    var isEnterTypeWord = false
+    @IBOutlet var typrOwnWordsLabel: UILabel!
+    
+    //Enter Word Overlay
+    @IBOutlet var enterWordOverlayView: UIView!
+    @IBOutlet var enterWordTextField: DesignableTextField!
+    @IBOutlet var enterWordType: UILabel!
+    @IBOutlet var enterWordButton: DesignableButton!
     
     //Received Data
     var currentRound = 1
     var catagory = "Joy"
     var gameID = ""
     var gameAction = "new"
+    var passedPassPhrase = ""
     
     //Colour
     var accentColour = "Purple-Accent"
@@ -47,6 +55,8 @@ class PlaySceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setTheme()
         
         //Add Collection View
         selectedSentenceCollectionView.register(UINib(nibName: "WordPillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordPillCollectionViewCell")
@@ -56,14 +66,43 @@ class PlaySceneViewController: UIViewController {
         initialiseGame()
     }
     
+    func setTheme() {
+        view.tintColor = UIColor.init(named: accentColour)
+        view.backgroundColor = UIColor.init(named: backgroundColour)
+        enterButton.backgroundColor = UIColor.init(named: self.accentColour)
+        enterWordButton.backgroundColor = UIColor.init(named: self.accentColour)
+        roundInstructionLabel.textColor = UIColor.init(named: self.accentColour)
+    }
+    
     func initialiseGame() {
+        
+        roundCountLabel.text = "Round \(currentRound)"
         
         switch currentRound {
         case 1:
             countDownSeconds = 30
-            roundInstructionLabel.text = "Make a happy sentence"
             difficultyLabel.text = "EASY"
+            isEnterTypeWord = true
+            typrOwnWordsLabel.isHidden = false
             difficulty = 0
+            break
+        case 2:
+            countDownSeconds = 20
+            difficultyLabel.text = "MEDIUM"
+            difficulty = 1
+            break
+        case 3:
+            countDownSeconds = 15
+            difficultyLabel.text = "HARD"
+            difficulty = 2
+            break
+        case 4:
+            countDownSeconds = 30
+            roundCountLabel.text = "Final Round"
+            difficultyLabel.text = "EXTREME"
+            difficulty = 3
+            isEnterTypeWord = true
+            typrOwnWordsLabel.isHidden = false
             break
         default:
             break
@@ -71,13 +110,13 @@ class PlaySceneViewController: UIViewController {
         
         switch catagory {
         case "Joy":
+            roundInstructionLabel.text = "Make a happy sentence"
             break
         default:
             break
         }
         
         generateQuestionSentence()
-        roundCountLabel.text = "Round \(currentRound)"
         timerLabel.text = String(countDownSeconds)
         roundCatagoryLabel.text = catagory
         rountCatagoryIcon.image = UIImage.init(named: catagory)
@@ -109,6 +148,9 @@ class PlaySceneViewController: UIViewController {
                     ScoreBoardViewController.gameID = gameID
                     ScoreBoardViewController.gameAction = gameAction
                     ScoreBoardViewController.countDownSeconds = countDownSeconds
+                    ScoreBoardViewController.passPhrase = passedPassPhrase
+                    ScoreBoardViewController.accentColour = accentColour
+                    ScoreBoardViewController.backgroundColour = backgroundColour
                 }
             }
     }
@@ -147,6 +189,56 @@ class PlaySceneViewController: UIViewController {
         }
         
         return isValid
+    }
+    
+    // MARK: - Enter Word
+    
+    func showEnterWordOverlay() {
+        self.view.addSubview(enterWordOverlayView)
+        enterWordOverlayView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.enterWordOverlayView.tintColor = UIColor.init(named: self.accentColour)
+        self.enterWordOverlayView.alpha = 0
+        self.enterWordType.text = (self.wordOptionsAdded[self.currentSelectingIndexPath].type).uppercased()
+        self.enterWordType.textColor = UIColor.init(named: self.accentColour)
+        self.enterWordTextField.transform = .init(scaleX: 0.3, y: 0.3)
+        self.enterWordTextField.text = ""
+        self.enterWordTextField.becomeFirstResponder()
+        self.enterWordOverlayView.alpha = 1
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.enterWordOverlayView.transform = .identity
+                self.enterWordOverlayView.alpha = 1
+                self.enterWordTextField.transform = .identity
+            })
+        }
+    }
+    
+    @IBAction func onDoneWordenteredTapped(_ sender: Any) {
+        submitEnteredWord()
+    }
+    
+    func submitEnteredWord() {
+        if enterWordTextField.text?.count ?? 0 > 0 {
+            self.wordOptionsAdded[self.currentSelectingIndexPath].value = enterWordTextField.text!
+            _ = self.checkIfSentenceIsValid()
+            self.selectedSentenceCollectionView.reloadData()
+            hideEnterWordOverlay()
+        }
+    }
+    
+    func hideEnterWordOverlay() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.enterWordTextField.transform = .init(scaleX: 0.4, y: 0.4)
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.enterWordOverlayView.transform = .identity
+            self.enterWordTextField.transform = .identity
+            self.enterWordOverlayView.removeFromSuperview()
+        }
+    }
+    
+    @IBAction func onCloseEnterWordOverlay(_ sender: Any) {
+        hideEnterWordOverlay()
     }
     
     // MARK: - Sentence Generating Algorithm
@@ -213,7 +305,12 @@ class PlaySceneViewController: UIViewController {
             }
         }
         
-        wordOptionsCollectionView.reloadData()
+        if isEnterTypeWord {
+            wordOptionsCollectionView.isHidden = true
+        } else {
+            wordOptionsCollectionView.reloadData()
+        }
+        
         selectedSentenceCollectionView.reloadData()
     }
     
@@ -234,6 +331,11 @@ class PlaySceneViewController: UIViewController {
         currentSelectingIndexPath = editingIndex.item
         animateTypeChange()
         self.selectedSentenceCollectionView.reloadData()
+        
+        if isEnterTypeWord {
+            showEnterWordOverlay()
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.wordOptionsCollectionView.reloadData()
         }
@@ -515,10 +617,16 @@ extension PlaySceneViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            if collectionView == self.selectedSentenceCollectionView {
+        if collectionView == self.selectedSentenceCollectionView {
+            if isEnterTypeWord {
                 self.setCurrentEditingType(editingIndex: indexPath)
-            } else if collectionView == self.wordOptionsCollectionView {
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.setCurrentEditingType(editingIndex: indexPath)
+                }
+            }
+        } else if collectionView == self.wordOptionsCollectionView {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.wordOptionsAdded[self.currentSelectingIndexPath].value = self.wordOptions[indexPath.item]
                 _ = self.checkIfSentenceIsValid()
                 self.selectedSentenceCollectionView.reloadData()

@@ -12,6 +12,7 @@ import SwiftyJSON
 import UICircularProgressRing
 import EFCountingLabel
 import NVActivityIndicatorView
+import Firebase
 
 class ScoreBoardViewController: UIViewController {
 
@@ -26,6 +27,7 @@ class ScoreBoardViewController: UIViewController {
     @IBOutlet var catagoryIcon: UIImageView!
     @IBOutlet var currentStatsView: UIView!
     var scoreCalculated = false
+    @IBOutlet var playerAvatarImage: UIImageView!
     
     //Timer
     var timer = Timer()
@@ -46,16 +48,25 @@ class ScoreBoardViewController: UIViewController {
     @IBOutlet var resultsView: UIView!
     var isShowingLeaderboard = false
     
+    //Loading
+    @IBOutlet var nextRoundLoading: NVActivityIndicatorView!
+    
+    //Models
+    let currentGame = Game(passPhrase: "", catagory: "Joy", currentRound: 0, currentRoundCatagory: "", id: Api.User.currentUserId)
+    
     //Received Data
     var countDownSeconds = 30
     var currentRound = 1
     var catagory = "Joy"
     var gameID = ""
     var gameAction = "new"
+    var passPhrase = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setTheme()
+        
         sentenceLabel.text = enteredSentence
         scoreLoadingView.startAnimating()
         animateIn()
@@ -65,8 +76,35 @@ class ScoreBoardViewController: UIViewController {
         if gameAction != "new" {
             nextRoundButton.backgroundColor = .clear
             nextRoundButton.setTitleColor(UIColor.init(named: accentColour), for: .normal)
-            nextRoundButton.isUserInteractionEnabled = false
         }
+        
+        nextRoundButton.isUserInteractionEnabled = false
+    }
+    
+    func setTheme() {
+        view.tintColor = UIColor.init(named: accentColour)
+        view.backgroundColor = UIColor.init(named: backgroundColour)
+        nextRoundButton.backgroundColor = UIColor.init(named: self.accentColour)
+        scoreRing.innerRingColor = UIColor.init(named: self.accentColour) ?? .black
+        var avatarIndex = "0"
+        
+        if let index = UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX){
+            avatarIndex = index
+        } else {
+            UserDefaults.standard.set("0", forKey: CURRENT_AVATAR_INDEX)
+        }
+        let currentAvatar = avatars[Int(avatarIndex) ?? 0]
+        
+        //Images
+        playerAvatarImage.image = UIImage.init(named: currentAvatar.icon)
+    }
+    
+    //MARK: - Exit Game
+    
+    func exitGame() {
+        removeListners()
+        deleteGame()
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     //MARK: - Calculate Score
@@ -91,8 +129,59 @@ class ScoreBoardViewController: UIViewController {
         playerScore = Int(score * 10000)
         displayScore()
         addSentence()
+        listenForGame()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.displaySentenceBoard()
+        }
+    }
+    
+    //MARK: - Next Round
+    
+    @IBAction func nextRoundTapped(_ sender: Any) {
+        nextRoundButton.setTitle("", for: .normal)
+        nextRoundButton.isUserInteractionEnabled = false
+        if currentGame.currentRound != 4 {
+            nextRoundLoading.startAnimating()
+        }
+        let documentData = [
+            GAME_CURRENT_ROUND: FieldValue.increment(Int64(1))
+            ] as [String : Any]
+        Api.Game.setGame(documentData: documentData, onSuccess: {
+            self.nextRoundLoading.stopAnimating()
+        }, onError: {error in
+            print(error)
+            self.nextRoundButton.setTitle("Error Going to Next Round", for: .normal)
+            self.nextRoundButton.isUserInteractionEnabled = true
+            self.nextRoundLoading.stopAnimating()
+        })
+    }
+    
+    func beginNextRound() {
+        if currentGame.currentRound > 4 {
+            exitGame()
+        } else {
+            self.nextRoundButton.setTitle("Next Round in 2", for: .normal)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.nextRoundButton.setTitle("Next Round in 1", for: .normal)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.performSegue(withIdentifier: "nextRoundSegue", sender: nil)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        removeListners()
+        if segue.identifier == "nextRoundSegue" {
+            if let PlaySceneViewController = segue.destination as? PlaySceneViewController {
+                PlaySceneViewController.currentRound = currentGame.currentRound
+                PlaySceneViewController.catagory = currentGame.catagory
+                PlaySceneViewController.gameID = currentGame.id
+                PlaySceneViewController.gameAction = gameAction
+                PlaySceneViewController.passedPassPhrase = passPhrase
+                PlaySceneViewController.accentColour = accentColour
+                PlaySceneViewController.backgroundColour = backgroundColour
+            }
         }
     }
     
@@ -110,6 +199,7 @@ class ScoreBoardViewController: UIViewController {
     // MARK: - Countdown Timer
     
     func startTimer() {
+        countDownSeconds = countDownSeconds + 3
          timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
     
@@ -124,6 +214,23 @@ class ScoreBoardViewController: UIViewController {
     }
     
     //MARK: - Scoreboard
+    
+    func checkCompletedAmount() {
+        var completedAmount = 0
+        for player in players {
+            if player.sentence != "none" {
+                completedAmount += 1
+            }
+        }
+        if completedAmount == players.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                if !self.isShowingLeaderboard {
+                    self.timer.invalidate()
+                    self.showScoreboard()
+                }
+            }
+        }
+    }
     
     func showScoreboard() {
         isShowingLeaderboard = true
@@ -206,6 +313,24 @@ class ScoreBoardViewController: UIViewController {
     
     // MARK: - API
     
+    //Game
+    func listenForGame() {
+        Api.Game.getGame(passPhrase: passPhrase, onSuccess: { (data) in
+            self.currentGame.passPhrase = data.passPhrase
+            self.currentGame.catagory = data.catagory
+            self.currentGame.currentRound = data.currentRound
+            self.currentGame.currentRoundCatagory = data.currentRoundCatagory
+            self.currentGame.id = data.id
+            if self.currentGame.currentRound > self.currentRound {
+                self.beginNextRound()
+            }
+        }, onNotFound: {
+            //TODO: - Pop to root
+        }, onError: {
+            //TODO: - Pop to root
+        })
+    }
+    
     // Sentence
     func setSentenceDocument() -> [String : Any] {
         let documentData = [
@@ -252,6 +377,7 @@ class ScoreBoardViewController: UIViewController {
     //Observalbles
     func removeListners() {
         Api.Game.removeGetScoreItemsObservers()
+        Api.Game.removeGetGameObservers()
     }
     
     // MARK: - Animations
@@ -322,6 +448,15 @@ class ScoreBoardViewController: UIViewController {
     }
     
     func displayScoreboard() {
+        if gameAction == "new" {
+            self.nextRoundButton.setTitle("Next Round", for: .normal)
+            self.nextRoundButton.isUserInteractionEnabled = true
+        } else {
+            self.nextRoundButton.setTitle("Waiting for next Round", for: .normal)
+        }
+        if currentRound > 3 {
+            self.nextRoundButton.setTitle("End Game", for: .normal)
+        }
         self.currentStatsView.isHidden = true
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.resultsView.transform = .init(translationX: 0, y: -300)
@@ -423,6 +558,8 @@ extension ScoreBoardViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.sentenceLabel.text = players[indexPath.row].sentence
                 cell.typingIndicator.stopAnimating()
             }
+            
+            self.checkCompletedAmount()
             
             return cell
         }

@@ -43,6 +43,21 @@ class GameLobbyViewController: UIViewController {
     //Categories
     @IBOutlet var categoryOverlay: UIView!
     @IBOutlet var categoriesStackView: UIStackView!
+    @IBOutlet var catagoryLabel: UILabel!
+    @IBOutlet var catagoryIcon: UIImageView!
+    @IBOutlet var randomCheck: UIImageView!
+    @IBOutlet var randomIcon: UIImageView!
+    @IBOutlet var joyIcon: UIImageView!
+    @IBOutlet var joyCheck: UIImageView!
+    @IBOutlet var angerIcon: UIImageView!
+    @IBOutlet var angerCheck: UIImageView!
+    @IBOutlet var fearIcon: UIImageView!
+    @IBOutlet var fearCheck: UIImageView!
+    @IBOutlet var sadnessIcon: UIImageView!
+    @IBOutlet var sadnessCheck: UIImageView!
+    @IBOutlet var changeCatagoryButton: UIButton!
+    @IBOutlet var catagoryView: DesignableView!
+    @IBOutlet var setCatagoryButton: DesignableButton!
     
     //Colour
     var accentColour = "Purple-Accent"
@@ -57,6 +72,9 @@ class GameLobbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Set theme
+        setTheme()
+        
         //Add Collection View
         passPhraseCollectionView.register(UINib(nibName: "WordPillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordPillCollectionViewCell")
         passPhraseOptionsCollectionView.register(UINib(nibName: "WordPillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordPillCollectionViewCell")
@@ -66,6 +84,14 @@ class GameLobbyViewController: UIViewController {
             TitleLabel.text = "Enter Pass Phrase"
             setPhraseButton.setTitle("Join Game", for: .normal)
         }
+    }
+    
+    func setTheme() {
+        view.tintColor = UIColor.init(named: accentColour)
+        view.backgroundColor = UIColor.init(named: backgroundColour)
+        startGameButton.backgroundColor = UIColor.init(named: self.accentColour)
+        setCatagoryButton.backgroundColor = UIColor.init(named: self.accentColour)
+        catagoryView.borderColor = UIColor.init(named: self.accentColour)
     }
     
     // MARK: - Back/Cancel
@@ -134,12 +160,16 @@ class GameLobbyViewController: UIViewController {
     // MARK: - Game Setup
     
     func initGameInfo() {
+        catagoryLabel.text = self.currentGame.catagory
+        catagoryIcon.image = UIImage.init(named: self.currentGame.catagory)
         passPhraseLabel.text = mergePassPhrase()
         if gameAction != "new" {
             startGameButton.backgroundColor = .clear
             startGameButton.setTitle("Waiting to Start", for: .normal)
             startGameButton.setTitleColor(UIColor.init(named: accentColour), for: .normal)
             startGameButton.isUserInteractionEnabled = false
+            changeCatagoryButton.isHidden = true
+            catagoryView.borderColor = UIColor.init(named: "Card-Neutral")
         }
     }
     
@@ -155,7 +185,7 @@ class GameLobbyViewController: UIViewController {
         self.categoryOverlay.tintColor = UIColor.init(named: self.accentColour)
         self.categoryOverlay.alpha = 0
         self.categoryOverlay.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
-        self.categoriesStackView.transform = .init(scaleX: 0, y: 1.5)
+        self.categoriesStackView.transform = .init(scaleX: 1, y: 0)
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.categoryOverlay.transform = .identity
@@ -163,6 +193,81 @@ class GameLobbyViewController: UIViewController {
                 self.categoryOverlay.alpha = 1
             })
         }
+    }
+    
+    @IBAction func selectCatagoryTapped(_ sender: UIButton) {
+        
+        randomIcon.tintColor = UIColor.init(named: "Text-Primary")
+        randomCheck.isHidden = true
+        joyIcon.tintColor = UIColor.init(named: "Text-Primary")
+        joyCheck.isHidden = true
+        angerIcon.tintColor = UIColor.init(named: "Text-Primary")
+        angerCheck.isHidden = true
+        fearIcon.tintColor = UIColor.init(named: "Text-Primary")
+        fearCheck.isHidden = true
+        sadnessIcon.tintColor = UIColor.init(named: "Text-Primary")
+        sadnessCheck.isHidden = true
+        
+        switch sender.tag {
+        case 0:
+            randomIcon.tintColor = view.tintColor
+            randomCheck.isHidden = false
+            self.currentGame.catagory = "Random"
+            break
+        case 1:
+            joyIcon.tintColor = view.tintColor
+            joyCheck.isHidden = false
+            self.currentGame.catagory = "Joy"
+            break
+        case 2:
+            angerIcon.tintColor = view.tintColor
+            angerCheck.isHidden = false
+            self.currentGame.catagory = "Anger"
+            break
+        case 3:
+            fearIcon.tintColor = view.tintColor
+            fearCheck.isHidden = false
+            self.currentGame.catagory = "Fear"
+            break
+        case 4:
+            sadnessIcon.tintColor = view.tintColor
+            sadnessCheck.isHidden = false
+            self.currentGame.catagory = "Sadness"
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func onSetcatagoryTapped(_ sender: Any) {
+        hideCategoryOverlay()
+        catagoryLabel.text = self.currentGame.catagory
+        catagoryIcon.image = UIImage.init(named: self.currentGame.catagory)
+        
+        let documentData = [
+            GAME_CATAGORY: self.currentGame.catagory
+            ] as [String : Any]
+        Api.Game.setGame(documentData: documentData, onSuccess: {
+        }, onError: {error in
+            print(error)
+        })
+    }
+    
+    func hideCategoryOverlay() {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            self.categoryOverlay.transform = CGAffineTransform.init(scaleX: 1, y: 0.8)
+            self.categoryOverlay.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.categoryOverlay.transform = .identity
+            self.categoriesStackView.transform = .identity
+            self.categoryOverlay.alpha = 1
+            self.categoryOverlay.removeFromSuperview()
+        }
+    }
+    
+    @IBAction func onCloseCatagoryOverlayTapped(_ sender: Any) {
+        hideCategoryOverlay()
     }
     
     // MARK: - Start Game
@@ -196,20 +301,23 @@ class GameLobbyViewController: UIViewController {
             self.startGameButton.setTitle("Starting in 1", for: .normal)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.startGameButton.setTitle("Starting", for: .normal)
             self.performSegue(withIdentifier: "startGameSegue", sender: nil)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        removeListners()
         if segue.identifier == "startGameSegue" {
-                if let PlaySceneViewController = segue.destination as? PlaySceneViewController {
-                    PlaySceneViewController.currentRound = 1
-                    PlaySceneViewController.catagory = currentGame.catagory
-                    PlaySceneViewController.gameID = currentGame.id
-                    PlaySceneViewController.gameAction = gameAction
-                }
+            if let PlaySceneViewController = segue.destination as? PlaySceneViewController {
+                PlaySceneViewController.currentRound = 1
+                PlaySceneViewController.catagory = currentGame.catagory
+                PlaySceneViewController.gameID = currentGame.id
+                PlaySceneViewController.gameAction = gameAction
+                PlaySceneViewController.passedPassPhrase = mergePassPhrase()
+                PlaySceneViewController.accentColour = accentColour
+                PlaySceneViewController.backgroundColour = backgroundColour
             }
+        }
     }
     
     // MARK: - Animations

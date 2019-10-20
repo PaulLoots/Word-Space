@@ -38,6 +38,7 @@
 		7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9713A233FA5C500317A20 /* UIView+Designable.swift */; };
 		7FDF5CE6235B16FC00E56B49 /* ScoreboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF5CE5235B16FC00E56B49 /* ScoreboardTableViewCell.swift */; };
 		7FDF5CE8235B174A00E56B49 /* RoundScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF5CE7235B174A00E56B49 /* RoundScoreTableViewCell.swift */; };
+		7FDF5CEA235C582B00E56B49 /* UITextField+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF5CE9235C582B00E56B49 /* UITextField+Designable.swift */; };
 		7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		7FB9713A233FA5C500317A20 /* UIView+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Designable.swift"; sourceTree = "<group>"; };
 		7FDF5CE5235B16FC00E56B49 /* ScoreboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardTableViewCell.swift; sourceTree = "<group>"; };
 		7FDF5CE7235B174A00E56B49 /* RoundScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundScoreTableViewCell.swift; sourceTree = "<group>"; };
+		7FDF5CE9235C582B00E56B49 /* UITextField+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Designable.swift"; sourceTree = "<group>"; };
 		7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySceneViewController.swift; sourceTree = "<group>"; };
 		E43DF25D2C9D8755785A2655 /* Pods_NiceOff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NiceOff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA65013ABB921A59968E060 /* Pods-NiceOff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceOff.debug.xcconfig"; path = "Target Support Files/Pods-NiceOff/Pods-NiceOff.debug.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				7FB9713A233FA5C500317A20 /* UIView+Designable.swift */,
 				7F2E36232340042F0072A8C7 /* UIButton+Designable.swift */,
+				7FDF5CE9235C582B00E56B49 /* UITextField+Designable.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				7F2E362D2340ACEF0072A8C7 /* Ref.swift in Sources */,
 				7F0F48ED234CD2DD009E541A /* ScoreBoardViewController.swift in Sources */,
 				7F2E36242340042F0072A8C7 /* UIButton+Designable.swift in Sources */,
+				7FDF5CEA235C582B00E56B49 /* UITextField+Designable.swift in Sources */,
 				7F5B16222353227C00BED319 /* Api.swift in Sources */,
 				7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */,
 				7FA3A5F22354CAE20029FECD /* PlayersTableViewCell.swift in Sources */,

@@ -521,7 +521,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nOO-0d-oVf">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nOO-0d-oVf">
                                         <rect key="frame" x="0.0" y="227" width="325" height="217"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
@@ -660,18 +660,33 @@
                     </view>
                     <connections>
                         <outlet property="TitleLabel" destination="QZv-Ra-xm6" id="tzE-Kq-CVN"/>
+                        <outlet property="angerCheck" destination="qZd-ZP-5kP" id="AAg-tc-fjd"/>
+                        <outlet property="angerIcon" destination="yof-hk-Y7C" id="f7e-jr-XGo"/>
+                        <outlet property="catagoryIcon" destination="RYI-Aj-skT" id="ObV-Bs-olS"/>
+                        <outlet property="catagoryLabel" destination="K8c-J5-fQQ" id="NlR-Da-G5k"/>
+                        <outlet property="catagoryView" destination="LXi-ur-iUZ" id="4TU-gK-dev"/>
                         <outlet property="categoriesStackView" destination="7IL-dv-Fqx" id="sOr-Lt-d2x"/>
                         <outlet property="categoryOverlay" destination="ell-l2-s0d" id="dI4-vJ-akL"/>
+                        <outlet property="changeCatagoryButton" destination="Geu-a8-dUF" id="5DA-uk-WeF"/>
                         <outlet property="creatingGameLoading" destination="DcW-fb-ZaY" id="q1y-gZ-Ryd"/>
                         <outlet property="creatingGameLoadingView" destination="KHo-yP-NsM" id="Laf-Qr-e8A"/>
                         <outlet property="creatingGameOverlayError" destination="pLu-R6-jAX" id="nl6-0U-GBh"/>
                         <outlet property="creatingGameOverlayLabel" destination="3tK-5j-50K" id="xgk-Xl-l5Q"/>
+                        <outlet property="fearCheck" destination="iEi-rY-Z4L" id="c0g-SC-wj1"/>
+                        <outlet property="fearIcon" destination="Meg-4l-HBg" id="Bn5-Yy-iZL"/>
+                        <outlet property="joyCheck" destination="Sbq-DB-YNQ" id="VFP-D0-1W9"/>
+                        <outlet property="joyIcon" destination="xdo-LS-P4Y" id="ab7-WR-G72"/>
                         <outlet property="passPhraseArea" destination="c5z-bS-OBB" id="ApQ-5a-myc"/>
                         <outlet property="passPhraseCollectionView" destination="OAe-Ze-Vkg" id="BWZ-Fg-oeG"/>
                         <outlet property="passPhraseLabel" destination="j0N-Zz-R7c" id="3zE-sE-6JO"/>
                         <outlet property="passPhraseLimitLabel" destination="X0M-nj-5DP" id="VgA-xo-vnH"/>
                         <outlet property="passPhraseOptionsCollectionView" destination="Yos-dE-Ta0" id="lHE-uP-gRx"/>
                         <outlet property="playersTableView" destination="nOO-0d-oVf" id="H7e-aq-Kb7"/>
+                        <outlet property="randomCheck" destination="0Zr-i0-61v" id="EPL-sg-usA"/>
+                        <outlet property="randomIcon" destination="3BO-Oe-2qX" id="cSL-Fm-z07"/>
+                        <outlet property="sadnessCheck" destination="ILZ-VP-EQq" id="M4H-Xy-tav"/>
+                        <outlet property="sadnessIcon" destination="7Tt-Ed-YoQ" id="N18-CP-3lY"/>
+                        <outlet property="setCatagoryButton" destination="gTH-Xp-ynB" id="bCj-rZ-eRm"/>
                         <outlet property="setPhraseButton" destination="2CT-BJ-B5u" id="VbM-Pn-Dsi"/>
                         <outlet property="startGameButton" destination="X0G-Eo-Voz" id="mz6-dS-Vjd"/>
                         <outlet property="startGameInfoView" destination="t2k-RB-eyh" id="hi9-mo-NwD"/>
@@ -779,6 +794,9 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNS-xX-byf">
                                                     <rect key="frame" x="0.0" y="0.0" width="308" height="56"/>
+                                                    <connections>
+                                                        <action selector="selectCatagoryTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="UTw-sY-jQd"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Card-Neutral"/>
@@ -822,8 +840,11 @@
                                                     <rect key="frame" x="267" y="19.5" width="20" height="17.5"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="bold"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sde-Cs-aw1">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sde-Cs-aw1">
                                                     <rect key="frame" x="0.0" y="0.0" width="308" height="56"/>
+                                                    <connections>
+                                                        <action selector="selectCatagoryTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="myL-gy-s6A"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Card-Neutral"/>
@@ -867,8 +888,11 @@
                                                     <rect key="frame" x="267" y="19.5" width="20" height="17.5"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="bold"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWJ-ZV-iJr">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWJ-ZV-iJr">
                                                     <rect key="frame" x="0.0" y="0.0" width="308" height="56"/>
+                                                    <connections>
+                                                        <action selector="selectCatagoryTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="2u8-uZ-RLI"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Card-Neutral"/>
@@ -913,8 +937,11 @@
                                                     <rect key="frame" x="267" y="19.5" width="20" height="17.5"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="bold"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2S-aq-MxQ">
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2S-aq-MxQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="308" height="56"/>
+                                                    <connections>
+                                                        <action selector="selectCatagoryTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="uNT-c7-VBm"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Card-Neutral"/>
@@ -959,8 +986,11 @@
                                                     <rect key="frame" x="267" y="19.5" width="20" height="17.5"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="bold"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATX-Xz-Jvq">
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATX-Xz-Jvq">
                                                     <rect key="frame" x="0.0" y="0.0" width="308" height="56"/>
+                                                    <connections>
+                                                        <action selector="selectCatagoryTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="Zb1-m8-uKi"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Card-Neutral"/>
@@ -1000,8 +1030,22 @@
                                 <constraint firstItem="7IL-dv-Fqx" firstAttribute="top" secondItem="Med-uQ-zmY" secondAttribute="bottom" constant="20" id="YB5-N1-WSK"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9n-y4-bhA">
+                            <rect key="frame" x="10" y="40" width="52" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="52" id="MDR-sq-9t5"/>
+                                <constraint firstAttribute="height" constant="42" id="jfu-U8-1Rf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" image="xmark" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
+                            </state>
+                            <connections>
+                                <action selector="onCloseCatagoryOverlayTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="QSn-eL-2ag"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTH-Xp-ynB" userLabel="Start Game Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
-                            <rect key="frame" x="25" y="540" width="308" height="56"/>
+                            <rect key="frame" x="25" y="535" width="308" height="56"/>
                             <color key="backgroundColor" name="Purple-Accent"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="Ekq-Zn-tac"/>
@@ -1015,7 +1059,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="onStartGameTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="Pf7-eW-wpa"/>
+                                <action selector="onSetcatagoryTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="emc-EO-d8y"/>
                             </connections>
                         </button>
                     </subviews>
@@ -1026,7 +1070,9 @@
                         <constraint firstItem="8Sd-ua-dd5" firstAttribute="bottom" secondItem="Elf-qv-2vV" secondAttribute="bottom" id="8wq-pm-Fnm"/>
                         <constraint firstItem="8Sd-ua-dd5" firstAttribute="trailing" secondItem="Elf-qv-2vV" secondAttribute="trailing" id="EDQ-y4-iYl"/>
                         <constraint firstAttribute="trailing" secondItem="gTH-Xp-ynB" secondAttribute="trailing" constant="25" id="LSW-WZ-jie"/>
-                        <constraint firstAttribute="bottom" secondItem="gTH-Xp-ynB" secondAttribute="bottom" constant="25" id="kZq-8l-gYa"/>
+                        <constraint firstItem="G9n-y4-bhA" firstAttribute="leading" secondItem="8Sd-ua-dd5" secondAttribute="leading" constant="10" id="MsD-ob-Dxx"/>
+                        <constraint firstItem="G9n-y4-bhA" firstAttribute="top" secondItem="8Sd-ua-dd5" secondAttribute="top" constant="40" id="gHY-cY-Bri"/>
+                        <constraint firstAttribute="bottom" secondItem="gTH-Xp-ynB" secondAttribute="bottom" constant="30" id="kZq-8l-gYa"/>
                         <constraint firstItem="Elf-qv-2vV" firstAttribute="top" secondItem="8Sd-ua-dd5" secondAttribute="top" id="uR2-6X-e5p"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="8Sd-ua-dd5"/>
@@ -1203,6 +1249,13 @@
                                             <outlet property="delegate" destination="pfK-nu-ma5" id="CpV-q9-lYw"/>
                                         </connections>
                                     </collectionView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type your own words" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-Vf-YGc">
+                                        <rect key="frame" x="126" y="397" width="122" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1230,6 +1283,10 @@
                     <connections>
                         <outlet property="difficultyLabel" destination="Jj3-eF-VfO" id="0SV-cn-tac"/>
                         <outlet property="enterButton" destination="vsF-4e-Fz7" id="hQ3-Yu-P0V"/>
+                        <outlet property="enterWordButton" destination="dQ2-gb-6Eb" id="ieG-2i-0ZB"/>
+                        <outlet property="enterWordOverlayView" destination="w17-u4-h7d" id="GdY-fK-cav"/>
+                        <outlet property="enterWordTextField" destination="sZN-YM-CqU" id="j01-ym-Eph"/>
+                        <outlet property="enterWordType" destination="cTS-sX-wWR" id="QbH-sR-t0A"/>
                         <outlet property="gameCatagoryIcon" destination="E3q-bO-FeF" id="yiw-Rs-CCU"/>
                         <outlet property="gameRoundCountLabel" destination="Bjr-No-FIt" id="wAe-iW-zq3"/>
                         <outlet property="gameView" destination="XHp-qt-ahO" id="Lym-LB-ug0"/>
@@ -1241,11 +1298,121 @@
                         <outlet property="rountCatagoryIcon" destination="2yi-H2-tDz" id="fEh-Jq-bzY"/>
                         <outlet property="selectedSentenceCollectionView" destination="9S3-mw-dbb" id="shA-fY-BTP"/>
                         <outlet property="timerLabel" destination="wJM-wk-aaC" id="acr-P0-Kdk"/>
+                        <outlet property="typrOwnWordsLabel" destination="dqp-Vf-YGc" id="auD-Bs-HAG"/>
                         <outlet property="wordOptionsCollectionView" destination="ABs-e4-clT" id="6BP-Wn-EfI"/>
                         <segue destination="GzH-y7-YJZ" kind="presentation" identifier="submitAnswerSegue" modalPresentationStyle="fullScreen" id="KeL-OH-dIN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dxx-NQ-hNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="w17-u4-h7d">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="619"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhy-vm-UCC">
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="619"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Uz2-il-81u">
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="619"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fj-IU-r2h" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="149"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" name="Text-Primary"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleRippleMultiple"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQ2-gb-6Eb" userLabel="Start Game Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                        <rect key="frame" x="25" y="297" width="328" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="Purple-Accent"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="17"/>
+                                        <color key="tintColor" name="White"/>
+                                        <state key="normal" title="Done"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onDoneWordenteredTapped:" destination="pfK-nu-ma5" eventType="touchUpInside" id="ugd-sI-FSH"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9i-BW-fGP">
+                                        <rect key="frame" x="25" y="100" width="328" height="117"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VERB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTS-sX-wWR">
+                                                <rect key="frame" x="63" y="0.0" width="202" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
+                                                <color key="textColor" name="Purple-Accent"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZN-YM-CqU" customClass="DesignableTextField" customModule="luxeblack" customModuleProvider="target">
+                                                <rect key="frame" x="-1" y="53" width="331" height="56"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <color key="backgroundColor" name="Card-Neutral"/>
+                                                <color key="textColor" name="Text-Primary"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" name="Card-Shadow"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="1" height="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </view>
+                            <blurEffect style="systemUltraThinMaterial"/>
+                        </visualEffectView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkf-ZC-Zds">
+                            <rect key="frame" x="10" y="40" width="52" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="52" id="jeQ-N1-tGZ"/>
+                                <constraint firstAttribute="height" constant="42" id="s4l-vO-sgz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <state key="normal" image="xmark" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
+                            </state>
+                            <connections>
+                                <action selector="onCloseEnterWordOverlay:" destination="pfK-nu-ma5" eventType="touchUpInside" id="fSo-Se-7ee"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Gkf-ZC-Zds" firstAttribute="top" secondItem="w17-u4-h7d" secondAttribute="top" constant="40" id="62U-US-6yt"/>
+                        <constraint firstItem="Gkf-ZC-Zds" firstAttribute="leading" secondItem="w17-u4-h7d" secondAttribute="leading" constant="10" id="zVZ-XE-ofi"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="nse-lh-RLg"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1676" y="105.69715142428787"/>
         </scene>
@@ -1576,7 +1743,7 @@
                                             <outlet property="delegate" destination="GzH-y7-YJZ" id="BR1-J7-PMH"/>
                                         </connections>
                                     </tableView>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-gx-saV" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-gx-saV" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
                                         <rect key="frame" x="25" y="485" width="325" height="56"/>
                                         <color key="backgroundColor" name="Purple-Accent"/>
                                         <constraints>
@@ -1590,14 +1757,33 @@
                                                 <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="nextRoundTapped:" destination="GzH-y7-YJZ" eventType="touchUpInside" id="eTG-Ne-oeo"/>
+                                        </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usq-mS-w2i" userLabel="Calculating Score View" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="167.5" y="493" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="CU1-FS-tRJ"/>
+                                            <constraint firstAttribute="width" constant="40" id="nCD-fF-YbW"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" name="White"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleRippleMultiple"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="usq-mS-w2i" firstAttribute="centerX" secondItem="d3S-iD-nXB" secondAttribute="centerX" id="CG3-ZG-w3h"/>
                                     <constraint firstAttribute="bottom" secondItem="uX5-gx-saV" secondAttribute="bottom" constant="25" id="S0k-yR-ADg"/>
                                     <constraint firstItem="hZG-ma-gdX" firstAttribute="leading" secondItem="d3S-iD-nXB" secondAttribute="leading" constant="25" id="YNY-xN-aL8"/>
                                     <constraint firstAttribute="trailing" secondItem="hZG-ma-gdX" secondAttribute="trailing" constant="5" id="dMs-BG-UvD"/>
                                     <constraint firstAttribute="trailing" secondItem="uX5-gx-saV" secondAttribute="trailing" constant="25" id="dUz-N9-4Jj"/>
+                                    <constraint firstAttribute="bottom" secondItem="usq-mS-w2i" secondAttribute="bottom" constant="33" id="tf9-SQ-VO2"/>
                                     <constraint firstItem="uX5-gx-saV" firstAttribute="leading" secondItem="d3S-iD-nXB" secondAttribute="leading" constant="25" id="vdY-Px-qPu"/>
                                     <constraint firstItem="uX5-gx-saV" firstAttribute="top" secondItem="hZG-ma-gdX" secondAttribute="bottom" constant="9" id="yJK-1g-GeD"/>
                                     <constraint firstItem="hZG-ma-gdX" firstAttribute="top" secondItem="d3S-iD-nXB" secondAttribute="top" id="yMC-0b-eIX"/>
@@ -1623,6 +1809,8 @@
                         <outlet property="catagoryIcon" destination="qfC-jM-7zh" id="efV-sx-OvQ"/>
                         <outlet property="currentStatsView" destination="SIW-3r-lYF" id="ZcA-jb-ZeY"/>
                         <outlet property="nextRoundButton" destination="uX5-gx-saV" id="lOK-vh-ISz"/>
+                        <outlet property="nextRoundLoading" destination="usq-mS-w2i" id="pX9-Tf-2f0"/>
+                        <outlet property="playerAvatarImage" destination="yhU-aT-A0b" id="Y7Y-Sh-0i2"/>
                         <outlet property="resultsTableView" destination="hZG-ma-gdX" id="mgX-7E-IJA"/>
                         <outlet property="resultsView" destination="d3S-iD-nXB" id="yo4-pU-4NI"/>
                         <outlet property="roundLabel" destination="vwX-pW-AoH" id="sre-xH-rdC"/>
@@ -1631,6 +1819,7 @@
                         <outlet property="scoreRing" destination="UTH-Lt-F8j" id="OJD-m8-iPm"/>
                         <outlet property="sentenceLabel" destination="Oi4-no-I5W" id="Sjp-eS-L5V"/>
                         <outlet property="wordBubble" destination="btT-qj-Eci" id="Fnh-u6-RO6"/>
+                        <segue destination="pfK-nu-ma5" kind="presentation" identifier="nextRoundSegue" modalPresentationStyle="fullScreen" id="Rbj-mH-9SK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVO-3t-08j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1683,4 +1872,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Egc-yK-mrc"/>
+    </inferredMetricsTieBreakers>
 </document>

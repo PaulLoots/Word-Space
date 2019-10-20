@@ -131,9 +131,16 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var currentAvatarIndex = 0
+        if let index = UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX){
+            currentAvatarIndex = Int(index) ?? 0
+        }
+
         if segue.identifier == "showLobby" {
             if let GameLobbyViewController = segue.destination as? GameLobbyViewController {
                 GameLobbyViewController.gameAction = gameAction
+                GameLobbyViewController.accentColour = "\(avatars[currentAvatarIndex].colour)-Accent"
+                GameLobbyViewController.backgroundColour = "\(avatars[currentAvatarIndex].colour)-Background"
             }
         }
     }
