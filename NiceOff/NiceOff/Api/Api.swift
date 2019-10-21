@@ -10,4 +10,5 @@ import Foundation
 struct Api {
     static var User = UserApi()
     static var Game = GameApi()
+    static var Word = WordApi()
 }

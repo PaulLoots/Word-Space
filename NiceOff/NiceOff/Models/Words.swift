@@ -88,3 +88,27 @@ class QuestionSentenceItem {
     }
 }
 
+//Suggested Word
+class SuggestedWord {
+    var word: String
+    var type: String
+    
+    init(word: String, type: String) {
+        self.word = word
+        self.type = type
+    }
+}
+
+//Single Word
+class SingleWord {
+    var word: String
+    var type: String
+    var emotion: String
+    
+    init(word: String, type: String, emotion: String) {
+        self.word = word
+        self.type = type
+        self.emotion = emotion
+    }
+}
+

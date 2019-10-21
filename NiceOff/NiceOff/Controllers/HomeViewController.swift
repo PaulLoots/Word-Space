@@ -143,6 +143,12 @@ class HomeViewController: UIViewController {
                 GameLobbyViewController.backgroundColour = "\(avatars[currentAvatarIndex].colour)-Background"
             }
         }
+        if segue.identifier == "toAddWordsSegue" {
+            if let AddWordsViewController = segue.destination as? AddWordsViewController {
+                AddWordsViewController.accentColour = "\(avatars[currentAvatarIndex].colour)-Accent"
+                AddWordsViewController.backgroundColour = "\(avatars[currentAvatarIndex].colour)-Background"
+            }
+        }
     }
     
     //Change Avatar Image to Before

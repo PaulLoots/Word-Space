@@ -82,8 +82,6 @@ class PlaySceneViewController: UIViewController {
         case 1:
             countDownSeconds = 30
             difficultyLabel.text = "EASY"
-            isEnterTypeWord = true
-            typrOwnWordsLabel.isHidden = false
             difficulty = 0
             break
         case 2:

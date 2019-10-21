@@ -30,3 +30,8 @@ let SENTENCE_ROUNDS =  "round"
 let SENTENCE_LIKES =  "likes"
 let SENTENCE_SCORE =  "score"
 let SENTENCE_PLAYERID =  "player_id"
+
+//Word
+let WORD_TEXT = "word"
+let WORD_TYPE = "type"
+let WORD_CATAGORY = "catagory"
