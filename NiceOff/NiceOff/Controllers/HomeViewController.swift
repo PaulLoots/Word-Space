@@ -239,6 +239,7 @@ class HomeViewController: UIViewController {
     
     func setInitialAvatar() {
         
+        getWordData()
         var avatarIndex = "0"
         
         if let index = UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX){
@@ -275,6 +276,12 @@ class HomeViewController: UIViewController {
         }
         
         self.avatarNameButton.setTitle(avatarName, for: .normal)
+    }
+    
+    //MARK: - Api
+    
+    func getWordData() {
+        Api.Word.getGameWords(onSuccess: {}, onError: {})
     }
 }
 

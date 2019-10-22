@@ -12,11 +12,15 @@ import Foundation
 
 let nouns = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy leg","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure","pizza"]
 
-let verbs = ["is","surrounds","stabs","returns","medicates","blindsides","flaps","trips","harasses","traps","explodes","sketches","scatters","challenges","fights","buries","splatters","smacks","balances","pokes","critiques","fears","initiates","runs over","cooks","imprisons","underestimates","shreds","drinks","disputes","echos","mimics","underrates","taunts"]
+var subjects = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy leg","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure","pizza"]
 
-let adjectives = ["dead","hairless","sadistic","metal","wild","domesticated","abnormal","medicated","cocky","massive","disrespectful","impressive","hilarious","sexy","hot","bearded","violent","slimy","insanely creepy" ,"talking","naked","angry","shaky","deep","sick","zippy","fluffy","frozen","unholy","filthy","fighting","harsh","frisky","greedy","crawly","insane","hideous","abusive","hateful","idiotic","twisted","useless","yapping","magical","arrogant","flirting","high-end","insecure","slippery","stubborn","sinister","cowardly","haunting","startled","demanding","offensive","nighttime","disgusting","disturbing","rebellious","hyperactive","infuriating","territorial","mischievous","misunderstood","mentally impaired"]
+var objects = ["idiot","toaster","legend","therapy","psychic","knife","sandwich","lettuce","kitty","friendly grandma","french chef","antidepressant drug","coffee pot","tank","private investor","elastic band","telephone","mad cow disease","karate","pistol","kitty cat","hairy leg","liquid oxygen","laser beams","messiness","trust fund","dog poop","dragon","mediation","patrolman","toilet seat","haunted graveyard","wrinkle","multi-billionaire","mental disorder","boiling water","best failure","pizza"]
 
-let adverbs = ["carefully","easily","sadly"]
+var verbs = ["is","surrounds","stabs","returns","medicates","blindsides","flaps","trips","harasses","traps","explodes","sketches","scatters","challenges","fights","buries","splatters","smacks","balances","pokes","critiques","fears","initiates","runs over","cooks","imprisons","underestimates","shreds","drinks","disputes","echos","mimics","underrates","taunts"]
+
+var adjectives = ["dead","hairless","sadistic","metal","wild","domesticated","abnormal","medicated","cocky","massive","disrespectful","impressive","hilarious","sexy","hot","bearded","violent","slimy","insanely creepy" ,"talking","naked","angry","shaky","deep","sick","zippy","fluffy","frozen","unholy","filthy","fighting","harsh","frisky","greedy","crawly","insane","hideous","abusive","hateful","idiotic","twisted","useless","yapping","magical","arrogant","flirting","high-end","insecure","slippery","stubborn","sinister","cowardly","haunting","startled","demanding","offensive","nighttime","disgusting","disturbing","rebellious","hyperactive","infuriating","territorial","mischievous","misunderstood","mentally impaired"]
+
+var adverbs = ["carefully","easily","sadly"]
 
 let prepositionsCommon = ["of","from","to","with","at","in","for","about","by"]
 
@@ -72,6 +76,8 @@ class QuestionSentence {
 }
 
 let easySentenceStructures = ["The *subject* *verb* a *object*."]
+let mediumSentenceStructures = ["The *adjective* *subject* *verb* a *object*.", "The *subject* *verb* a *adjective* *object*.", "The *subject* *adverb* *verb* a *object*.", "The *subject* *verb* a *object* *adverb*."]
+let hardSentenceStructures = ["The *adjective* *subject* *adverb* *verb* a *adjective* *object*.", "The *adjective* *subject* *verb* a *adjective* *object* *adverb*."]
 
 //Entered Senternce
 class QuestionSentenceItem {

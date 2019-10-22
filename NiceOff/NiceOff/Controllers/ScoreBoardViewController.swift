@@ -13,6 +13,7 @@ import UICircularProgressRing
 import EFCountingLabel
 import NVActivityIndicatorView
 import Firebase
+import SAConfettiView
 
 class ScoreBoardViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class ScoreBoardViewController: UIViewController {
     @IBOutlet var currentStatsView: UIView!
     var scoreCalculated = false
     @IBOutlet var playerAvatarImage: UIImageView!
+    @IBOutlet var endGameButton: DesignableButton!
     
     //Timer
     var timer = Timer()
@@ -36,6 +38,7 @@ class ScoreBoardViewController: UIViewController {
     //Score
     @IBOutlet weak var scoreRing: UICircularProgressRing!
     @IBOutlet weak var scoreLoadingView: NVActivityIndicatorView!
+    var myPlace = 0
     
     //Colour
      var accentColour = "Purple-Accent"
@@ -53,6 +56,19 @@ class ScoreBoardViewController: UIViewController {
     
     //Models
     let currentGame = Game(passPhrase: "", catagory: "Joy", currentRound: 0, currentRoundCatagory: "", id: Api.User.currentUserId)
+    
+    //Favorite Sentence
+    @IBOutlet var favoriteSenteceView: UIView!
+    @IBOutlet var favoritePersonName: UILabel!
+    @IBOutlet var favoriteLikedAmount: UILabel!
+    @IBOutlet var favoriteSentenceString: UILabel!
+    @IBOutlet var favoriteAvatar: UIImageView!
+    @IBOutlet var favoriteSentenceLikeIcon: UIImageView!
+    
+    //Views
+    @IBOutlet var scoreView: UIView!
+    @IBOutlet var placeLabel: UILabel!
+    @IBOutlet var scoreAvatar: UIImageView!
     
     //Received Data
     var countDownSeconds = 30
@@ -97,6 +113,8 @@ class ScoreBoardViewController: UIViewController {
         
         //Images
         playerAvatarImage.image = UIImage.init(named: currentAvatar.icon)
+        catagoryIcon.image = UIImage.init(named: catagory)
+        roundLabel.text = "Round \(currentRound)"
     }
     
     //MARK: - Exit Game
@@ -111,17 +129,16 @@ class ScoreBoardViewController: UIViewController {
     
     func calculateScore(angerValue: Float, fearValue: Float, joyValue: Float, sadnessValue: Float) {
         var score: Float = 0
-        // TODO: - Replace with DB value
-        let currentEmotion = "Joy"
+        let currentEmotion = catagory
         switch currentEmotion {
         case "Anger":
-            score = angerValue - ((fearValue + joyValue + sadnessValue) * 0.6 )
+            score = angerValue - ((fearValue + joyValue + sadnessValue) * 0.5 )
         case "Fear":
-            score = fearValue - ((angerValue + joyValue + sadnessValue) * 0.6 )
+            score = fearValue - ((angerValue + joyValue + sadnessValue) * 0.5 )
         case "Joy":
-            score = joyValue - ((fearValue + angerValue + sadnessValue) * 0.6 )
+            score = joyValue - ((fearValue + angerValue + sadnessValue) * 0.5 )
         case "Sadness":
-            score = sadnessValue - ((fearValue + joyValue + angerValue) * 0.6 )
+            score = sadnessValue - ((fearValue + joyValue + angerValue) * 0.5 )
         default:
             break
         }
@@ -185,10 +202,13 @@ class ScoreBoardViewController: UIViewController {
         }
     }
     
+    @IBAction func endGameButtonTapped(_ sender: Any) {
+        exitGame()
+    }
+    
     //MARK: - Like Sentence
     
     @objc func likeSentence(_ sender: UIButton) {
-        print("likeTapped")
         self.likedSentenceTags.append(sender.tag)
         self.resultsTableView.reloadData()
         Api.Game.likeSentence(sentenceID: players[sender.tag].playerID + String(currentRound), gameID: gameID, onSuccess: {
@@ -223,9 +243,9 @@ class ScoreBoardViewController: UIViewController {
             }
         }
         if completedAmount == players.count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.timer.invalidate()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 if !self.isShowingLeaderboard {
-                    self.timer.invalidate()
                     self.showScoreboard()
                 }
             }
@@ -236,6 +256,15 @@ class ScoreBoardViewController: UIViewController {
         isShowingLeaderboard = true
         players = bubbleSortPlayers(players)
         displayScoreboard()
+        if currentGame.currentRound > 3 {
+            getFavoriteSentence()
+            if gameAction != "new" {
+                endGameButton.isHidden = false
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.showFinalScoreOverlay()
+            }
+        }
     }
     
     func bubbleSortPlayers(_ array: [ScoreItem]) -> [ScoreItem] {
@@ -380,36 +409,94 @@ class ScoreBoardViewController: UIViewController {
         Api.Game.removeGetGameObservers()
     }
     
-    //AI
-
-    func approveWord(word: String, catagory: String) {
-        Api.AI.getToneValue(catagory: catagory, sentenceString: word, onSuccess: { wordItem in
-            print(wordItem.joyValue)
-            var addTone = "Joy"
-            
-            let angerValue = wordItem.angerValue
-            let fearValue = wordItem.angerValue
-            let joyValue = wordItem.angerValue
-            let sadnessValue = wordItem.angerValue
-            
-            print("Anger: \(angerValue)")
-            print("Fear: \(fearValue)")
-            print("Sadness: \(joyValue)")
-            print("Joy: \(sadnessValue)")
-            
-            if angerValue > fearValue && angerValue > joyValue && angerValue > sadnessValue {
-                addTone = "Anger"
-            } else if fearValue > angerValue && fearValue > joyValue && fearValue > sadnessValue {
-                addTone = "Fear"
-            } else if sadnessValue > fearValue && sadnessValue > joyValue && sadnessValue > angerValue {
-                addTone = "Sadness"
-            } else {
-                addTone = "Joy"
+    func getFavoriteSentence()  {
+        Api.Game.getFavoriteSentence(gameID: self.gameID, onSuccess: { favoriteSentence in
+            DispatchQueue.main.asyncAfter(deadline: .now()) {            self.showFavroiteSentence(favoriteSentence: favoriteSentence)
             }
+        }, onEmpty: {
             
-//            self.addGameWord(catagory: wordItem.catagory, emotion: addTone, word: wordItem.word)
-//            self.removeWord(word: wordItem.word)
-        }, onError: {error in print(error)})
+        })
+    }
+    
+    //MARK: - Final Score
+    
+    func showFinalScoreOverlay() {
+        self.view.addSubview(scoreView)
+        scoreView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        var avatarIndex = "0"
+        self.scoreView.transform = .init(scaleX: 1.5, y: 1.5)
+        scoreView.alpha = 0
+        if let index = UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX){
+            avatarIndex = index
+        } else {
+            UserDefaults.standard.set("0", forKey: CURRENT_AVATAR_INDEX)
+        }
+        let currentAvatar = avatars[Int(avatarIndex) ?? 0]
+        //Images
+        scoreAvatar.image = UIImage.init(named: currentAvatar.icon)
+        scoreLabel.text = String(myPlace)
+        if myPlace == 1 {
+           placeLabel.text = "You Won!"
+            let confettiView = SAConfettiView(frame: self.view.bounds)
+            self.view.addSubview(confettiView)
+            confettiView.type = .Confetti
+            confettiView.startConfetti()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+               confettiView.stopConfetti()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                   confettiView.removeFromSuperview()
+                }
+            }
+        } else {
+            switch (myPlace) {
+            case 21 , 31, 41, 51, 61, 71, 81, 91, 101:
+                placeLabel.text = "\(myPlace)st"
+            case 2 , 22 , 32, 42, 52, 62, 72, 82, 92, 102:
+                placeLabel.text = "\(myPlace)nd"
+            case 13 , 23 , 33, 43, 53, 63, 73, 83, 93, 103:
+                placeLabel.text = "\(myPlace)rd"
+            default:
+                placeLabel.text = "\(myPlace)th"
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.scoreView.transform = .identity
+                self.scoreView.alpha = 1
+            })
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.scoreView.transform = .init(scaleX: 1.5, y: 1.5)
+                self.scoreView.alpha = 0
+            })
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.3) {
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.scoreView.transform = .identity
+                self.scoreView.removeFromSuperview()
+            })
+        }
+    }
+    
+    func showFavroiteSentence(favoriteSentence:ScoreItem) {
+        favoriteSenteceView.transform = .init(translationX: 0, y: 300)
+        favoriteSenteceView.isHidden = false
+        if favoriteSentence.playerID == Api.User.currentUserId {
+            favoritePersonName.text = "Me"
+        } else {
+            favoritePersonName.text = favoriteSentence.playerName
+        }
+        let currentAvatar = avatars[Int(favoriteSentence.playerAvatar) ?? 0]
+        favoriteAvatar.image = UIImage.init(named: currentAvatar.icon)
+        favoriteSentenceString.text = favoriteSentence.sentence
+        favoriteLikedAmount.text = String(favoriteSentence.likes)
+        favoriteSentenceLikeIcon.tintColor = UIColor.init(named: currentAvatar.colour + "-Accent") ?? .black
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                 self.favoriteSenteceView.transform = .identity
+             })
+         }
     }
     
     // MARK: - Animations
@@ -540,6 +627,7 @@ extension ScoreBoardViewController: UITableViewDelegate, UITableViewDataSource {
             
             if players[indexPath.row].playerID == Api.User.currentUserId {
                 cell.name.text = "Me"
+                myPlace = indexPath.row + 1
             } else {
                 cell.name.text = players[indexPath.row].playerName
             }

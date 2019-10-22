@@ -508,7 +508,7 @@ extension GameLobbyViewController: UICollectionViewDelegate, UICollectionViewDat
                 cell.pillBackground.backgroundColor = UIColor.init(named: "Overlay-Background")
                 cell.pillWord.text = ""
             } else {
-                cell.pillBackground.backgroundColor = UIColor.init(named: "White")
+                cell.pillBackground.backgroundColor = UIColor.init(named: "Card-Neutral")
                 cell.pillWord.text = passPhraseOptions[indexPath.item]
             }
             

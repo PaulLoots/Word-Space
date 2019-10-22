@@ -140,6 +140,7 @@ class GameApi {
         }
     }
     //MARK: - Sentences
+    
     private let sentenceCollection = "sentences"
     private var sentenceListner: ListenerRegistration? = nil
     
@@ -180,6 +181,35 @@ class GameApi {
                 sentences.append(Sentence(text: sentence[SENTENCE_TEXT] as? String ?? "", catagory: sentence[SENTENCE_CATAGORY] as? String ?? "", round: sentence[SENTENCE_ROUNDS] as? Int ?? 0, likes: sentence[SENTENCE_LIKES] as? Int ?? 0, score: sentence[SENTENCE_SCORE] as? Int ?? 0, playerID: sentence[SENTENCE_PLAYERID] as? String ?? ""))
             }
             onSuccess(sentences)
+        }
+    }
+    
+    func getFavoriteSentence(gameID: String, onSuccess: @escaping(ScoreItem) -> Void, onEmpty: @escaping() -> Void) {
+        sentenceListner = db.collection(gameCollection).document(gameID).collection(sentenceCollection)
+        .addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                onEmpty()
+                return
+            }
+            var favoriteSentence = Sentence(text: "", catagory: "", round: 0, likes: 0, score: 0, playerID: "nil")
+            for sentence in documents {
+                if sentence[SENTENCE_LIKES] as? Int ?? 0 > favoriteSentence.likes {
+                    favoriteSentence = Sentence(text: sentence[SENTENCE_TEXT] as? String ?? "", catagory: sentence[SENTENCE_CATAGORY] as? String ?? "", round: sentence[SENTENCE_ROUNDS] as? Int ?? 0, likes: sentence[SENTENCE_LIKES] as? Int ?? 0, score: sentence[SENTENCE_SCORE] as? Int ?? 0, playerID: sentence[SENTENCE_PLAYERID] as? String ?? "")
+                }
+            }
+            if favoriteSentence.playerID != "nil" {
+                self.db.collection(self.gameCollection).document(gameID).collection(self.playerCollection).document(favoriteSentence.playerID).getDocument { (document, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                            onEmpty()
+                        } else {
+                            let favoriteReturn = ScoreItem(playerID: document?.data()?[PLAYER_ID] as? String ?? "", playerName: document?.data()?[PLAYER_NAME] as? String ?? "", playerAvatar: document?.data()?[PLAYER_AVATAR] as? String ?? "", sentence: favoriteSentence.text, sentenceScore: favoriteSentence.score, totalScore: 0, likes: favoriteSentence.likes)
+                            onSuccess(favoriteReturn)
+                        }
+                }
+            } else {
+                onEmpty()
+            }
         }
     }
     

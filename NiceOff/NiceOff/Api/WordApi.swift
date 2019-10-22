@@ -39,7 +39,6 @@ class WordApi {
                     print("Error getting documents: \(err)")
                     onError(err.localizedDescription)
                 } else {
-                    print(querySnapshot?.count)
                     if querySnapshot?.documents.count ?? 0 > 0 {
                         let documentID = querySnapshot?.documents[0].documentID ?? "nil"
                         self.db.collection(self.suggestedWordCollection).document(documentID).delete() { error in
@@ -86,6 +85,22 @@ class WordApi {
             } else {
                 onSuccess()
             }
+        }
+    }
+    
+    func getGameWords(onSuccess: @escaping() -> Void, onError: @escaping() -> Void) {
+        db.collection(wordCollection).document(wordCollection).getDocument { (document, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    onError()
+                } else {
+                    subjects = document?.data()?["Subject"] as! [String]
+                    verbs = document?.data()?["Verb"] as! [String]
+                    objects = document?.data()?["Object"] as! [String]
+                    adjectives = document?.data()?["Adjective"] as! [String]
+                    adverbs = document?.data()?["Adverb"] as! [String]
+                    onSuccess()
+                }
         }
     }
 }

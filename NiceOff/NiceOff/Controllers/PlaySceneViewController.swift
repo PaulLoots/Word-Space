@@ -77,25 +77,26 @@ class PlaySceneViewController: UIViewController {
     func initialiseGame() {
         
         roundCountLabel.text = "Round \(currentRound)"
+        gameRoundCountLabel.text = "Round \(currentRound)"
         
         switch currentRound {
         case 1:
-            countDownSeconds = 30
+            countDownSeconds = 60
             difficultyLabel.text = "EASY"
             difficulty = 0
             break
         case 2:
-            countDownSeconds = 20
+            countDownSeconds = 40
             difficultyLabel.text = "MEDIUM"
             difficulty = 1
             break
         case 3:
-            countDownSeconds = 15
+            countDownSeconds = 40
             difficultyLabel.text = "HARD"
             difficulty = 2
             break
         case 4:
-            countDownSeconds = 30
+            countDownSeconds = 90
             roundCountLabel.text = "Final Round"
             difficultyLabel.text = "EXTREME"
             difficulty = 3
@@ -106,9 +107,42 @@ class PlaySceneViewController: UIViewController {
             break
         }
         
+        if catagory == "Random" {
+            let date = Date()
+            let calendar = Calendar.current
+            let minutes = calendar.component(.minute, from: date)
+            
+            switch String(minutes).last {
+            case "1","5","9":
+                catagory = "Anger"
+                break
+            case "2","6","0":
+                catagory = "Joy"
+                break
+            case "3","7":
+                catagory = "Fear"
+                break
+            case "4","8":
+                catagory = "Sadness"
+                break
+            default:
+                catagory = "Joy"
+                break
+            }
+        }
+        
         switch catagory {
+        case "Anger":
+            roundInstructionLabel.text = "Make an angy sentence"
+            break
         case "Joy":
             roundInstructionLabel.text = "Make a happy sentence"
+            break
+        case "Fear":
+            roundInstructionLabel.text = "Make a fearful sentence"
+            break
+        case "Sadness":
+            roundInstructionLabel.text = "Make a sad sentence"
             break
         default:
             break
@@ -158,8 +192,6 @@ class PlaySceneViewController: UIViewController {
         for wordOption in wordOptionsAdded {
             sentenceString = "\(sentenceString)\(wordOption.value)"
         }
-        print("sentenceString*************")
-        print(sentenceString)
         return sentenceString
     }
     
@@ -242,7 +274,22 @@ class PlaySceneViewController: UIViewController {
     // MARK: - Sentence Generating Algorithm
     
     func generateQuestionSentence() {
-        let sentence = easySentenceStructures.randomElement() ?? "The *subject* *verb* a *object*."
+        
+        var sentence = easySentenceStructures.randomElement() ?? "The *subject* *verb* a *object*."
+        
+        switch difficulty {
+        case 0:
+            sentence = easySentenceStructures.randomElement() ?? "The *subject* *verb* a *object*."
+        case 1:
+            sentence = mediumSentenceStructures.randomElement() ?? "The *subject* *verb* a *object*."
+        case 2:
+            sentence = hardSentenceStructures.randomElement() ?? "The *subject* *verb* a *object*."
+        case 3:
+            sentence = easySentenceStructures.randomElement() ?? "The *subject* *verb* a *object*."
+        default:
+            return
+        }
+        
         var isFirstType = true
         let sentenceComponentsArray = sentence.components(separatedBy: "*")
         
@@ -348,7 +395,7 @@ class PlaySceneViewController: UIViewController {
         switch editingType {
         case "subject":
             while looking {
-                let randomWord = nouns.randomElement() ?? "dog"
+                let randomWord = subjects.randomElement() ?? "dog"
                 if !wordsList.contains(randomWord) {
                     wordsList.append(randomWord)
                     if !checkWordsListLength(wordsList: wordsList) {
@@ -370,7 +417,7 @@ class PlaySceneViewController: UIViewController {
             break
         case "object":
             while looking {
-                let randomWord = nouns.randomElement() ?? "dog"
+                let randomWord = objects.randomElement() ?? "dog"
                 if !wordsList.contains(randomWord) {
                     wordsList.append(randomWord)
                     if !checkWordsListLength(wordsList: wordsList) {
@@ -392,7 +439,7 @@ class PlaySceneViewController: UIViewController {
             break
         case "adverb":
             while looking {
-                let randomWord = nouns.randomElement() ?? "dog"
+                let randomWord = adverbs.randomElement() ?? "dog"
                 if !wordsList.contains(randomWord) {
                     wordsList.append(randomWord)
                     if !checkWordsListLength(wordsList: wordsList) {
