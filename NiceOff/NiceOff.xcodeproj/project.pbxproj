@@ -66,7 +66,7 @@
 		7F959F2C2351E8EE00AECACD /* BareWordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BareWordCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F959F2D2351E8EE00AECACD /* BareWordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BareWordCollectionViewCell.xib; sourceTree = "<group>"; };
 		7FA3A5F12354CAE20029FECD /* PlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableViewCell.swift; sourceTree = "<group>"; };
-		7FB97111233F8FEA00317A20 /* NiceOff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiceOff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FB97111233F8FEA00317A20 /* Word Space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Space.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB97114233F8FEA00317A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB97116233F8FEA00317A20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7FB97118233F8FEA00317A20 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		7FB97112233F8FEA00317A20 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7FB97111233F8FEA00317A20 /* NiceOff.app */,
+				7FB97111233F8FEA00317A20 /* Word Space.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,7 +297,7 @@
 			);
 			name = NiceOff;
 			productName = NiceOff;
-			productReference = 7FB97111233F8FEA00317A20 /* NiceOff.app */;
+			productReference = 7FB97111233F8FEA00317A20 /* Word Space.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -598,7 +598,7 @@
 				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paulloots.NiceOff;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Word Space";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -619,7 +619,7 @@
 				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paulloots.NiceOff;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Word Space";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

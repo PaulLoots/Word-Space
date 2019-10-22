@@ -38,6 +38,6 @@ let avatars = [Avatar(icon: "purple-monster-1", background: "planet-1", colour: 
                Avatar(icon: "pink-monster-2", background: "planet-5", colour: "Pink")]
 
 //Avatar Name
-let avatarNameFirst = ["Bubbly","Fluffy"]
+let avatarNameFirst = ["Bubbly","Fluffy","Adorable","Charming","Cozy","Fearless","Glitter","Quirky"]
 
-let avatarNameLast = ["Clown","Lizard"]
+let avatarNameLast = ["Clown","Lizard","Catfish","Tarantula","Sunflower","Honeybee","Starlet"]
