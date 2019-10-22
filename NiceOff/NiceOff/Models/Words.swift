@@ -112,3 +112,22 @@ class SingleWord {
     }
 }
 
+//Single Word
+class ToneResponse {
+    var word: String
+    var catagory: String
+    var angerValue: Float
+    var fearValue: Float
+    var joyValue: Float
+    var sadnessValue: Float
+    
+    init(word: String, catagory: String, angerValue: Float, fearValue: Float, joyValue: Float, sadnessValue: Float) {
+        self.word = word
+        self.catagory = catagory
+        self.angerValue = angerValue
+        self.fearValue = fearValue
+        self.joyValue = joyValue
+        self.sadnessValue = sadnessValue
+    }
+}
+

@@ -22,6 +22,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet var dislikeImageView: UIImageView!
     @IBOutlet var controlBarView: UIView!
     @IBOutlet var loadingIndicatorView: NVActivityIndicatorView!
+    @IBOutlet var cardsDoneView: UIView!
+    @IBOutlet var cardsContainerView: UIView!
     
     //Card Var
     var cardCenter = CGPoint()
@@ -42,14 +44,23 @@ class ReviewViewController: UIViewController {
     @IBOutlet var secondCardWord: UILabel!
     @IBOutlet var secondCardSubject: UILabel!
     
-    
     //Colour
     var accentColour = "Purple-Accent"
     var backgroundColour = "Purple-Background"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTheme()
         populateDeck()
+    }
+    
+    @IBAction func onClosePressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setTheme() {
+        view.tintColor = UIColor.init(named: accentColour)
+        view.backgroundColor = UIColor.init(named: backgroundColour)
     }
     
     //MARK: - Card Movement
@@ -138,6 +149,8 @@ class ReviewViewController: UIViewController {
     func swipeDisLiked() {
         notificationTap.notificationOccurred(.success)
         
+        removeWord(word: topCardData.word)
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.card.center = CGPoint(x: self.card.center.x - self.view.frame.width, y: self.card.center.y + 75)
             self.card.alpha = 0;
@@ -151,6 +164,8 @@ class ReviewViewController: UIViewController {
     
     func swipeLiked() {
         notificationTap.notificationOccurred(.success)
+        
+        addGameWord(catagory: topCardData.type, word: topCardData.word)
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.card.center = CGPoint(x: self.card.center.x + self.view.frame.width, y: self.card.center.y + 75)
@@ -217,7 +232,30 @@ class ReviewViewController: UIViewController {
         card.isHidden = true;
         HideControlBar()
         
-        //showCardsDonePane()
+        showCardsDonePane()
+    }
+    
+    func showCardsDonePane() {
+        loadingIndicatorView.stopAnimating()
+        self.cardsContainerView.addSubview(cardsDoneView)
+        cardsDoneView.frame = CGRect(x: 0 , y: 0, width: self.cardsContainerView.frame.width, height: self.cardsContainerView.frame.height)
+        cardsDoneView.alpha = 0
+        cardsDoneView.transform = .init(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.cardsDoneView.alpha = 1
+        })
+    }
+    
+    func hideCardsDonePane() {
+        cardsDoneView.alpha = 1
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.cardsDoneView.transform = .init(scaleX: 0.5, y: 0.5)
+            self.cardsDoneView.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.cardsDoneView.transform = .identity
+            self.cardsDoneView.removeFromSuperview()
+        }
     }
     
     //MARK: - Control bar Functions
@@ -257,18 +295,18 @@ class ReviewViewController: UIViewController {
             setNoCardsRemaining()
         } else {
             topCardData = cardDeckData[0]
-            if isCardFirst {
-                self.isCardFirst = false
-            } else {
-                self.UpdateDeck()
-            }
+//            if isCardFirst {
+//                isCardFirst = false
+//                cardDeckData.append(SuggestedWord(word: "alien", type: "subject"))
+//            }
+            self.UpdateDeck()
         }
     }
     
     func UpdateDeck() {
 
         //Visuals
-        buttonsEnabled = true;
+        buttonsEnabled = true
         //cardsDoneView.removeFromSuperview()
 
         if cardDeckData.count == 2 {
@@ -325,12 +363,32 @@ class ReviewViewController: UIViewController {
     
     //MARK: - API
     
+    //Words
     func getSuggestedWords() {
         Api.Word.getSuggestedWords(onSuccess: { suggestedWords in
-            self.cardDeckData = suggestedWords
-            self.isCardFirst = true
-            self.CheckDeckLength()
-            self.ShowDeck()
+            if suggestedWords.count > 0 {
+                self.hideCardsDonePane()
+                self.cardDeckData = suggestedWords
+                self.isCardFirst = true
+                self.CheckDeckLength()
+                self.ShowDeck()
+            } else {
+                self.showCardsDonePane()
+            }
         }, onError: {})
     }
+    
+    func addGameWord(catagory: String, word: String) {
+        removeWord(word: word)
+        Api.Word.addGameWord(catagory: catagory, word: word, onSuccess: {
+        }, onError: { error in print(error)})
+    }
+    
+    func removeWord(word: String) {
+        Api.Word.removeSuggestedWord(word: word, onSuccess: {
+            
+        }, onError: {error in print(error)})
+    }
+    
+
 }

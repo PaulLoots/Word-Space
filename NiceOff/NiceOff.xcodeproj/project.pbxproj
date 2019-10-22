@@ -37,6 +37,7 @@
 		7FB97135233F914800317A20 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FB97132233F914800317A20 /* SourceSansPro-Bold.ttf */; };
 		7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9713A233FA5C500317A20 /* UIView+Designable.swift */; };
 		7FBD0926235E3173002F5B29 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBD0925235E3173002F5B29 /* ReviewViewController.swift */; };
+		7FBD0928235ECF23002F5B29 /* AIApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBD0927235ECF23002F5B29 /* AIApi.swift */; };
 		7FD7A9AD235DB89300A11172 /* AddWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7A9AC235DB89300A11172 /* AddWordsViewController.swift */; };
 		7FD7A9AF235DD94B00A11172 /* WordApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7A9AE235DD94B00A11172 /* WordApi.swift */; };
 		7FDF5CE6235B16FC00E56B49 /* ScoreboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF5CE5235B16FC00E56B49 /* ScoreboardTableViewCell.swift */; };
@@ -78,6 +79,7 @@
 		7FB97132233F914800317A20 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		7FB9713A233FA5C500317A20 /* UIView+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Designable.swift"; sourceTree = "<group>"; };
 		7FBD0925235E3173002F5B29 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		7FBD0927235ECF23002F5B29 /* AIApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIApi.swift; sourceTree = "<group>"; };
 		7FD7A9AC235DB89300A11172 /* AddWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordsViewController.swift; sourceTree = "<group>"; };
 		7FD7A9AE235DD94B00A11172 /* WordApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordApi.swift; sourceTree = "<group>"; };
 		7FDF5CE5235B16FC00E56B49 /* ScoreboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardTableViewCell.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				7F5B161F2353224C00BED319 /* UserApi.swift */,
 				7F211955235472250004C7D0 /* GameApi.swift */,
 				7FD7A9AE235DD94B00A11172 /* WordApi.swift */,
+				7FBD0927235ECF23002F5B29 /* AIApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				7F48D282234DF1E500BC77BC /* StringExtention.swift in Sources */,
 				7F2E36342340FC250072A8C7 /* Words.swift in Sources */,
 				7F2E362B2340A8AE0072A8C7 /* Avatars.swift in Sources */,
+				7FBD0928235ECF23002F5B29 /* AIApi.swift in Sources */,
 				7FB97115233F8FEA00317A20 /* AppDelegate.swift in Sources */,
 				7FDF5CE6235B16FC00E56B49 /* ScoreboardTableViewCell.swift in Sources */,
 				7FB97117233F8FEA00317A20 /* SceneDelegate.swift in Sources */,

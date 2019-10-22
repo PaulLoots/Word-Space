@@ -380,6 +380,38 @@ class ScoreBoardViewController: UIViewController {
         Api.Game.removeGetGameObservers()
     }
     
+    //AI
+
+    func approveWord(word: String, catagory: String) {
+        Api.AI.getToneValue(catagory: catagory, sentenceString: word, onSuccess: { wordItem in
+            print(wordItem.joyValue)
+            var addTone = "Joy"
+            
+            let angerValue = wordItem.angerValue
+            let fearValue = wordItem.angerValue
+            let joyValue = wordItem.angerValue
+            let sadnessValue = wordItem.angerValue
+            
+            print("Anger: \(angerValue)")
+            print("Fear: \(fearValue)")
+            print("Sadness: \(joyValue)")
+            print("Joy: \(sadnessValue)")
+            
+            if angerValue > fearValue && angerValue > joyValue && angerValue > sadnessValue {
+                addTone = "Anger"
+            } else if fearValue > angerValue && fearValue > joyValue && fearValue > sadnessValue {
+                addTone = "Fear"
+            } else if sadnessValue > fearValue && sadnessValue > joyValue && sadnessValue > angerValue {
+                addTone = "Sadness"
+            } else {
+                addTone = "Joy"
+            }
+            
+//            self.addGameWord(catagory: wordItem.catagory, emotion: addTone, word: wordItem.word)
+//            self.removeWord(word: wordItem.word)
+        }, onError: {error in print(error)})
+    }
+    
     // MARK: - Animations
     
     func animateIn() {

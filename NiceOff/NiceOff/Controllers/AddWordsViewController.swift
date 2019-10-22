@@ -59,6 +59,15 @@ class AddWordsViewController: UIViewController {
         exampleText.textColor = UIColor.init(named: self.accentColour)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toReviewSegue" {
+            if let ReviewController = segue.destination as? ReviewViewController {
+                ReviewController.accentColour = accentColour
+                ReviewController.backgroundColour = backgroundColour
+            }
+        }
+    }
+    
     // MARK: - Enter Word
     
     func showEnterWordOverlay(wordType: String, exampleText: String, descriptionText: String) {
@@ -244,7 +253,7 @@ class AddWordsViewController: UIViewController {
     
     @IBAction func secretButtonTapped(_ sender: Any) {
         if wordLabel.text == "7323" {
-            performSegue(withIdentifier: "toSecretViewSegue", sender: nil)
+            performSegue(withIdentifier: "toReviewSegue", sender: nil)
         }
     }
     
