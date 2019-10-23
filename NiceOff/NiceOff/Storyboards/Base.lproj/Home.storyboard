@@ -290,6 +290,8 @@
                         <outlet property="joinButtonBackground" destination="v56-PP-PBx" id="MbI-x6-sS1"/>
                         <outlet property="loadingIndicator" destination="xUp-3a-hVH" id="an5-0I-x5M"/>
                         <outlet property="loadingView" destination="rSg-cF-GyN" id="NZ2-Bx-CeH"/>
+                        <outlet property="onboardingScrollView" destination="oWl-Qr-sGz" id="1Ta-hX-ryt"/>
+                        <outlet property="onboardingViewContainer" destination="3aP-kc-SB6" id="YJb-M0-74Y"/>
                         <outlet property="startButtonBackground" destination="867-LM-VaY" id="nW3-Fo-Mfu"/>
                         <outlet property="swipeLabel" destination="g0P-Xq-1do" id="QNc-an-WUP"/>
                         <outlet property="tapLabel" destination="a5p-cn-j1d" id="CZC-CA-F3M"/>
@@ -297,6 +299,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="3aP-kc-SB6">
+                    <rect key="frame" x="0.0" y="0.0" width="346" height="622"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onboardingBackground" translatesAutoresizingMaskIntoConstraints="NO" id="hs8-X3-MWm">
+                            <rect key="frame" x="0.0" y="0.0" width="346" height="622"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWl-Qr-sGz">
+                            <rect key="frame" x="0.0" y="0.0" width="346" height="622"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <viewLayoutGuide key="contentLayoutGuide" id="hJP-BJ-mZx"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="mLv-QJ-OSF"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="tTn-TC-Rdh"/>
+                </view>
                 <view contentMode="scaleToFill" id="rSg-cF-GyN" userLabel="LoadingView">
                     <rect key="frame" x="0.0" y="0.0" width="383" height="623"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2111,66 +2131,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z15-KK-xv8" userLabel="NewRoundContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omg-yr-4w8">
-                                        <rect key="frame" x="175" y="527" width="120" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="36"/>
-                                        <color key="textColor" name="Text-Primary"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMn-ji-jFa">
-                                        <rect key="frame" x="8" y="87" width="359" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="EASY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jj3-eF-VfO">
-                                        <rect key="frame" x="8" y="495" width="359" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="stopwatch" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Crz-YN-q6x">
-                                        <rect key="frame" x="147" y="541" width="26" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Text-Primary"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make a happy sentence" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibR-zX-cHl">
-                                        <rect key="frame" x="21" y="309" width="332" height="67"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="24"/>
-                                        <color key="textColor" name="Purple-Accent"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVE-d7-1Ej" userLabel="Tone View">
-                                        <rect key="frame" x="8" y="244" width="359" height="65"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Joy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lz-F2-NSd">
-                                                <rect key="frame" x="158" y="2" width="193" height="61"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="48"/>
-                                                <color key="textColor" name="Text-Primary"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Joy" translatesAutoresizingMaskIntoConstraints="NO" id="2yi-H2-tDz">
-                                                <rect key="frame" x="110" y="13" width="40" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Text-Primary"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHp-qt-ahO" userLabel="GameViewContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -2292,6 +2252,66 @@
                                     <constraint firstItem="Bjr-No-FIt" firstAttribute="top" secondItem="XHp-qt-ahO" secondAttribute="top" constant="30" id="kb1-JO-x1o"/>
                                     <constraint firstItem="Bjr-No-FIt" firstAttribute="leading" secondItem="XHp-qt-ahO" secondAttribute="leading" constant="25" id="yPt-Ur-isp"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z15-KK-xv8" userLabel="NewRoundContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="omg-yr-4w8">
+                                        <rect key="frame" x="175" y="527" width="120" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="36"/>
+                                        <color key="textColor" name="Text-Primary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMn-ji-jFa">
+                                        <rect key="frame" x="8" y="87" width="359" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="EASY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jj3-eF-VfO">
+                                        <rect key="frame" x="8" y="495" width="359" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="24"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="stopwatch" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Crz-YN-q6x">
+                                        <rect key="frame" x="147" y="541" width="26" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" name="Text-Primary"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make a happy sentence" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibR-zX-cHl">
+                                        <rect key="frame" x="21" y="309" width="332" height="67"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="24"/>
+                                        <color key="textColor" name="Purple-Accent"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVE-d7-1Ej" userLabel="Tone View">
+                                        <rect key="frame" x="8" y="223" width="359" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Joy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lz-F2-NSd">
+                                                <rect key="frame" x="0.0" y="30" width="359" height="58"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="48"/>
+                                                <color key="textColor" name="Text-Primary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Joy" translatesAutoresizingMaskIntoConstraints="NO" id="2yi-H2-tDz">
+                                                <rect key="frame" x="150" y="-31" width="58" height="58"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" name="Text-Primary"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="Purple-Background"/>
@@ -3024,6 +3044,7 @@
         <image name="hand.thumbsup.fill" catalog="system" width="64" height="64"/>
         <image name="info.circle.fill" catalog="system" width="64" height="62"/>
         <image name="lander" width="115" height="135"/>
+        <image name="onboardingBackground" width="375" height="667"/>
         <image name="planet-1" width="416" height="416"/>
         <image name="plus.circle.fill" catalog="system" width="64" height="62"/>
         <image name="purple-monster-1" width="115" height="117"/>
@@ -3061,6 +3082,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="KeL-OH-dIN"/>
         <segue reference="Rbj-mH-9SK"/>
         <segue reference="ELK-UX-nmP"/>
     </inferredMetricsTieBreakers>

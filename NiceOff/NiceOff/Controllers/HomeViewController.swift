@@ -10,7 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 import FirebaseAuth
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     //Avatar
     @IBOutlet var avatarNameButton: UIButton!
@@ -27,6 +27,10 @@ class HomeViewController: UIViewController {
     @IBOutlet var startButtonBackground: DesignableView!
     @IBOutlet var joinButtonBackground: DesignableView!
     
+    //Onboarding
+    @IBOutlet var onboardingScrollView: UIScrollView!
+    @IBOutlet var onboardingViewContainer: UIView!
+    
     var gameAction = "new"
     
     override func viewDidLoad() {
@@ -34,6 +38,10 @@ class HomeViewController: UIViewController {
         
         if Auth.auth().currentUser == nil {
             showLoadingOverlay()
+            //Onboarding
+            onboardingScrollView.delegate = self
+            let slides:[OnboardingFrameUIView] = CreateSlides()
+            SetupSlideScrollView(slides: slides)
             Api.User.signInAnonymously(onSuccess: {self.loginSuccess()}, onError: {error in self.loginError(error: error)})
         } else {
             setInitialAvatar()
@@ -41,7 +49,8 @@ class HomeViewController: UIViewController {
         //Api.User.logOut()
     }
     
-    // MARK: Login Functions
+    // MARK: - Login Functions
+    
     func loginSuccess() {
         hideLoadingOverlay()
         setInitialAvatar()
@@ -68,6 +77,8 @@ class HomeViewController: UIViewController {
             self.loadingView.removeFromSuperview()
         }
     }
+    
+    // MARK: - Avatar Functions
 
     //Change Avatar Name
     @IBAction func onAvatarNameTapped(_ sender: UIButton) {
@@ -278,6 +289,63 @@ class HomeViewController: UIViewController {
         self.avatarNameButton.setTitle(avatarName, for: .normal)
     }
     
+    // MARK: - Login Functions
+    func CreateSlides() -> [OnboardingFrameUIView] {
+        let slide1:OnboardingFrameUIView = Bundle.main.loadNibNamed("OnboardingFrameUIView", owner: self, options: nil)?.first as! OnboardingFrameUIView
+        slide1.onboardingImage.image = UIImage(named:"onboarding1")
+        slide1.Onboarding1Title.isHidden = false
+        slide1.onboardingBody.isHidden = true
+        slide1.onboardingSwipeText.text = "swipe to dicover word space"
+        
+        let slide2:OnboardingFrameUIView = Bundle.main.loadNibNamed("OnboardingFrameUIView", owner: self, options: nil)?.first as! OnboardingFrameUIView
+        slide2.onboardingImage.image = UIImage(named:"onboarding2")
+        slide2.Onboarding1Title.isHidden = true
+        slide2.onboardingBody.isHidden = false
+        slide2.onboardingBody.text = "You are almost ready to join humans on earth! The only thing left to do is learn one of their languages."
+        slide2.onboardingSwipeText.text = "word space is here to help!"
+        
+        let slide3:OnboardingFrameUIView = Bundle.main.loadNibNamed("OnboardingFrameUIView", owner: self, options: nil)?.first as! OnboardingFrameUIView
+        slide3.onboardingImage.image = UIImage(named:"onboarding3")
+        slide3.Onboarding1Title.isHidden = true
+        slide3.onboardingBody.isHidden = false
+        slide3.onboardingBody.text = "Build sentences according to a specific emotion and see your sentence score."
+        slide3.onboardingSwipeText.text = "what about my friends?"
+        
+        let slide4:OnboardingFrameUIView = Bundle.main.loadNibNamed("OnboardingFrameUIView", owner: self, options: nil)?.first as! OnboardingFrameUIView
+        slide4.onboardingImage.image = UIImage(named:"onboarding4")
+        slide4.Onboarding1Title.isHidden = true
+        slide4.onboardingBody.isHidden = false
+        slide4.onboardingBody.text = "Play with all your friends!"
+        slide4.onboardingSwipeText.isHidden = true
+        slide4.onboardingDoneButton.isHidden = false
+        slide4.onboardingDoneButton.tag = 0
+        slide4.onboardingDoneButton.addTarget(self,  action: #selector(dismissOnboarding), for: .touchUpInside)
+        
+        return [slide1, slide2, slide3, slide4]
+    }
+    
+    @objc func dismissOnboarding(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.onboardingViewContainer.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+            self.onboardingViewContainer.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.onboardingViewContainer.removeFromSuperview()
+        }
+    }
+    
+    func SetupSlideScrollView(slides:[OnboardingFrameUIView]) {
+        self.view.addSubview(onboardingViewContainer)
+        onboardingViewContainer.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        onboardingScrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: onboardingScrollView.frame.height)
+        onboardingScrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: onboardingScrollView.frame.height)
+
+        for i in 0 ..< slides.count {
+            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: onboardingScrollView.frame.height)
+            onboardingScrollView.addSubview(slides[i])
+        }
+        
+    }
     //MARK: - Api
     
     func getWordData() {
