@@ -11,6 +11,11 @@ import NVActivityIndicatorView
 
 class AddWordsViewController: UIViewController {
 
+    //Haptics
+    let impact = UIImpactFeedbackGenerator()
+    let notificationTap = UINotificationFeedbackGenerator()
+    let selectionTap = UISelectionFeedbackGenerator()
+    
     //Backgrounds
     @IBOutlet var subjectViewBackground: DesignableView!
     @IBOutlet var verbViewBackground: DesignableView!
@@ -71,6 +76,7 @@ class AddWordsViewController: UIViewController {
     // MARK: - Enter Word
     
     func showEnterWordOverlay(wordType: String, exampleText: String, descriptionText: String) {
+        selectionTap.selectionChanged()
         self.view.addSubview(enterWordView)
         enterWordView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.enterWordView.tintColor = UIColor.init(named: self.accentColour)
@@ -101,6 +107,7 @@ class AddWordsViewController: UIViewController {
     }
     
     func hideEnterWordOverlay() {
+        selectionTap.selectionChanged()
         submitWordButton.setTitle("Submit", for: .normal)
         submitWordButton.isEnabled = true
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
@@ -141,12 +148,15 @@ class AddWordsViewController: UIViewController {
     
     //Subject
     @IBAction func onNewSubjectDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateDown(currentView: subjectViewBackground)
     }
     @IBAction func onNewSubjectCancel(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: subjectViewBackground)
     }
     @IBAction func onNewSubjectUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: subjectViewBackground)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.currentWordType = "Subject"
@@ -156,12 +166,15 @@ class AddWordsViewController: UIViewController {
     
     //Verb
     @IBAction func onNewVerbDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateDown(currentView: verbViewBackground)
     }
     @IBAction func onNewVerbCancel(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: verbViewBackground)
     }
     @IBAction func onNewVerbUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: verbViewBackground)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.currentWordType = "Verb"
@@ -171,12 +184,15 @@ class AddWordsViewController: UIViewController {
     
     //Object
     @IBAction func onNewObjectDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateDown(currentView: objectViewBackground)
     }
     @IBAction func onNewObjectCancel(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: objectViewBackground)
     }
     @IBAction func onNewObjectUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: objectViewBackground)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.currentWordType = "Object"
@@ -186,12 +202,15 @@ class AddWordsViewController: UIViewController {
     
     //Adjective
     @IBAction func onNewAdjectiveDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateDown(currentView: adjectiveViewBackground)
     }
     @IBAction func onNewAdjectiveCancel(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: adjectiveViewBackground)
     }
     @IBAction func onNewAdjectiveUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: adjectiveViewBackground)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.currentWordType = "Adjective"
@@ -201,12 +220,15 @@ class AddWordsViewController: UIViewController {
     
     //Adverb
     @IBAction func onNewAdverbDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateDown(currentView: adverbViewBackground)
     }
     @IBAction func onNewAdverbCancel(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: adverbViewBackground)
     }
     @IBAction func onNewAdverbUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         animateUp(currentView: adverbViewBackground)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.currentWordType = "Adverb"
@@ -217,6 +239,7 @@ class AddWordsViewController: UIViewController {
     // MARK: - Review Secret
     
     func showEnterSecretOverlay() {
+        selectionTap.selectionChanged()
         self.view.addSubview(enterSecretViewContainer)
         enterSecretViewContainer.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.enterSecretViewContainer.tintColor = UIColor.init(named: self.accentColour)
@@ -235,6 +258,7 @@ class AddWordsViewController: UIViewController {
     }
     
     func hideEnterSecretOverlay() {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.wordLabel.transform = .init(scaleX: 0.4, y: 0.4)
         })
@@ -253,11 +277,15 @@ class AddWordsViewController: UIViewController {
     
     @IBAction func secretButtonTapped(_ sender: Any) {
         if wordLabel.text == "7323" {
+            notificationTap.notificationOccurred(.success)
             performSegue(withIdentifier: "toReviewSegue", sender: nil)
+        } else {
+            notificationTap.notificationOccurred(.error)
         }
     }
     
     @IBAction func closeSecretTapped(_ sender: Any) {
+        selectionTap.selectionChanged()
         hideEnterSecretOverlay()
     }
     
@@ -282,6 +310,7 @@ class AddWordsViewController: UIViewController {
     // MARK: - Api
     
     func addSuggestedWord(word: SuggestedWord) {
+        selectionTap.selectionChanged()
         wordInput.endEditing(true)
         submitLoadingView.startAnimating()
         let documentData = [
@@ -295,6 +324,7 @@ class AddWordsViewController: UIViewController {
             self.wordInput.isHidden = true
             self.addingSuccessIcon.isHidden = false
             self.addingSuccessIcon.transform = .init(scaleX: 0.3, y: 0.3)
+            self.impact.impactOccurred()
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
                 self.addingSuccessIcon.transform = .identity
             })

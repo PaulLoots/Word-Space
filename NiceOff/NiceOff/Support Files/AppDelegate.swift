@@ -33,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Saves changes in the application's managed object context before the application terminates.
+        Api.Game.deleteGame(onSuccess: {print("Game Deleted")}, onError: {error in
+            print("Delete Error")
+            print(error)})
+    }
 }
 

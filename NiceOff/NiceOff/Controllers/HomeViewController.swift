@@ -12,6 +12,11 @@ import FirebaseAuth
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
+    //Haptics
+    let impact = UIImpactFeedbackGenerator()
+    let notificationTap = UINotificationFeedbackGenerator()
+    let selectionTap = UISelectionFeedbackGenerator()
+    
     //Avatar
     @IBOutlet var avatarNameButton: UIButton!
     @IBOutlet var avatarImage: UIImageView!
@@ -44,6 +49,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             SetupSlideScrollView(slides: slides)
             Api.User.signInAnonymously(onSuccess: {self.loginSuccess()}, onError: {error in self.loginError(error: error)})
         } else {
+            Api.Game.deleteGame(onSuccess: {print("Game Deleted")}, onError: {error in print(error)})
             setInitialAvatar()
         }
         //Api.User.logOut()
@@ -82,6 +88,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     //Change Avatar Name
     @IBAction func onAvatarNameTapped(_ sender: UIButton) {
+        
+        selectionTap.selectionChanged()
+        
         let firsName = avatarNameFirst.randomElement() ?? "Happy"
         let lastName = avatarNameLast.randomElement() ?? "Dwarf"
         let fullName = firsName + " " + lastName
@@ -94,6 +103,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.impact.impactOccurred()
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
                 self.avatarNameButton.transform = CGAffineTransform.identity
                 self.avatarNameButton.alpha = 1
@@ -102,6 +112,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func onNewGameDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.startButtonBackground.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
             self.startButtonBackground.shadowRadius = 0
@@ -110,6 +121,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func onNewGameUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.startButtonBackground.transform = CGAffineTransform.identity
             self.startButtonBackground.shadowRadius = 10
@@ -122,6 +134,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func joinNewGameDown(_ sender: Any) {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.joinButtonBackground.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
             self.joinButtonBackground.shadowRadius = 0
@@ -130,6 +143,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func joinNewGameUp(_ sender: Any) {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.joinButtonBackground.transform = CGAffineTransform.identity
             self.joinButtonBackground.shadowRadius = 10
@@ -199,6 +213,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         UserDefaults.standard.set(String(newAvatarIndex), forKey: CURRENT_AVATAR_INDEX)
         let newAvatar = avatars[newAvatarIndex]
         
+        selectionTap.selectionChanged()
+        
         //Animate Out
         if isLeft {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
@@ -217,6 +233,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.selectionTap.selectionChanged()
             if isLeft {
                 self.avatarBackgroundImage.transform = CGAffineTransform.init(translationX: self.view.frame.width, y: 0)
                 self.avatarImage.transform = CGAffineTransform.init(translationX: self.view.frame.width, y: 0)

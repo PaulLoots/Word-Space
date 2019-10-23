@@ -17,6 +17,11 @@ import SAConfettiView
 
 class ScoreBoardViewController: UIViewController {
 
+    //Haptics
+    let impact = UIImpactFeedbackGenerator()
+    let notificationTap = UINotificationFeedbackGenerator()
+    let selectionTap = UISelectionFeedbackGenerator()
+    
     //Player Data
     var enteredSentence = "I am super happy"
     var answerTime = 0
@@ -120,6 +125,7 @@ class ScoreBoardViewController: UIViewController {
     //MARK: - Exit Game
     
     func exitGame() {
+        impact.impactOccurred()
         removeListners()
         deleteGame()
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
@@ -155,6 +161,7 @@ class ScoreBoardViewController: UIViewController {
     //MARK: - Next Round
     
     @IBAction func nextRoundTapped(_ sender: Any) {
+        selectionTap.selectionChanged()
         nextRoundButton.setTitle("", for: .normal)
         nextRoundButton.isUserInteractionEnabled = false
         if currentGame.currentRound != 4 {
@@ -177,11 +184,14 @@ class ScoreBoardViewController: UIViewController {
         if currentGame.currentRound > 4 {
             exitGame()
         } else {
+            selectionTap.selectionChanged()
             self.nextRoundButton.setTitle("Next Round in 2", for: .normal)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.selectionTap.selectionChanged()
                 self.nextRoundButton.setTitle("Next Round in 1", for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.notificationTap.notificationOccurred(.success)
                 self.performSegue(withIdentifier: "nextRoundSegue", sender: nil)
             }
         }
@@ -209,6 +219,7 @@ class ScoreBoardViewController: UIViewController {
     //MARK: - Like Sentence
     
     @objc func likeSentence(_ sender: UIButton) {
+        selectionTap.selectionChanged()
         self.likedSentenceTags.append(sender.tag)
         self.resultsTableView.reloadData()
         Api.Game.likeSentence(sentenceID: players[sender.tag].playerID + String(currentRound), gameID: gameID, onSuccess: {
@@ -421,6 +432,7 @@ class ScoreBoardViewController: UIViewController {
     //MARK: - Final Score
     
     func showFinalScoreOverlay() {
+        selectionTap.selectionChanged()
         self.view.addSubview(scoreView)
         scoreView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
         var avatarIndex = "0"
@@ -436,6 +448,7 @@ class ScoreBoardViewController: UIViewController {
         scoreAvatar.image = UIImage.init(named: currentAvatar.icon)
         scoreLabel.text = String(myPlace)
         if myPlace == 1 {
+            notificationTap.notificationOccurred(.success)
            placeLabel.text = "You Won!"
             let confettiView = SAConfettiView(frame: self.view.bounds)
             self.view.addSubview(confettiView)
@@ -448,6 +461,7 @@ class ScoreBoardViewController: UIViewController {
                 }
             }
         } else {
+            notificationTap.notificationOccurred(.warning)
             switch (myPlace) {
             case 21 , 31, 41, 51, 61, 71, 81, 91, 101:
                 placeLabel.text = "\(myPlace)st"
@@ -465,13 +479,14 @@ class ScoreBoardViewController: UIViewController {
                 self.scoreView.alpha = 1
             })
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.scoreView.transform = .init(scaleX: 1.5, y: 1.5)
                 self.scoreView.alpha = 0
             })
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.3) {
+            self.selectionTap.selectionChanged()
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.scoreView.transform = .identity
                 self.scoreView.removeFromSuperview()
@@ -531,13 +546,26 @@ class ScoreBoardViewController: UIViewController {
         } else {
             scoreRing.startProgress(to: CGFloat(playerScore/100), duration: 1.5)
         }
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.selectionTap.selectionChanged()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            self.selectionTap.selectionChanged()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            self.selectionTap.selectionChanged()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            self.selectionTap.selectionChanged()
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.impact.impactOccurred()
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                 self.scoreLabel.transform = .init(scaleX: 1.2, y: 1.2)
             })
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+            self.selectionTap.selectionChanged()
             UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
                 self.scoreLabel.transform = .identity
             })
@@ -567,6 +595,7 @@ class ScoreBoardViewController: UIViewController {
     }
     
     func displayScoreboard() {
+        selectionTap.selectionChanged()
         if gameAction == "new" {
             self.nextRoundButton.setTitle("Next Round", for: .normal)
             self.nextRoundButton.isUserInteractionEnabled = true

@@ -10,6 +10,11 @@ import UIKit
 
 class PlaySceneViewController: UIViewController {
 
+    //Haptics
+    let impact = UIImpactFeedbackGenerator()
+    let notificationTap = UINotificationFeedbackGenerator()
+    let selectionTap = UISelectionFeedbackGenerator()
+    
     //New Round
     @IBOutlet var newRoundView: UIView!
     @IBOutlet var rountCatagoryIcon: UIImageView!
@@ -166,6 +171,7 @@ class PlaySceneViewController: UIViewController {
     @IBAction func onEnterTapped(_ sender: Any) {
         if checkIfSentenceIsValid() {
             timer.invalidate()
+            impact.impactOccurred()
             performSegue(withIdentifier: "submitAnswerSegue", sender: nil)
         }
     }
@@ -224,6 +230,7 @@ class PlaySceneViewController: UIViewController {
     // MARK: - Enter Word
     
     func showEnterWordOverlay() {
+        selectionTap.selectionChanged()
         self.view.addSubview(enterWordOverlayView)
         enterWordOverlayView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.enterWordOverlayView.tintColor = UIColor.init(named: self.accentColour)
@@ -234,6 +241,9 @@ class PlaySceneViewController: UIViewController {
         self.enterWordTextField.text = ""
         self.enterWordTextField.becomeFirstResponder()
         self.enterWordOverlayView.alpha = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.selectionTap.selectionChanged()
+        }
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.enterWordOverlayView.transform = .identity
@@ -257,6 +267,7 @@ class PlaySceneViewController: UIViewController {
     }
     
     func hideEnterWordOverlay() {
+        impact.impactOccurred()
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.enterWordTextField.transform = .init(scaleX: 0.4, y: 0.4)
         })
@@ -268,6 +279,7 @@ class PlaySceneViewController: UIViewController {
     }
     
     @IBAction func onCloseEnterWordOverlay(_ sender: Any) {
+        selectionTap.selectionChanged()
         hideEnterWordOverlay()
     }
     
@@ -538,6 +550,7 @@ class PlaySceneViewController: UIViewController {
     // MARK: - Animations
     
     func animateBeginRound() {
+        selectionTap.selectionChanged()
         self.gameView.transform = .init(translationX: 0, y: 100)
         self.gameView.alpha = 0
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
@@ -554,6 +567,7 @@ class PlaySceneViewController: UIViewController {
             })
         }
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.selectionTap.selectionChanged()
              self.newRoundView.isHidden = true
          }
     }
@@ -572,6 +586,7 @@ class PlaySceneViewController: UIViewController {
     }
     
     func bounceTimerLabel() {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.timerLabel.transform = .init(scaleX: 1.2, y: 1.2)
             self.timerLabel.textColor = UIColor.init(named: self.accentColour)
@@ -640,10 +655,12 @@ extension PlaySceneViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.2) {
             if collectionView == self.selectedSentenceCollectionView {
+                self.impact.impactOccurred()
                 if let cell = collectionView.cellForItem(at: indexPath) as? WordPillCollectionViewCell {
                     cell.pillBackground.transform = .init(scaleX: 0.8, y: 0.8)
                 }
             } else if collectionView == self.wordOptionsCollectionView {
+                self.selectionTap.selectionChanged()
                 if let cell = collectionView.cellForItem(at: indexPath) as? WordPillCollectionViewCell {
                     cell.pillBackground.transform = .init(scaleX: 0.8, y: 0.8)
                 }

@@ -37,6 +37,7 @@ class GameApi {
         db.collection(gameCollection).document(Api.User.currentUserId).collection(playerCollection).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
+                onError("Error Deleting Game \(err.localizedDescription)")
             } else {
                 for document in  querySnapshot?.documents ?? [] {
                     document.reference.delete()
@@ -44,6 +45,7 @@ class GameApi {
                 self.db.collection(self.gameCollection).document(Api.User.currentUserId).collection(self.sentenceCollection).getDocuments() { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
+                        onError("Error Deleting Game \(err.localizedDescription)")
                     } else {
                         for document in  querySnapshot?.documents ?? [] {
                             document.reference.delete()

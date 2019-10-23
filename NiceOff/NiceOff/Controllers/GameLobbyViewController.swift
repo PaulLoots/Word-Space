@@ -12,6 +12,11 @@ import Firebase
 
 class GameLobbyViewController: UIViewController {
     
+    //Haptics
+    let impact = UIImpactFeedbackGenerator()
+    let notificationTap = UINotificationFeedbackGenerator()
+    let selectionTap = UISelectionFeedbackGenerator()
+    
     //Shared
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var TitleLabel: UILabel!
@@ -97,6 +102,7 @@ class GameLobbyViewController: UIViewController {
     // MARK: - Back/Cancel
     
     @IBAction func onBackPressed(_ sender: Any) {
+        selectionTap.selectionChanged()
         self.dismiss(animated: true)
         removeListners()
         deleteGame()
@@ -109,6 +115,7 @@ class GameLobbyViewController: UIViewController {
     
     //Pass Phrase Animation
     func shakeLimitLabel() {
+        notificationTap.notificationOccurred(.error)
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.passPhraseLimitLabel.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         })
@@ -139,6 +146,7 @@ class GameLobbyViewController: UIViewController {
     
     @IBAction func onSetPhraseTapped(_ sender: Any) {
         if checkPassPhraseCount() {
+            impact.impactOccurred()
             if gameAction == "new" {
                 currentGame.passPhrase = mergePassPhrase()
                 createGame()
@@ -186,6 +194,10 @@ class GameLobbyViewController: UIViewController {
         self.categoryOverlay.alpha = 0
         self.categoryOverlay.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
         self.categoriesStackView.transform = .init(scaleX: 1, y: 0)
+        selectionTap.selectionChanged()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.selectionTap.selectionChanged()
+        }
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
                 self.categoryOverlay.transform = .identity
@@ -197,6 +209,7 @@ class GameLobbyViewController: UIViewController {
     
     @IBAction func selectCatagoryTapped(_ sender: UIButton) {
         
+        selectionTap.selectionChanged()
         randomIcon.tintColor = UIColor.init(named: "Text-Primary")
         randomCheck.isHidden = true
         joyIcon.tintColor = UIColor.init(named: "Text-Primary")
@@ -254,6 +267,7 @@ class GameLobbyViewController: UIViewController {
     }
     
     func hideCategoryOverlay() {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             self.categoryOverlay.transform = CGAffineTransform.init(scaleX: 1, y: 0.8)
             self.categoryOverlay.alpha = 0
@@ -273,6 +287,7 @@ class GameLobbyViewController: UIViewController {
     // MARK: - Start Game
     
     @IBAction func onStartGameTapped(_ sender: Any) {
+        selectionTap.selectionChanged()
         startGameButton.setTitle("", for: .normal)
         startGameButton.isUserInteractionEnabled = false
         startGameLoading.startAnimating()
@@ -293,15 +308,19 @@ class GameLobbyViewController: UIViewController {
     }
     
     func beginCountdown() {
+        selectionTap.selectionChanged()
         self.startGameButton.setTitle("Starting in 3", for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.startGameButton.setTitle("Starting in 2", for: .normal)
+            self.selectionTap.selectionChanged()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.startGameButton.setTitle("Starting in 1", for: .normal)
+            self.selectionTap.selectionChanged()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.performSegue(withIdentifier: "startGameSegue", sender: nil)
+            self.notificationTap.notificationOccurred(.success)
         }
     }
     
@@ -323,6 +342,7 @@ class GameLobbyViewController: UIViewController {
     // MARK: - Animations
     
     func animateToStartGame() {
+        selectionTap.selectionChanged()
         self.startGameInfoView.transform = .init(translationX: 0, y: 100)
         self.startGameInfoView.alpha = 0
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
@@ -349,6 +369,7 @@ class GameLobbyViewController: UIViewController {
             })
         }
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.selectionTap.selectionChanged()
              self.passPhraseOptionsCollectionView.isHidden = true
              self.passPhraseArea.isHidden = true
          }
@@ -466,6 +487,7 @@ class GameLobbyViewController: UIViewController {
                 self.removeListners()
                 return
             }
+            self.selectionTap.selectionChanged()
             self.playersTableView.reloadData()
         }, onGameEnded: {
             self.dismiss(animated: true)
@@ -520,6 +542,7 @@ extension GameLobbyViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.2) {
             if let cell = collectionView.cellForItem(at: indexPath) as? WordPillCollectionViewCell {
                 cell.pillBackground.transform = .init(scaleX: 0.8, y: 0.8)

@@ -61,6 +61,8 @@ class ReviewViewController: UIViewController {
     func setTheme() {
         view.tintColor = UIColor.init(named: accentColour)
         view.backgroundColor = UIColor.init(named: backgroundColour)
+        cardOverlay.backgroundColor = UIColor.init(named: backgroundColour)
+        cardSecondOverlay.backgroundColor =  UIColor.init(named: backgroundColour)
     }
     
     //MARK: - Card Movement
