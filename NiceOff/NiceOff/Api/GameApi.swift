@@ -22,8 +22,44 @@ class GameApi {
     
     private var gameListner: ListenerRegistration? = nil
     
+    func createGame(passPhrase: String, documentData: [String : Any],onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        db.collection(gameCollection).whereField(GAME_PASS_PHRASE, isEqualTo: passPhrase)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    onError("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot?.documents.count ?? 0 > 0 {
+                        let creationDate = (querySnapshot?.documents[0].data()[GAME_CREATION_DATE] as! Timestamp).dateValue()
+                        print(creationDate)
+                        let difference = Calendar.current.dateComponents([.hour, .minute], from: creationDate, to: Date())
+                        if difference.hour ?? 0 > 25 {
+                            self.deleteOtherGame(gameID: querySnapshot?.documents[0].documentID ?? "", onSuccess: {
+                                self.setGame(documentData: documentData, onSuccess: {
+                                    onSuccess()
+                                }, onError: { error in
+                                    onError(error)
+                                })
+                            }, onError: {error in
+                                print(error)
+                                onError("Error getting documents: \(error)")
+                            })
+                        } else {
+                            onError("Existing Game")
+                        }
+                    } else {
+                        self.setGame(documentData: documentData, onSuccess: {
+                            onSuccess()
+                        }, onError: { error in
+                            onError(error)
+                        })
+                    }
+                }
+        }
+    }
+    
     func setGame(documentData: [String : Any],onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
-        db.collection(gameCollection).document(Api.User.currentUserId).setData(documentData, merge: true) { (error) in
+        self.db.collection(self.gameCollection).document(Api.User.currentUserId).setData(documentData, merge: true) { (error) in
             if error != nil {
                 print(error?.localizedDescription as Any)
                 onError(error?.localizedDescription ?? "ERROR")
@@ -51,6 +87,36 @@ class GameApi {
                             document.reference.delete()
                         }
                         Firestore.firestore().collection(self.gameCollection).document(Api.User.currentUserId).delete() { error in
+                            if let error = error {
+                                onError("Error Deleting Game \(error.localizedDescription)")
+                            } else {
+                                onSuccess()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteOtherGame(gameID: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        db.collection(gameCollection).document(gameID).collection(playerCollection).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                onError("Error Deleting Game \(err.localizedDescription)")
+            } else {
+                for document in  querySnapshot?.documents ?? [] {
+                    document.reference.delete()
+                }
+                self.db.collection(self.gameCollection).document(gameID).collection(self.sentenceCollection).getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                        onError("Error Deleting Game \(err.localizedDescription)")
+                    } else {
+                        for document in  querySnapshot?.documents ?? [] {
+                            document.reference.delete()
+                        }
+                        Firestore.firestore().collection(self.gameCollection).document(gameID).delete() { error in
                             if let error = error {
                                 onError("Error Deleting Game \(error.localizedDescription)")
                             } else {

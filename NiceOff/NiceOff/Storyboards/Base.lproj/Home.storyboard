@@ -23,7 +23,7 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Word_Space" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,7 +123,7 @@
                                 <rect key="frame" x="0.0" y="356" width="375" height="238"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="867-LM-VaY" userLabel="New Game View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="867-LM-VaY" userLabel="New Game View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="8" width="325" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -167,7 +167,7 @@
                                                 <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="0.59999999999999998"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                 <size key="value" width="1" height="1"/>
@@ -180,7 +180,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" id="v56-PP-PBx" userLabel="New Game View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" id="v56-PP-PBx" userLabel="New Game View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="128" width="325" height="100"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -225,7 +225,7 @@
                                                 <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="0.59999999999999998"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                 <size key="value" width="1" height="1"/>
@@ -314,7 +314,7 @@
                             <viewLayoutGuide key="frameLayoutGuide" id="mLv-QJ-OSF"/>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <viewLayoutGuide key="safeArea" id="tTn-TC-Rdh"/>
                 </view>
                 <view contentMode="scaleToFill" id="rSg-cF-GyN" userLabel="LoadingView">
@@ -380,7 +380,7 @@
         <!--Add Words View Controller-->
         <scene sceneID="JKC-ZK-GLJ">
             <objects>
-                <viewController id="iWs-w6-9mW" customClass="AddWordsViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iWs-w6-9mW" customClass="AddWordsViewController" customModule="Word_Space" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SQw-fd-gA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -439,7 +439,7 @@
                                 <rect key="frame" x="0.0" y="197" width="375" height="417"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" id="s4a-Gk-KQY" userLabel="Subject View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" id="s4a-Gk-KQY" userLabel="Subject View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="0.0" width="325" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -492,7 +492,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" id="snc-w8-ZQB" userLabel="Verb View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" id="snc-w8-ZQB" userLabel="Verb View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="78" width="325" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -545,7 +545,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" id="C12-d1-SxN" userLabel="object View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" id="C12-d1-SxN" userLabel="object View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="156" width="325" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -598,7 +598,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" id="ebg-GG-96r" userLabel="Adjective View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" id="ebg-GG-96r" userLabel="Adjective View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="234" width="325" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -651,7 +651,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" id="C9I-ky-qIR" userLabel="Adverb View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" id="C9I-ky-qIR" userLabel="Adverb View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="312" width="325" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -781,7 +781,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="619"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqc-x2-g08" userLabel="Secret Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqc-x2-g08" userLabel="Secret Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="297" width="328" height="56"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" name="Purple-Accent"/>
@@ -808,7 +808,7 @@
                                                 <color key="textColor" name="Text-Primary"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="amm-6X-s6q" customClass="DesignableTextField" customModule="NiceOff" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="amm-6X-s6q" customClass="DesignableTextField" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="-1" y="53" width="331" height="56"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="backgroundColor" name="Card-Neutral"/>
@@ -881,7 +881,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="372" height="672"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-0W-t2b" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3F-0W-t2b" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="19" y="83" width="335" height="296"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -892,7 +892,7 @@
                                                 <color key="textColor" name="Text-Primary"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpB-aa-iM0" userLabel="Start Game Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpB-aa-iM0" userLabel="Start Game Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="18" y="218" width="291" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="backgroundColor" name="Purple-Accent"/>
@@ -926,7 +926,7 @@
                                                 <rect key="frame" x="73" y="181" width="184" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
-                                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="example:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2m1-h4-Jd8">
@@ -943,7 +943,7 @@
                                                 <color key="textColor" name="Purple-Accent"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbo-mv-FOH" customClass="DesignableTextField" customModule="NiceOff" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbo-mv-FOH" customClass="DesignableTextField" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="6" y="127" width="321" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -979,7 +979,7 @@
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mvc-22-rfi">
                                                 <rect key="frame" x="131" y="140" width="72" height="79"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
                                             </imageView>
                                         </subviews>
@@ -1050,7 +1050,7 @@
         <!--Review View Controller-->
         <scene sceneID="5oe-oW-PfL">
             <objects>
-                <viewController id="ZHc-qD-eVT" customClass="ReviewViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZHc-qD-eVT" customClass="ReviewViewController" customModule="Word_Space" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CrD-QI-lVl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1058,7 +1058,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-lm-4aP">
                                 <rect key="frame" x="25" y="130" width="325" height="397"/>
                                 <subviews>
-                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zg-em-QXj" userLabel="cardThird" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zg-em-QXj" userLabel="cardThird" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="0.0" width="275" height="197"/>
                                         <color key="backgroundColor" name="Card-Neutral"/>
                                         <userDefinedRuntimeAttributes>
@@ -1070,7 +1070,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-SM-Acf" userLabel="cardSecond" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-SM-Acf" userLabel="cardSecond" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="15" y="10" width="295" height="322"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alien" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igt-op-TKg">
@@ -1122,7 +1122,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9C-OZ-KHj" userLabel="card" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9C-OZ-KHj" userLabel="card" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24" width="325" height="373"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alien" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsH-IM-8dQ">
@@ -1359,7 +1359,7 @@
         <!--Game Lobby View Controller-->
         <scene sceneID="NE5-ub-FWO">
             <objects>
-                <viewController id="J3b-cF-Ng9" customClass="GameLobbyViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="J3b-cF-Ng9" customClass="GameLobbyViewController" customModule="Word_Space" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fUA-h5-VT7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1390,7 +1390,7 @@
                                 <color key="textColor" name="Text-Primary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CT-BJ-B5u" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CT-BJ-B5u" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                 <rect key="frame" x="25" y="586" width="325" height="56"/>
                                 <color key="backgroundColor" name="Card-Shadow"/>
                                 <constraints>
@@ -1408,7 +1408,7 @@
                                     <action selector="onSetPhraseTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="XlR-6l-Ptz"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5z-bS-OBB" userLabel="Pass Phrase Selected Area" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5z-bS-OBB" userLabel="Pass Phrase Selected Area" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                 <rect key="frame" x="16" y="168" width="343" height="128"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1423,9 +1423,9 @@
                                         <rect key="frame" x="9" y="9" width="325" height="94"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewLayout key="collectionViewLayout" id="tfO-cD-ifV" customClass="LeftAlignedCollectionViewFlowLayout" customModule="NiceOff" customModuleProvider="target"/>
+                                        <collectionViewLayout key="collectionViewLayout" id="tfO-cD-ifV" customClass="LeftAlignedCollectionViewFlowLayout" customModule="Word_Space" customModuleProvider="target"/>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="VmG-Qc-Ud8" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="VmG-Qc-Ud8" customClass="WordPillCollectionViewCell" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xTu-6G-R4g">
@@ -1451,9 +1451,9 @@
                                 <rect key="frame" x="25" y="342" width="325" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewLayout key="collectionViewLayout" id="u39-w9-ZYa" customClass="CollectionViewCenteredFlowLayout" customModule="NiceOff" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="u39-w9-ZYa" customClass="CollectionViewCenteredFlowLayout" customModule="Word_Space" customModuleProvider="target"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="a7H-D9-5rs" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="a7H-D9-5rs" customClass="WordPillCollectionViewCell" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Hdd-OW-hNT">
@@ -1470,7 +1470,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2k-RB-eyh" userLabel="Lobby Content">
                                 <rect key="frame" x="25" y="127.5" width="325" height="449.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDF-Xp-1PO" userLabel="Pass Phrase View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDF-Xp-1PO" userLabel="Pass Phrase View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phrase Phrase Phrase Phrase Phrase Phrase Phrase Phrase" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0N-Zz-R7c">
@@ -1512,7 +1512,7 @@
                                         <color key="textColor" name="Text-Primary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXi-ur-iUZ" userLabel="Catagory View" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXi-ur-iUZ" userLabel="Catagory View" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="117.5" width="325" height="56"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joy" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8c-J5-fQQ">
@@ -1568,14 +1568,14 @@
                                         <rect key="frame" x="0.0" y="221" width="325" height="228.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayersTableViewCell" rowHeight="84" id="aaj-Fo-kp5" customClass="PlayersTableViewCell" customModule="NiceOff" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayersTableViewCell" rowHeight="84" id="aaj-Fo-kp5" customClass="PlayersTableViewCell" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="325" height="84"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aaj-Fo-kp5" id="sxy-Ma-c6H">
                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="84"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-NP-C4q" userLabel="PlayerCard" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-NP-C4q" userLabel="PlayerCard" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="4" width="325" height="76"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="planet-1" translatesAutoresizingMaskIntoConstraints="NO" id="nx8-QU-cw0">
@@ -1623,6 +1623,13 @@
                                             <outlet property="delegate" destination="J3b-cF-Ng9" id="g4S-oI-2Fb"/>
                                         </connections>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask your friends to join" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yTs-FS-iib">
+                                        <rect key="frame" x="0.0" y="351.5" width="325" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
+                                        <color key="textColor" name="Text-Grey"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1644,7 +1651,7 @@
                                     <constraint firstItem="nOO-0d-oVf" firstAttribute="top" secondItem="GH1-Mx-w8g" secondAttribute="bottom" constant="5" id="zZo-uz-Hio"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0G-Eo-Voz" userLabel="Start Game Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0G-Eo-Voz" userLabel="Start Game Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                 <rect key="frame" x="25" y="586" width="325" height="56"/>
                                 <color key="backgroundColor" name="Purple-Accent"/>
                                 <constraints>
@@ -1717,13 +1724,18 @@
                         <outlet property="creatingGameOverlayLabel" destination="3tK-5j-50K" id="xgk-Xl-l5Q"/>
                         <outlet property="fearCheck" destination="iEi-rY-Z4L" id="c0g-SC-wj1"/>
                         <outlet property="fearIcon" destination="Meg-4l-HBg" id="Bn5-Yy-iZL"/>
+                        <outlet property="friendsJoinLabel" destination="yTs-FS-iib" id="2lj-nJ-Cn9"/>
                         <outlet property="joyCheck" destination="Sbq-DB-YNQ" id="VFP-D0-1W9"/>
                         <outlet property="joyIcon" destination="xdo-LS-P4Y" id="ab7-WR-G72"/>
+                        <outlet property="onePlayerStartGameButton" destination="Sep-mG-UrJ" id="vON-NM-DKg"/>
+                        <outlet property="onePlayerWaitFriendsButton" destination="dHK-TG-dqS" id="Qhe-rq-jYr"/>
+                        <outlet property="onePlayerWarningView" destination="dR7-Ss-Oys" id="mbi-qd-kpr"/>
                         <outlet property="passPhraseArea" destination="c5z-bS-OBB" id="ApQ-5a-myc"/>
                         <outlet property="passPhraseCollectionView" destination="OAe-Ze-Vkg" id="BWZ-Fg-oeG"/>
                         <outlet property="passPhraseLabel" destination="j0N-Zz-R7c" id="3zE-sE-6JO"/>
                         <outlet property="passPhraseLimitLabel" destination="X0M-nj-5DP" id="VgA-xo-vnH"/>
                         <outlet property="passPhraseOptionsCollectionView" destination="Yos-dE-Ta0" id="lHE-uP-gRx"/>
+                        <outlet property="playerCountLabel" destination="GH1-Mx-w8g" id="O0O-7t-bs8"/>
                         <outlet property="playersTableView" destination="nOO-0d-oVf" id="H7e-aq-Kb7"/>
                         <outlet property="randomCheck" destination="0Zr-i0-61v" id="EPL-sg-usA"/>
                         <outlet property="randomIcon" destination="3BO-Oe-2qX" id="cSL-Fm-z07"/>
@@ -1781,6 +1793,101 @@
                     <viewLayoutGuide key="safeArea" id="wPg-77-LSd"/>
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qtw-EI-oNT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="dR7-Ss-Oys">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="624"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zyy-IW-aVf">
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="624"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="yuE-Mw-8bX">
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="624"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vg0-mj-gdh" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
+                                        <rect key="frame" x="65" y="123" width="248" height="426"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sep-mG-UrJ" userLabel="Start Game Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="283" width="216" height="57"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <color key="backgroundColor" name="Purple-Accent"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="tintColor" name="White"/>
+                                                <state key="normal" title="Start Game"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="9"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onOnePlayerWarningStartGameTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="6Vb-Ly-ED4"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="questionMonster" translatesAutoresizingMaskIntoConstraints="NO" id="yUt-Qu-ktR">
+                                                <rect key="frame" x="31" y="-58" width="186" height="127"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="One Player?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ID-jS-TSF">
+                                                <rect key="frame" x="14" y="82" width="217" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="32"/>
+                                                <color key="textColor" name="Text-Primary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="If you start the game now you will be the only player. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huh-uT-2Me">
+                                                <rect key="frame" x="23" y="151" width="200" height="103"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="20"/>
+                                                <color key="textColor" name="Text-Primary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHK-TG-dqS" userLabel="Start Game Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="349" width="216" height="58"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <color key="backgroundColor" name="secondary-button"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-SemiBold" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="tintColor" name="White"/>
+                                                <state key="normal" title="Wait For Friends">
+                                                    <color key="titleColor" name="Purple-Accent"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="9"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onCloseOnePlayerWarningTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="1PT-p8-ZsB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Card-Neutral"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" name="Card-Shadow"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="1" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </view>
+                            <blurEffect style="systemUltraThinMaterial"/>
+                        </visualEffectView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="aht-hO-g8d"/>
+                </view>
                 <view contentMode="scaleToFill" id="ell-l2-s0d">
                     <rect key="frame" x="0.0" y="0.0" width="358" height="621"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1803,17 +1910,10 @@
                                     <color key="textColor" name="Text-Primary"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-lg-ebe">
-                                    <rect key="frame" x="307" y="103" width="26" height="25.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <state key="normal" image="info.circle.fill" catalog="system">
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
-                                    </state>
-                                </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="7IL-dv-Fqx">
                                     <rect key="frame" x="25" y="153.5" width="308" height="316"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" id="2p6-KP-sVi" userLabel="Option" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" id="2p6-KP-sVi" userLabel="Option" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="308" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
@@ -1862,7 +1962,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJJ-PN-9Y0" userLabel="Option" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJJ-PN-9Y0" userLabel="Option" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="65" width="308" height="56"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Joy" translatesAutoresizingMaskIntoConstraints="NO" id="xdo-LS-P4Y">
@@ -1909,7 +2009,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" id="Fyz-rJ-XJZ" userLabel="Option" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" id="Fyz-rJ-XJZ" userLabel="Option" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="130" width="308" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
@@ -1958,7 +2058,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" id="cTw-qI-rsg" userLabel="Option" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" id="cTw-qI-rsg" userLabel="Option" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="195" width="308" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
@@ -2007,7 +2107,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" id="K5V-vn-cMO" userLabel="Option" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" id="K5V-vn-cMO" userLabel="Option" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="260" width="308" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
@@ -2064,12 +2164,10 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="QOA-lg-ebe" secondAttribute="trailing" constant="25" id="1yA-aY-xVz"/>
                                 <constraint firstItem="Med-uQ-zmY" firstAttribute="top" secondItem="Elf-qv-2vV" secondAttribute="top" constant="96" id="3c3-q8-wos"/>
                                 <constraint firstItem="7IL-dv-Fqx" firstAttribute="leading" secondItem="Elf-qv-2vV" secondAttribute="leading" constant="25" id="BaC-Ej-Wvz"/>
                                 <constraint firstAttribute="trailing" secondItem="7IL-dv-Fqx" secondAttribute="trailing" constant="25" id="IAD-hc-GRG"/>
                                 <constraint firstItem="Med-uQ-zmY" firstAttribute="leading" secondItem="Elf-qv-2vV" secondAttribute="leading" constant="25" id="ONq-Zc-BYF"/>
-                                <constraint firstItem="QOA-lg-ebe" firstAttribute="top" secondItem="Elf-qv-2vV" secondAttribute="top" constant="103" id="UCQ-ba-bpd"/>
                                 <constraint firstItem="7IL-dv-Fqx" firstAttribute="top" secondItem="Med-uQ-zmY" secondAttribute="bottom" constant="20" id="YB5-N1-WSK"/>
                             </constraints>
                         </view>
@@ -2087,7 +2185,7 @@
                                 <action selector="onCloseCatagoryOverlayTapped:" destination="J3b-cF-Ng9" eventType="touchUpInside" id="QSn-eL-2ag"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTH-Xp-ynB" userLabel="Start Game Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTH-Xp-ynB" userLabel="Start Game Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                             <rect key="frame" x="25" y="535" width="308" height="56"/>
                             <color key="backgroundColor" name="Purple-Accent"/>
                             <constraints>
@@ -2126,7 +2224,7 @@
         <!--Play Scene View Controller-->
         <scene sceneID="MAA-Yr-Kuu">
             <objects>
-                <viewController id="pfK-nu-ma5" customClass="PlaySceneViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pfK-nu-ma5" customClass="PlaySceneViewController" customModule="Word_Space" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vEm-48-x8o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2148,7 +2246,7 @@
                                             <constraint firstAttribute="width" constant="40" id="vJ6-ly-4vD"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsF-4e-Fz7" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsF-4e-Fz7" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="586" width="325" height="56"/>
                                         <color key="backgroundColor" name="Purple-Accent"/>
                                         <constraints>
@@ -2172,7 +2270,7 @@
                                         <color key="textColor" name="Text-Primary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVT-vO-Edp" userLabel="Sentence Selected Area" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVT-vO-Edp" userLabel="Sentence Selected Area" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="164" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -2180,9 +2278,9 @@
                                                 <rect key="frame" x="17" y="5" width="343" height="139"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewLayout key="collectionViewLayout" id="Zsm-5p-Usf" customClass="LeftAlignedCollectionViewFlowLayout" customModule="NiceOff" customModuleProvider="target"/>
+                                                <collectionViewLayout key="collectionViewLayout" id="Zsm-5p-Usf" customClass="LeftAlignedCollectionViewFlowLayout" customModule="Word_Space" customModuleProvider="target"/>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="i93-C1-KkJ" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="i93-C1-KkJ" customClass="WordPillCollectionViewCell" customModule="Word_Space" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wcx-vq-e7i">
@@ -2190,7 +2288,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </collectionViewCellContentView>
                                                     </collectionViewCell>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BareWordCollectionViewCell" id="81z-6u-aiH" customClass="BareWordCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BareWordCollectionViewCell" id="81z-6u-aiH" customClass="BareWordCollectionViewCell" customModule="Word_Space" customModuleProvider="target">
                                                         <rect key="frame" x="73.5" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IEc-6O-9hI">
@@ -2216,9 +2314,9 @@
                                         <rect key="frame" x="16" y="328" width="342" height="200"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewLayout key="collectionViewLayout" id="ggs-Ox-Wmc" customClass="CollectionViewCenteredFlowLayout" customModule="NiceOff" customModuleProvider="target"/>
+                                        <collectionViewLayout key="collectionViewLayout" id="ggs-Ox-Wmc" customClass="CollectionViewCenteredFlowLayout" customModule="Word_Space" customModuleProvider="target"/>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="dft-bn-uHu" customClass="WordPillCollectionViewCell" customModule="NiceOff" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordPillCollectionViewCell" id="dft-bn-uHu" customClass="WordPillCollectionViewCell" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FjQ-JC-auc">
@@ -2369,7 +2467,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleRippleMultiple"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQ2-gb-6Eb" userLabel="Start Game Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQ2-gb-6Eb" userLabel="Start Game Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="297" width="328" height="56"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" name="Purple-Accent"/>
@@ -2396,7 +2494,7 @@
                                                 <color key="textColor" name="Purple-Accent"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZN-YM-CqU" customClass="DesignableTextField" customModule="NiceOff" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZN-YM-CqU" customClass="DesignableTextField" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="-1" y="53" width="331" height="56"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <color key="backgroundColor" name="Card-Neutral"/>
@@ -2462,7 +2560,7 @@
         <!--Score Board View Controller-->
         <scene sceneID="XJT-wk-p9D">
             <objects>
-                <viewController id="GzH-y7-YJZ" customClass="ScoreBoardViewController" customModule="NiceOff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GzH-y7-YJZ" customClass="ScoreBoardViewController" customModule="Word_Space" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FHw-Zi-fiR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2503,7 +2601,7 @@
                                                 <rect key="frame" x="57" y="1" width="284" height="69"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ad0-W3-Hsv" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ad0-W3-Hsv" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="0.0" width="269" height="72"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
@@ -2604,7 +2702,7 @@
                                         <rect key="frame" x="25" y="0.0" width="345" height="481.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoundScoreTableViewCell" rowHeight="120" id="zi8-hh-LsJ" userLabel="RoundScore" customClass="RoundScoreTableViewCell" customModule="NiceOff" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoundScoreTableViewCell" rowHeight="120" id="zi8-hh-LsJ" userLabel="RoundScore" customClass="RoundScoreTableViewCell" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="345" height="120"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zi8-hh-LsJ" id="lPR-e5-kfA">
@@ -2615,7 +2713,7 @@
                                                             <rect key="frame" x="43" y="43" width="253" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gI8-Vw-wxH" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gI8-Vw-wxH" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                                                     <rect key="frame" x="15" y="0.0" width="238" height="70"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
@@ -2657,7 +2755,7 @@
                                                             <rect key="frame" x="0.0" y="52" width="47" height="47"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXv-o6-Tgw" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXv-o6-Tgw" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                                             <rect key="frame" x="301" y="43" width="44" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <subviews>
@@ -2715,14 +2813,14 @@
                                                     <outlet property="typingIndicator" destination="jk5-zI-GeX" id="1HO-7S-oYG"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreboardTableViewCell" rowHeight="84" id="3Cw-Wg-kbm" customClass="ScoreboardTableViewCell" customModule="NiceOff" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreboardTableViewCell" rowHeight="84" id="3Cw-Wg-kbm" customClass="ScoreboardTableViewCell" customModule="Word_Space" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="148" width="345" height="84"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Cw-Wg-kbm" id="mZv-xV-eXY">
                                                     <rect key="frame" x="0.0" y="0.0" width="345" height="84"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPj-yA-Kec" userLabel="PlayerCard" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPj-yA-Kec" userLabel="PlayerCard" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="4" width="325" height="76"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="planet-1" translatesAutoresizingMaskIntoConstraints="NO" id="yjh-cq-LCP">
@@ -2800,7 +2898,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballScaleRippleMultiple"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-Oz-UIu">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-Oz-UIu">
                                         <rect key="frame" x="0.0" y="307.5" width="375" height="264"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -2829,7 +2927,7 @@
                                                                     <rect key="frame" x="54" y="2" width="272" height="67"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARz-fD-x52" customClass="DesignableView" customModule="NiceOff" customModuleProvider="target">
+                                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARz-fD-x52" customClass="DesignableView" customModule="Word_Space" customModuleProvider="target">
                                                                             <rect key="frame" x="8" y="0.0" width="264" height="68"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
@@ -2891,7 +2989,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-gx-saV" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-gx-saV" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="490.5" width="325" height="56"/>
                                         <color key="backgroundColor" name="Purple-Accent"/>
                                         <constraints>
@@ -2909,7 +3007,7 @@
                                             <action selector="nextRoundTapped:" destination="GzH-y7-YJZ" eventType="touchUpInside" id="eTG-Ne-oeo"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6W-ar-N3K" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="NiceOff" customModuleProvider="target">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6W-ar-N3K" userLabel="Enter Sentence Button" customClass="DesignableButton" customModule="Word_Space" customModuleProvider="target">
                                         <rect key="frame" x="25" y="489.5" width="325" height="56"/>
                                         <color key="backgroundColor" name="Purple-Accent"/>
                                         <constraints>
@@ -2976,6 +3074,7 @@
                         <outlet property="favoriteLikedAmount" destination="6CX-E3-2DI" id="ePk-db-8ys"/>
                         <outlet property="favoritePersonName" destination="H1a-HA-DrA" id="Hyi-v0-3Se"/>
                         <outlet property="favoriteSenteceView" destination="RRD-fJ-o8I" id="IaE-5K-5B1"/>
+                        <outlet property="favoriteSentenceHeight" destination="hSY-Oz-UIu" id="JJY-Q9-Sny"/>
                         <outlet property="favoriteSentenceLikeIcon" destination="0P0-qj-Px6" id="8ad-8Y-vfC"/>
                         <outlet property="favoriteSentenceString" destination="AlH-Sz-S7x" id="R9g-g7-KDx"/>
                         <outlet property="nextRoundButton" destination="uX5-gx-saV" id="lOK-vh-ISz"/>
@@ -3042,7 +3141,6 @@
         <image name="chevron.compact.right" catalog="system" width="30" height="64"/>
         <image name="chevron.compact.up" catalog="system" width="64" height="20"/>
         <image name="hand.thumbsup.fill" catalog="system" width="64" height="64"/>
-        <image name="info.circle.fill" catalog="system" width="64" height="62"/>
         <image name="lander" width="115" height="135"/>
         <image name="onboardingBackground" width="375" height="667"/>
         <image name="planet-1" width="416" height="416"/>
@@ -3074,15 +3172,20 @@
         <namedColor name="Purple-Background">
             <color red="0.11372549019607843" green="0.058823529411764705" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Text-Grey">
+            <color red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Text-Primary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="secondary-button">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KeL-OH-dIN"/>
         <segue reference="Rbj-mH-9SK"/>
         <segue reference="ELK-UX-nmP"/>
     </inferredMetricsTieBreakers>

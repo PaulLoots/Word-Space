@@ -11,7 +11,7 @@ import NVActivityIndicatorView
 import FirebaseAuth
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
-
+    
     //Haptics
     let impact = UIImpactFeedbackGenerator()
     let notificationTap = UINotificationFeedbackGenerator()
@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     //Change Avatar Name
     @IBAction func onAvatarNameTapped(_ sender: UIButton) {
-        
+        playSound(soundName: soundItemSelect)
         selectionTap.selectionChanged()
         
         let firsName = avatarNameFirst.randomElement() ?? "Happy"
@@ -103,6 +103,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            playSound(soundName: soundMenuSelect)
             self.impact.impactOccurred()
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
                 self.avatarNameButton.transform = CGAffineTransform.identity
@@ -112,6 +113,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func onNewGameDown(_ sender: Any) {
+        playSound(soundName: soundButtonPress)
         selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.startButtonBackground.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
@@ -134,6 +136,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func joinNewGameDown(_ sender: Any) {
+        playSound(soundName: soundButtonPress)
         selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.joinButtonBackground.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
@@ -187,7 +190,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func changeAvatar(isLeft: Bool) {
-        
+        playSound(soundName: soundItemSelect)
         var currentAvatarIndex = "0"
         
         if let index = UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX){
@@ -233,6 +236,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            playSound(soundName: soundMenuSelect)
             self.selectionTap.selectionChanged()
             if isLeft {
                 self.avatarBackgroundImage.transform = CGAffineTransform.init(translationX: self.view.frame.width, y: 0)
@@ -312,7 +316,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         slide1.onboardingImage.image = UIImage(named:"onboarding1")
         slide1.Onboarding1Title.isHidden = false
         slide1.onboardingBody.isHidden = true
-        slide1.onboardingSwipeText.text = "swipe to dicover word space"
+        slide1.onboardingSwipeText.text = "swipe to discover word space"
         
         let slide2:OnboardingFrameUIView = Bundle.main.loadNibNamed("OnboardingFrameUIView", owner: self, options: nil)?.first as! OnboardingFrameUIView
         slide2.onboardingImage.image = UIImage(named:"onboarding2")
@@ -342,6 +346,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func dismissOnboarding(_ sender: UIButton) {
+        playSound(soundName: soundButtonSelect)
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
             self.onboardingViewContainer.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
             self.onboardingViewContainer.alpha = 0

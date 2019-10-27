@@ -126,14 +126,13 @@ class AddWordsViewController: UIViewController {
     
     @IBAction func onSubmitWordTapped(_ sender: Any) {
         if var word = wordInput.text {
-            
-            //TODO: - Check if word is already added to database
-            
+            playSound(soundName: soundError)
             symboldErrorLabel.isHidden = true
             let symbols: [Character] = ["!","?",".","!"]
             if symbols.contains(where: word.contains) {
                 symboldErrorLabel.isHidden = false
             } else {
+                playSound(soundName: soundButtonSelect)
                 if word.last == " " {
                     word = String(word.dropLast())
                 }
@@ -292,6 +291,7 @@ class AddWordsViewController: UIViewController {
     // MARK: - Animations
     
     func animateDown(currentView: DesignableView) {
+        playSound(soundName: soundButtonPress)
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             currentView.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
             currentView.shadowRadius = 0

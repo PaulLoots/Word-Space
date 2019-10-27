@@ -69,6 +69,7 @@ class ScoreBoardViewController: UIViewController {
     @IBOutlet var favoriteSentenceString: UILabel!
     @IBOutlet var favoriteAvatar: UIImageView!
     @IBOutlet var favoriteSentenceLikeIcon: UIImageView!
+    @IBOutlet var favoriteSentenceHeight: UIView!
     
     //Views
     @IBOutlet var scoreView: UIView!
@@ -94,10 +95,10 @@ class ScoreBoardViewController: UIViewController {
         getToneValue(sentenceString:enteredSentence)
         startTimer()
         
-        if gameAction != "new" {
-            nextRoundButton.backgroundColor = .clear
-            nextRoundButton.setTitleColor(UIColor.init(named: accentColour), for: .normal)
-        }
+        self.resultsTableView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 220,right: 0)
+        
+        nextRoundButton.backgroundColor = .clear
+        nextRoundButton.setTitleColor(UIColor.init(named: accentColour), for: .normal)
         
         nextRoundButton.isUserInteractionEnabled = false
     }
@@ -106,6 +107,7 @@ class ScoreBoardViewController: UIViewController {
         view.tintColor = UIColor.init(named: accentColour)
         view.backgroundColor = UIColor.init(named: backgroundColour)
         nextRoundButton.backgroundColor = UIColor.init(named: self.accentColour)
+        endGameButton.backgroundColor = UIColor.init(named: self.accentColour)
         scoreRing.innerRingColor = UIColor.init(named: self.accentColour) ?? .black
         var avatarIndex = "0"
         
@@ -161,36 +163,58 @@ class ScoreBoardViewController: UIViewController {
     //MARK: - Next Round
     
     @IBAction func nextRoundTapped(_ sender: Any) {
-        selectionTap.selectionChanged()
-        nextRoundButton.setTitle("", for: .normal)
-        nextRoundButton.isUserInteractionEnabled = false
-        if currentGame.currentRound != 4 {
-            nextRoundLoading.startAnimating()
+        playSound(soundName: soundButtonSelect)
+        if isShowingLeaderboard {
+            selectionTap.selectionChanged()
+            nextRoundButton.setTitle("", for: .normal)
+            nextRoundButton.isUserInteractionEnabled = false
+            if currentGame.currentRound != 4 {
+                nextRoundLoading.startAnimating()
+            }
+            let documentData = [
+                GAME_CURRENT_ROUND: currentRound + 1
+                ] as [String : Any]
+            Api.Game.setGame(documentData: documentData, onSuccess: {
+                self.nextRoundLoading.stopAnimating()
+            }, onError: {error in
+                print(error)
+                self.nextRoundButton.setTitle("Error Going to Next Round", for: .normal)
+                self.nextRoundButton.isUserInteractionEnabled = true
+                self.nextRoundLoading.stopAnimating()
+            })
+        } else {
+            if currentGame.currentRound != 4 {
+                nextRoundLoading.startAnimating()
+            }
+            let documentData = [
+                GAME_CURRENT_ROUND: 10
+                ] as [String : Any]
+            Api.Game.setGame(documentData: documentData, onSuccess: {
+                self.nextRoundLoading.stopAnimating()
+            }, onError: {error in
+                print(error)
+                self.nextRoundButton.setTitle("Error Going to Next Round", for: .normal)
+                self.nextRoundButton.isUserInteractionEnabled = true
+                self.nextRoundLoading.stopAnimating()
+            })
+
         }
-        let documentData = [
-            GAME_CURRENT_ROUND: FieldValue.increment(Int64(1))
-            ] as [String : Any]
-        Api.Game.setGame(documentData: documentData, onSuccess: {
-            self.nextRoundLoading.stopAnimating()
-        }, onError: {error in
-            print(error)
-            self.nextRoundButton.setTitle("Error Going to Next Round", for: .normal)
-            self.nextRoundButton.isUserInteractionEnabled = true
-            self.nextRoundLoading.stopAnimating()
-        })
     }
     
     func beginNextRound() {
-        if currentGame.currentRound > 4 {
+        if currentGame.currentRound == 5 {
             exitGame()
         } else {
+            playSound(soundName: soundGameStartCountdown)
             selectionTap.selectionChanged()
             self.nextRoundButton.setTitle("Next Round in 2", for: .normal)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.selectionTap.selectionChanged()
+                playSound(soundName: soundGameStartCountdown)
                 self.nextRoundButton.setTitle("Next Round in 1", for: .normal)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                playSound(soundName: soundGameStartCountdown)
                 self.notificationTap.notificationOccurred(.success)
                 self.performSegue(withIdentifier: "nextRoundSegue", sender: nil)
             }
@@ -213,6 +237,7 @@ class ScoreBoardViewController: UIViewController {
     }
     
     @IBAction func endGameButtonTapped(_ sender: Any) {
+        playSound(soundName: soundButtonSelect)
         exitGame()
     }
     
@@ -222,6 +247,7 @@ class ScoreBoardViewController: UIViewController {
         selectionTap.selectionChanged()
         self.likedSentenceTags.append(sender.tag)
         self.resultsTableView.reloadData()
+        playSound(soundName: soundItemSelect)
         Api.Game.likeSentence(sentenceID: players[sender.tag].playerID + String(currentRound), gameID: gameID, onSuccess: {
 
         }, onError: {error in print(error)})
@@ -240,7 +266,7 @@ class ScoreBoardViewController: UIViewController {
         
         if countDownSeconds < 1 {
             timer.invalidate()
-            showScoreboard()
+            activateScoreboardButton()
         }
     }
     
@@ -255,11 +281,24 @@ class ScoreBoardViewController: UIViewController {
         }
         if completedAmount == players.count {
             self.timer.invalidate()
+            self.nextRoundButton.setTitle("All players answered", for: .normal)
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 if !self.isShowingLeaderboard {
-                    self.showScoreboard()
+                    self.activateScoreboardButton()
                 }
             }
+        }
+    }
+    
+    func activateScoreboardButton() {
+        selectionTap.selectionChanged()
+        if gameAction == "new" {
+            nextRoundButton.backgroundColor = UIColor.init(named: accentColour)
+            nextRoundButton.setTitleColor(.white, for: .normal)
+            self.nextRoundButton.setTitle("Show Leaderboard", for: .normal)
+            self.nextRoundButton.isUserInteractionEnabled = true
+        } else {
+            self.nextRoundButton.setTitle("Waiting for Leaderboard", for: .normal)
         }
     }
     
@@ -267,7 +306,7 @@ class ScoreBoardViewController: UIViewController {
         isShowingLeaderboard = true
         players = bubbleSortPlayers(players)
         displayScoreboard()
-        if currentGame.currentRound > 3 {
+        if currentRound == 4 {
             getFavoriteSentence()
             if gameAction != "new" {
                 endGameButton.isHidden = false
@@ -361,7 +400,9 @@ class ScoreBoardViewController: UIViewController {
             self.currentGame.currentRound = data.currentRound
             self.currentGame.currentRoundCatagory = data.currentRoundCatagory
             self.currentGame.id = data.id
-            if self.currentGame.currentRound > self.currentRound {
+            if self.currentGame.currentRound == 10 {
+                self.showScoreboard()
+            } else if self.currentGame.currentRound > self.currentRound {
                 self.beginNextRound()
             }
         }, onNotFound: {
@@ -403,7 +444,6 @@ class ScoreBoardViewController: UIViewController {
                 self.removeListners()
                 return
             }
-            self.players = self.bubbleSortPlayers(self.players)
             self.resultsTableView.reloadData()
         }, onGameEnded: {
             print("Game Ended")
@@ -436,6 +476,7 @@ class ScoreBoardViewController: UIViewController {
         self.view.addSubview(scoreView)
         scoreView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
         var avatarIndex = "0"
+        self.scoreView.transform = .identity
         self.scoreView.transform = .init(scaleX: 1.5, y: 1.5)
         scoreView.alpha = 0
         if let index = UserDefaults.standard.string(forKey: CURRENT_AVATAR_INDEX){
@@ -448,7 +489,8 @@ class ScoreBoardViewController: UIViewController {
         scoreAvatar.image = UIImage.init(named: currentAvatar.icon)
         scoreLabel.text = String(myPlace)
         if myPlace == 1 {
-            notificationTap.notificationOccurred(.success)
+           playSound(soundName: soundWin)
+           notificationTap.notificationOccurred(.success)
            placeLabel.text = "You Won!"
             let confettiView = SAConfettiView(frame: self.view.bounds)
             self.view.addSubview(confettiView)
@@ -496,6 +538,7 @@ class ScoreBoardViewController: UIViewController {
     
     func showFavroiteSentence(favoriteSentence:ScoreItem) {
         favoriteSenteceView.transform = .init(translationX: 0, y: 300)
+        favoriteSentenceHeight.isHidden = false
         favoriteSenteceView.isHidden = false
         if favoriteSentence.playerID == Api.User.currentUserId {
             favoritePersonName.text = "Me"
@@ -546,6 +589,8 @@ class ScoreBoardViewController: UIViewController {
         } else {
             scoreRing.startProgress(to: CGFloat(playerScore/100), duration: 1.5)
         }
+        self.selectionTap.selectionChanged()
+        playSound(soundName: soundCalculating)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.selectionTap.selectionChanged()
         }
@@ -559,6 +604,7 @@ class ScoreBoardViewController: UIViewController {
             self.selectionTap.selectionChanged()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            playSound(soundName: soundCalculationComplete)
             self.impact.impactOccurred()
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                 self.scoreLabel.transform = .init(scaleX: 1.2, y: 1.2)
@@ -602,7 +648,7 @@ class ScoreBoardViewController: UIViewController {
         } else {
             self.nextRoundButton.setTitle("Waiting for next Round", for: .normal)
         }
-        if currentRound > 3 {
+        if currentRound == 4 {
             self.nextRoundButton.setTitle("End Game", for: .normal)
         }
         self.currentStatsView.isHidden = true
@@ -672,18 +718,12 @@ extension ScoreBoardViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RoundScoreTableViewCell", for: indexPath) as! RoundScoreTableViewCell
             
-            if players[indexPath.row].playerID == Api.User.currentUserId {
-                self.likedSentenceTags.append(indexPath.row)
-                cell.playerName.text = "Me"
-            } else {
-                cell.playerName.text = players[indexPath.row].playerName
-            }
             let currentAvatar = avatars[Int(players[indexPath.row].playerAvatar) ?? 0]
             cell.playerImage.image = UIImage.init(named: currentAvatar.icon)
             cell.sentenceScore.text = String(players[indexPath.row].sentenceScore)
             if likedSentenceTags.contains(indexPath.row) {
                 cell.likeButton.isEnabled = false
-                cell.likeIcon.alpha = 0.5
+                cell.likeIcon.alpha = 0.4
             } else {
                 cell.likeButton.tag = indexPath.row
                 cell.likeButton.addTarget(self,  action: #selector(likeSentence), for: .touchUpInside)
@@ -706,6 +746,14 @@ extension ScoreBoardViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.likeBackground.backgroundColor = UIColor.init(named: currentAvatar.colour + "-Accent")
                 cell.sentenceLabel.text = players[indexPath.row].sentence
                 cell.typingIndicator.stopAnimating()
+            }
+            if players[indexPath.row].playerID == Api.User.currentUserId {
+                cell.likeButton.isEnabled = false
+                cell.likeBackground.backgroundColor = UIColor.init(named: "secondary-button")
+                cell.likeIcon.alpha = 0.8
+                cell.playerName.text = "Me"
+            } else {
+                cell.playerName.text = players[indexPath.row].playerName
             }
             
             self.checkCompletedAmount()

@@ -160,6 +160,8 @@ class PlaySceneViewController: UIViewController {
         gameCatagoryIcon.image = UIImage.init(named: catagory)
         roundTimerLabel.text = "\(countDownSeconds)s"
         
+        playSound(soundName: soundGameStart)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.startTimer()
             self.animateBeginRound()
@@ -170,9 +172,13 @@ class PlaySceneViewController: UIViewController {
     
     @IBAction func onEnterTapped(_ sender: Any) {
         if checkIfSentenceIsValid() {
+            playSound(soundName: soundButtonSelect)
             timer.invalidate()
             impact.impactOccurred()
             performSegue(withIdentifier: "submitAnswerSegue", sender: nil)
+        } else {
+            playSound(soundName: soundError)
+            notificationTap.notificationOccurred(.error)
         }
     }
     
@@ -254,6 +260,7 @@ class PlaySceneViewController: UIViewController {
     }
     
     @IBAction func onDoneWordenteredTapped(_ sender: Any) {
+        playSound(soundName: soundButtonSelect)
         submitEnteredWord()
     }
     
@@ -371,21 +378,21 @@ class PlaySceneViewController: UIViewController {
         selectedSentenceCollectionView.reloadData()
     }
     
-    func setCurrentEditingType(editingIndex: IndexPath) {
+    func setCurrentEditingType(editingIndex: Int) {
         for (index, _) in wordOptionsAdded.enumerated() {
             wordOptionsAdded[index].isSelected = false
         }
         
-        wordOptionsAdded[editingIndex.item].isSelected = true
+        wordOptionsAdded[editingIndex].isSelected = true
         
-        if wordOptionsAdded[editingIndex.item].wordsList.count == 0 {
-            generateWords(editingType: wordOptionsAdded[editingIndex.item].type)
-            wordOptionsAdded[editingIndex.item].wordsList = self.wordOptions
+        if wordOptionsAdded[editingIndex].wordsList.count == 0 {
+            generateWords(editingType: wordOptionsAdded[editingIndex].type)
+            wordOptionsAdded[editingIndex].wordsList = self.wordOptions
         } else {
-            self.wordOptions = wordOptionsAdded[editingIndex.item].wordsList
+            self.wordOptions = wordOptionsAdded[editingIndex].wordsList
         }
         
-        currentSelectingIndexPath = editingIndex.item
+        currentSelectingIndexPath = editingIndex
         animateTypeChange()
         self.selectedSentenceCollectionView.reloadData()
         
@@ -395,6 +402,22 @@ class PlaySceneViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.wordOptionsCollectionView.reloadData()
+        }
+    }
+    
+    func setNextEditingType() {
+        
+        var nextItemSelected = false
+        var currentIndex = currentSelectingIndexPath
+        
+        while !nextItemSelected {
+            currentIndex += 1
+            if wordOptionsAdded.count < currentIndex + 1 {
+                nextItemSelected = true
+            } else if wordOptionsAdded[currentIndex].type != "structure" {
+                nextItemSelected = true
+                setCurrentEditingType(editingIndex: currentIndex)
+            }
         }
     }
     
@@ -586,6 +609,7 @@ class PlaySceneViewController: UIViewController {
     }
     
     func bounceTimerLabel() {
+        playSound(soundName: soundErrorCountdown)
         selectionTap.selectionChanged()
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.timerLabel.transform = .init(scaleX: 1.2, y: 1.2)
@@ -655,11 +679,13 @@ extension PlaySceneViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.2) {
             if collectionView == self.selectedSentenceCollectionView {
+                playSound(soundName: soundMenuSelect)
                 self.impact.impactOccurred()
                 if let cell = collectionView.cellForItem(at: indexPath) as? WordPillCollectionViewCell {
                     cell.pillBackground.transform = .init(scaleX: 0.8, y: 0.8)
                 }
             } else if collectionView == self.wordOptionsCollectionView {
+                playSound(soundName: soundItemSelect)
                 self.selectionTap.selectionChanged()
                 if let cell = collectionView.cellForItem(at: indexPath) as? WordPillCollectionViewCell {
                     cell.pillBackground.transform = .init(scaleX: 0.8, y: 0.8)
@@ -681,16 +707,17 @@ extension PlaySceneViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if collectionView == self.selectedSentenceCollectionView {
             if isEnterTypeWord {
-                self.setCurrentEditingType(editingIndex: indexPath)
+                self.setCurrentEditingType(editingIndex: indexPath.item)
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.setCurrentEditingType(editingIndex: indexPath)
+                    self.setCurrentEditingType(editingIndex: indexPath.item)
                 }
             }
         } else if collectionView == self.wordOptionsCollectionView {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.wordOptionsAdded[self.currentSelectingIndexPath].value = self.wordOptions[indexPath.item]
                 _ = self.checkIfSentenceIsValid()
+                self.setNextEditingType()
                 self.selectedSentenceCollectionView.reloadData()
             }
         }

@@ -22,6 +22,10 @@ class GameLobbyViewController: UIViewController {
     @IBOutlet var TitleLabel: UILabel!
     var gameAction = "new"
     
+    //Players
+    @IBOutlet var playerCountLabel: UILabel!
+    @IBOutlet var friendsJoinLabel: UILabel!
+
     //Pass Phrase
     @IBOutlet var passPhraseCollectionView: UICollectionView!
     @IBOutlet var passPhraseOptionsCollectionView: UICollectionView!
@@ -37,6 +41,11 @@ class GameLobbyViewController: UIViewController {
     @IBOutlet var creatingGameOverlayLabel: UILabel!
     @IBOutlet var creatingGameOverlayError: UIImageView!
     @IBOutlet var startGameLoading: NVActivityIndicatorView!
+    
+    //Warning
+    @IBOutlet var onePlayerWarningView: UIView!
+    @IBOutlet var onePlayerStartGameButton: DesignableButton!
+    @IBOutlet var onePlayerWaitFriendsButton: DesignableButton!
     
     //Start Game
     @IBOutlet var startGameButton: DesignableButton!
@@ -115,6 +124,7 @@ class GameLobbyViewController: UIViewController {
     
     //Pass Phrase Animation
     func shakeLimitLabel() {
+        playSound(soundName: soundError)
         notificationTap.notificationOccurred(.error)
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.passPhraseLimitLabel.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
@@ -146,6 +156,7 @@ class GameLobbyViewController: UIViewController {
     
     @IBAction func onSetPhraseTapped(_ sender: Any) {
         if checkPassPhraseCount() {
+            playSound(soundName: soundButtonSelect)
             impact.impactOccurred()
             if gameAction == "new" {
                 currentGame.passPhrase = mergePassPhrase()
@@ -188,6 +199,7 @@ class GameLobbyViewController: UIViewController {
     }
     
     func showCategoryOverlay() {
+        playSound(soundName: soundMenuSelect)
         self.view.addSubview(categoryOverlay)
         categoryOverlay.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.categoryOverlay.tintColor = UIColor.init(named: self.accentColour)
@@ -208,7 +220,7 @@ class GameLobbyViewController: UIViewController {
     }
     
     @IBAction func selectCatagoryTapped(_ sender: UIButton) {
-        
+        playSound(soundName: soundItemSelect)
         selectionTap.selectionChanged()
         randomIcon.tintColor = UIColor.init(named: "Text-Primary")
         randomCheck.isHidden = true
@@ -253,6 +265,7 @@ class GameLobbyViewController: UIViewController {
     }
     
     @IBAction func onSetcatagoryTapped(_ sender: Any) {
+        playSound(soundName: soundButtonSelect)
         hideCategoryOverlay()
         catagoryLabel.text = self.currentGame.catagory
         catagoryIcon.image = UIImage.init(named: self.currentGame.catagory)
@@ -287,6 +300,15 @@ class GameLobbyViewController: UIViewController {
     // MARK: - Start Game
     
     @IBAction func onStartGameTapped(_ sender: Any) {
+        playSound(soundName: soundButtonSelect)
+        if players.count < 2 {
+            showOnePlayerWarning()
+        } else {
+            startGame()
+        }
+    }
+    
+    func startGame() {
         selectionTap.selectionChanged()
         startGameButton.setTitle("", for: .normal)
         startGameButton.isUserInteractionEnabled = false
@@ -304,21 +326,24 @@ class GameLobbyViewController: UIViewController {
             self.startGameButton.isUserInteractionEnabled = true
             self.startGameLoading.stopAnimating()
         })
-        //performSegue(withIdentifier: "startGameSegue", sender: nil)
     }
     
     func beginCountdown() {
+        playSound(soundName: soundGameStartCountdown)
         selectionTap.selectionChanged()
         self.startGameButton.setTitle("Starting in 3", for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            playSound(soundName: soundGameStartCountdown)
             self.startGameButton.setTitle("Starting in 2", for: .normal)
             self.selectionTap.selectionChanged()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            playSound(soundName: soundGameStartCountdown)
             self.startGameButton.setTitle("Starting in 1", for: .normal)
             self.selectionTap.selectionChanged()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            playSound(soundName: soundGameStartCountdown)
             self.performSegue(withIdentifier: "startGameSegue", sender: nil)
             self.notificationTap.notificationOccurred(.success)
         }
@@ -337,6 +362,52 @@ class GameLobbyViewController: UIViewController {
                 PlaySceneViewController.backgroundColour = backgroundColour
             }
         }
+    }
+    
+    // MARK: - One Player Warning
+    
+    func showOnePlayerWarning() {
+        self.view.addSubview(onePlayerWarningView)
+        onePlayerWarningView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.onePlayerWarningView.tintColor = UIColor.init(named: self.accentColour)
+        self.onePlayerStartGameButton.backgroundColor = UIColor.init(named: self.accentColour)
+        self.onePlayerWaitFriendsButton.setTitleColor(UIColor.init(named: self.accentColour), for: .normal)
+        self.onePlayerWarningView.alpha = 0
+        self.onePlayerWarningView.transform = CGAffineTransform.init(scaleX: 1.4, y: 1.4)
+        selectionTap.selectionChanged()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.selectionTap.selectionChanged()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+                self.onePlayerWarningView.transform = .identity
+                self.onePlayerWarningView.alpha = 1
+            })
+        }
+    }
+    
+    func hideOnePlayerWarning() {
+        selectionTap.selectionChanged()
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            self.onePlayerWarningView.transform = CGAffineTransform.init(scaleX: 1, y: 0.8)
+            self.onePlayerWarningView.alpha = 0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.onePlayerWarningView.transform = .identity
+            self.onePlayerWarningView.alpha = 1
+            self.onePlayerWarningView.removeFromSuperview()
+        }
+    }
+    
+    @IBAction func onCloseOnePlayerWarningTapped(_ sender: Any) {
+        playSound(soundName: soundButtonSelect)
+        hideOnePlayerWarning()
+    }
+    
+    @IBAction func onOnePlayerWarningStartGameTapped(_ sender: Any) {
+        playSound(soundName: soundButtonSelect)
+        hideOnePlayerWarning()
+        startGame()
     }
     
     // MARK: - Animations
@@ -411,6 +482,7 @@ class GameLobbyViewController: UIViewController {
     // Game
     func setGameDocument() -> [String : Any] {
         let documentData = [
+            GAME_CREATION_DATE: FieldValue.serverTimestamp(),
             GAME_PASS_PHRASE: currentGame.passPhrase,
             GAME_CATAGORY: currentGame.catagory,
             GAME_CURRENT_ROUND: currentGame.currentRound,
@@ -422,10 +494,12 @@ class GameLobbyViewController: UIViewController {
     func createGame() {
         showLoadingOverlay()
         
-        Api.Game.setGame(documentData: setGameDocument(), onSuccess: {
+        Api.Game.createGame(passPhrase: currentGame.passPhrase, documentData: setGameDocument(), onSuccess: {
             self.initGameInfo()
             self.addMeAsPlayer(gameID: Api.User.currentUserId)
-        }, onError: {error in print(error)})
+        }, onError: {error in print(error)
+            self.hideLoadingOverlay()
+        })
     }
     
     func deleteGame() {
@@ -487,6 +561,13 @@ class GameLobbyViewController: UIViewController {
                 self.removeListners()
                 return
             }
+            if self.players.count > 1 {
+                self.playerCountLabel.text = "\(self.players.count) Players"
+                self.friendsJoinLabel.isHidden = true
+            } else {
+                self.playerCountLabel.text = "1 Player"
+                self.friendsJoinLabel.isHidden = false
+            }
             self.selectionTap.selectionChanged()
             self.playersTableView.reloadData()
         }, onGameEnded: {
@@ -543,6 +624,7 @@ extension GameLobbyViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         selectionTap.selectionChanged()
+        playSound(soundName: soundItemSelect)
         UIView.animate(withDuration: 0.2) {
             if let cell = collectionView.cellForItem(at: indexPath) as? WordPillCollectionViewCell {
                 cell.pillBackground.transform = .init(scaleX: 0.8, y: 0.8)

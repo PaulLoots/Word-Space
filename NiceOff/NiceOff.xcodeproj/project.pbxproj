@@ -38,6 +38,18 @@
 		7FB9713B233FA5C500317A20 /* UIView+Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9713A233FA5C500317A20 /* UIView+Designable.swift */; };
 		7FBD0926235E3173002F5B29 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBD0925235E3173002F5B29 /* ReviewViewController.swift */; };
 		7FBD0928235ECF23002F5B29 /* AIApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBD0927235ECF23002F5B29 /* AIApi.swift */; };
+		7FD05B38236485A500C412A3 /* buttonSelect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B2E236485A400C412A3 /* buttonSelect.mp3 */; };
+		7FD05B39236485A500C412A3 /* menuSelect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B2F236485A400C412A3 /* menuSelect.mp3 */; };
+		7FD05B3A236485A500C412A3 /* calculating.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B30236485A400C412A3 /* calculating.mp3 */; };
+		7FD05B3B236485A500C412A3 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B31236485A500C412A3 /* error.mp3 */; };
+		7FD05B3C236485A500C412A3 /* buttonPress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B32236485A500C412A3 /* buttonPress.mp3 */; };
+		7FD05B3D236485A500C412A3 /* errorCountdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B33236485A500C412A3 /* errorCountdown.mp3 */; };
+		7FD05B3E236485A500C412A3 /* liked.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B34236485A500C412A3 /* liked.mp3 */; };
+		7FD05B3F236485A500C412A3 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B35236485A500C412A3 /* win.mp3 */; };
+		7FD05B40236485A500C412A3 /* itemSelect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B36236485A500C412A3 /* itemSelect.mp3 */; };
+		7FD05B41236485A500C412A3 /* calculationComplete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B37236485A500C412A3 /* calculationComplete.mp3 */; };
+		7FD05B4323648C9300C412A3 /* gameStart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B4223648C9300C412A3 /* gameStart.mp3 */; };
+		7FD05B4523648EB100C412A3 /* gameStartCountdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FD05B4423648EB100C412A3 /* gameStartCountdown.mp3 */; };
 		7FD7A9AD235DB89300A11172 /* AddWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7A9AC235DB89300A11172 /* AddWordsViewController.swift */; };
 		7FD7A9AF235DD94B00A11172 /* WordApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7A9AE235DD94B00A11172 /* WordApi.swift */; };
 		7FDF5CE6235B16FC00E56B49 /* ScoreboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF5CE5235B16FC00E56B49 /* ScoreboardTableViewCell.swift */; };
@@ -82,6 +94,18 @@
 		7FB9713A233FA5C500317A20 /* UIView+Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Designable.swift"; sourceTree = "<group>"; };
 		7FBD0925235E3173002F5B29 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		7FBD0927235ECF23002F5B29 /* AIApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIApi.swift; sourceTree = "<group>"; };
+		7FD05B2E236485A400C412A3 /* buttonSelect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonSelect.mp3; sourceTree = "<group>"; };
+		7FD05B2F236485A400C412A3 /* menuSelect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuSelect.mp3; sourceTree = "<group>"; };
+		7FD05B30236485A400C412A3 /* calculating.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calculating.mp3; sourceTree = "<group>"; };
+		7FD05B31236485A500C412A3 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
+		7FD05B32236485A500C412A3 /* buttonPress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonPress.mp3; sourceTree = "<group>"; };
+		7FD05B33236485A500C412A3 /* errorCountdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = errorCountdown.mp3; sourceTree = "<group>"; };
+		7FD05B34236485A500C412A3 /* liked.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = liked.mp3; sourceTree = "<group>"; };
+		7FD05B35236485A500C412A3 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		7FD05B36236485A500C412A3 /* itemSelect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = itemSelect.mp3; sourceTree = "<group>"; };
+		7FD05B37236485A500C412A3 /* calculationComplete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calculationComplete.mp3; sourceTree = "<group>"; };
+		7FD05B4223648C9300C412A3 /* gameStart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameStart.mp3; sourceTree = "<group>"; };
+		7FD05B4423648EB100C412A3 /* gameStartCountdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameStartCountdown.mp3; sourceTree = "<group>"; };
 		7FD7A9AC235DB89300A11172 /* AddWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordsViewController.swift; sourceTree = "<group>"; };
 		7FD7A9AE235DD94B00A11172 /* WordApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordApi.swift; sourceTree = "<group>"; };
 		7FDF5CE5235B16FC00E56B49 /* ScoreboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardTableViewCell.swift; sourceTree = "<group>"; };
@@ -197,6 +221,7 @@
 		7FB97128233F902B00317A20 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7FD05B23236465E900C412A3 /* Sounds */,
 				7FB9712F233F90DF00317A20 /* Fonts */,
 				7FB9711D233F8FEB00317A20 /* Assets.xcassets */,
 			);
@@ -273,6 +298,25 @@
 				7FB97131233F914700317A20 /* SourceSansPro-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7FD05B23236465E900C412A3 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				7FD05B32236485A500C412A3 /* buttonPress.mp3 */,
+				7FD05B2E236485A400C412A3 /* buttonSelect.mp3 */,
+				7FD05B4423648EB100C412A3 /* gameStartCountdown.mp3 */,
+				7FD05B30236485A400C412A3 /* calculating.mp3 */,
+				7FD05B4223648C9300C412A3 /* gameStart.mp3 */,
+				7FD05B37236485A500C412A3 /* calculationComplete.mp3 */,
+				7FD05B31236485A500C412A3 /* error.mp3 */,
+				7FD05B33236485A500C412A3 /* errorCountdown.mp3 */,
+				7FD05B36236485A500C412A3 /* itemSelect.mp3 */,
+				7FD05B34236485A500C412A3 /* liked.mp3 */,
+				7FD05B2F236485A400C412A3 /* menuSelect.mp3 */,
+				7FD05B35236485A500C412A3 /* win.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		7FE16195236043E8006C96FD /* Onboarding */ = {
@@ -354,14 +398,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FD05B38236485A500C412A3 /* buttonSelect.mp3 in Resources */,
 				7F2E36292340091F0072A8C7 /* WordPillCollectionViewCell.xib in Resources */,
 				7FB97121233F8FEB00317A20 /* LaunchScreen.storyboard in Resources */,
 				7F5B1624235329A900BED319 /* GoogleService-Info.plist in Resources */,
+				7FD05B3C236485A500C412A3 /* buttonPress.mp3 in Resources */,
 				7FB9711E233F8FEB00317A20 /* Assets.xcassets in Resources */,
+				7FD05B3E236485A500C412A3 /* liked.mp3 in Resources */,
+				7FD05B3B236485A500C412A3 /* error.mp3 in Resources */,
 				7FB97134233F914800317A20 /* SourceSansPro-SemiBold.ttf in Resources */,
+				7FD05B41236485A500C412A3 /* calculationComplete.mp3 in Resources */,
+				7FD05B3F236485A500C412A3 /* win.mp3 in Resources */,
+				7FD05B4523648EB100C412A3 /* gameStartCountdown.mp3 in Resources */,
 				7F959F2F2351E8EE00AECACD /* BareWordCollectionViewCell.xib in Resources */,
 				7FB9711C233F8FEA00317A20 /* Home.storyboard in Resources */,
 				7FE1619923604466006C96FD /* OnboardingFrameUIView.xib in Resources */,
+				7FD05B3D236485A500C412A3 /* errorCountdown.mp3 in Resources */,
+				7FD05B4323648C9300C412A3 /* gameStart.mp3 in Resources */,
+				7FD05B39236485A500C412A3 /* menuSelect.mp3 in Resources */,
+				7FD05B3A236485A500C412A3 /* calculating.mp3 in Resources */,
+				7FD05B40236485A500C412A3 /* itemSelect.mp3 in Resources */,
 				7FB97133233F914800317A20 /* SourceSansPro-Regular.ttf in Resources */,
 				7FB97135233F914800317A20 /* SourceSansPro-Bold.ttf in Resources */,
 			);
