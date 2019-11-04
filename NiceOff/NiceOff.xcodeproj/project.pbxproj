@@ -58,6 +58,11 @@
 		7FE1619723604445006C96FD /* OnboardingFrameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1619623604445006C96FD /* OnboardingFrameUIView.swift */; };
 		7FE1619923604466006C96FD /* OnboardingFrameUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1619823604466006C96FD /* OnboardingFrameUIView.xib */; };
 		7FF3E91D234CAF16002B903F /* PlaySceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */; };
+		7FF59BD923682057007B6061 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF59BD823682057007B6061 /* Animation.swift */; };
+		7FF59BDE23687BAB007B6061 /* calculation_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FF59BDA23687BAB007B6061 /* calculation_low.mp3 */; };
+		7FF59BDF23687BAB007B6061 /* calculation_verylow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FF59BDB23687BAB007B6061 /* calculation_verylow.mp3 */; };
+		7FF59BE023687BAB007B6061 /* calculation_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FF59BDC23687BAB007B6061 /* calculation_high.mp3 */; };
+		7FF59BE123687BAB007B6061 /* calculation_medium.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7FF59BDD23687BAB007B6061 /* calculation_medium.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +120,11 @@
 		7FE1619823604466006C96FD /* OnboardingFrameUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingFrameUIView.xib; sourceTree = "<group>"; };
 		7FE1619A23606292006C96FD /* Word Space.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Word Space.entitlements"; sourceTree = "<group>"; };
 		7FF3E91C234CAF16002B903F /* PlaySceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySceneViewController.swift; sourceTree = "<group>"; };
+		7FF59BD823682057007B6061 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		7FF59BDA23687BAB007B6061 /* calculation_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calculation_low.mp3; sourceTree = "<group>"; };
+		7FF59BDB23687BAB007B6061 /* calculation_verylow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calculation_verylow.mp3; sourceTree = "<group>"; };
+		7FF59BDC23687BAB007B6061 /* calculation_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calculation_high.mp3; sourceTree = "<group>"; };
+		7FF59BDD23687BAB007B6061 /* calculation_medium.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calculation_medium.mp3; sourceTree = "<group>"; };
 		E43DF25D2C9D8755785A2655 /* Pods_NiceOff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NiceOff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA65013ABB921A59968E060 /* Pods-NiceOff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceOff.debug.xcconfig"; path = "Target Support Files/Pods-NiceOff/Pods-NiceOff.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,6 +287,7 @@
 				7F2E362C2340ACEF0072A8C7 /* Ref.swift */,
 				7F2E36332340FC250072A8C7 /* Words.swift */,
 				7F21195323546FC80004C7D0 /* Game.swift */,
+				7FF59BD823682057007B6061 /* Animation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -305,6 +316,10 @@
 			children = (
 				7FD05B32236485A500C412A3 /* buttonPress.mp3 */,
 				7FD05B2E236485A400C412A3 /* buttonSelect.mp3 */,
+				7FF59BDC23687BAB007B6061 /* calculation_high.mp3 */,
+				7FF59BDA23687BAB007B6061 /* calculation_low.mp3 */,
+				7FF59BDD23687BAB007B6061 /* calculation_medium.mp3 */,
+				7FF59BDB23687BAB007B6061 /* calculation_verylow.mp3 */,
 				7FD05B4423648EB100C412A3 /* gameStartCountdown.mp3 */,
 				7FD05B30236485A400C412A3 /* calculating.mp3 */,
 				7FD05B4223648C9300C412A3 /* gameStart.mp3 */,
@@ -399,11 +414,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FD05B38236485A500C412A3 /* buttonSelect.mp3 in Resources */,
+				7FF59BDE23687BAB007B6061 /* calculation_low.mp3 in Resources */,
 				7F2E36292340091F0072A8C7 /* WordPillCollectionViewCell.xib in Resources */,
 				7FB97121233F8FEB00317A20 /* LaunchScreen.storyboard in Resources */,
 				7F5B1624235329A900BED319 /* GoogleService-Info.plist in Resources */,
 				7FD05B3C236485A500C412A3 /* buttonPress.mp3 in Resources */,
 				7FB9711E233F8FEB00317A20 /* Assets.xcassets in Resources */,
+				7FF59BE023687BAB007B6061 /* calculation_high.mp3 in Resources */,
 				7FD05B3E236485A500C412A3 /* liked.mp3 in Resources */,
 				7FD05B3B236485A500C412A3 /* error.mp3 in Resources */,
 				7FB97134233F914800317A20 /* SourceSansPro-SemiBold.ttf in Resources */,
@@ -411,11 +428,13 @@
 				7FD05B3F236485A500C412A3 /* win.mp3 in Resources */,
 				7FD05B4523648EB100C412A3 /* gameStartCountdown.mp3 in Resources */,
 				7F959F2F2351E8EE00AECACD /* BareWordCollectionViewCell.xib in Resources */,
+				7FF59BE123687BAB007B6061 /* calculation_medium.mp3 in Resources */,
 				7FB9711C233F8FEA00317A20 /* Home.storyboard in Resources */,
 				7FE1619923604466006C96FD /* OnboardingFrameUIView.xib in Resources */,
 				7FD05B3D236485A500C412A3 /* errorCountdown.mp3 in Resources */,
 				7FD05B4323648C9300C412A3 /* gameStart.mp3 in Resources */,
 				7FD05B39236485A500C412A3 /* menuSelect.mp3 in Resources */,
+				7FF59BDF23687BAB007B6061 /* calculation_verylow.mp3 in Resources */,
 				7FD05B3A236485A500C412A3 /* calculating.mp3 in Resources */,
 				7FD05B40236485A500C412A3 /* itemSelect.mp3 in Resources */,
 				7FB97133233F914800317A20 /* SourceSansPro-Regular.ttf in Resources */,
@@ -510,6 +529,7 @@
 				7FD7A9AD235DB89300A11172 /* AddWordsViewController.swift in Sources */,
 				7F2E36322340DECA0072A8C7 /* UICollectionViewFlowLayout+Extention.swift in Sources */,
 				7FB97119233F8FEA00317A20 /* HomeViewController.swift in Sources */,
+				7FF59BD923682057007B6061 /* Animation.swift in Sources */,
 				7F959F2E2351E8EE00AECACD /* BareWordCollectionViewCell.swift in Sources */,
 				7F48D282234DF1E500BC77BC /* StringExtention.swift in Sources */,
 				7F2E36342340FC250072A8C7 /* Words.swift in Sources */,
@@ -671,7 +691,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paulloots.NiceOff;
 				PRODUCT_NAME = "Word Space";
 				SWIFT_VERSION = 5.0;
@@ -693,7 +713,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paulloots.NiceOff;
 				PRODUCT_NAME = "Word Space";
 				SWIFT_VERSION = 5.0;

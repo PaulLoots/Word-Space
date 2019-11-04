@@ -604,7 +604,15 @@ class ScoreBoardViewController: UIViewController {
             self.selectionTap.selectionChanged()
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            playSound(soundName: soundCalculationComplete)
+            if self.playerScore < -1000 {
+               playSound(soundName: soundcalculation_verylow)
+            } else if self.playerScore < 3000 {
+               playSound(soundName: soundcalculation_low)
+            } else if self.playerScore < 7000 {
+               playSound(soundName: soundcalculation_medium)
+            } else {
+               playSound(soundName: soundcalculation_high)
+            }
             self.impact.impactOccurred()
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                 self.scoreLabel.transform = .init(scaleX: 1.2, y: 1.2)
@@ -759,6 +767,14 @@ extension ScoreBoardViewController: UITableViewDelegate, UITableViewDataSource {
             self.checkCompletedAmount()
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if isShowingLeaderboard {
+            let animation = AnimationFactory.makeRevealLeaderboard(rowHeight: cell.frame.height, duration: 1.5, delayFactor: 0.1)
+            let animator = Animator(animation: animation)
+            animator.animate(cell: cell, at: indexPath, in: tableView)
         }
     }
     

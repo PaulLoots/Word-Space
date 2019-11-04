@@ -50,6 +50,10 @@ var soundMenuSelect = "menuSelect"
 var soundWin = "win"
 var soundGameStart = "gameStart"
 var soundGameStartCountdown = "gameStartCountdown"
+var soundcalculation_verylow = "calculation_verylow"
+var soundcalculation_low = "calculation_low"
+var soundcalculation_medium = "calculation_medium"
+var soundcalculation_high = "calculation_high"
 
 //Sounds
 var player: AVAudioPlayer?
