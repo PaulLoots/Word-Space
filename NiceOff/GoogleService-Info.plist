@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>641644813012-gtr80fgudmntnl5pn90tu9hjlmot2qel.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.641644813012-gtr80fgudmntnl5pn90tu9hjlmot2qel</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD2jrKraToIXoW8SWiYO3upzVbYlY99DjM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>641644813012</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.paulloots.NiceOff</string>
+	<key>PROJECT_ID</key>
+	<string>wordy-ab90e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>wordy-ab90e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:641644813012:ios:bbdda9342bd2cebbe0b941</string>
+	<key>DATABASE_URL</key>
+	<string>https://wordy-ab90e.firebaseio.com</string>
+</dict>
+</plist>
