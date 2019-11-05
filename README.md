@@ -31,7 +31,7 @@
     <a href="#about-the-project"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://youtu.be/9uc0e5hnaQU">View Demo</a>
+    <a href="https://youtu.be/Hsav9FGcjAY">View Demo</a>
     ·
     <a href="https://youtu.be/38BEuaZgzKQ">Watch Reveal</a>
   </p>
