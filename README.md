@@ -35,10 +35,12 @@
     ·
     <a href="https://youtu.be/38BEuaZgzKQ">Watch Reveal</a>
   </p>
-  
-  <a href="https://apps.apple.com/us/app/word-space/id1484544526">
-    <img src="Images/appstore.png" alt="App Store" width="60" height="40">
-  </a>
+  <br/>
+  <p align="center">
+     <a href="https://apps.apple.com/us/app/word-space/id1484544526">
+       <img src="Images/appstore.png" alt="App Store" width="80">
+     </a>
+  </p>
 </p>
 
 
